@@ -1,213 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salvetra</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salvetra | AI-Enabled Veterinary HealthTech</title>
 
-<style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f5f7f6;
-    color:#1f2937;
-    line-height:1.7;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f5ef;
+      color: #24342f;
+      line-height: 1.6;
+    }
 
-header{
-    background:white;
-    padding:20px 40px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.05);
-    position:sticky;
-    top:0;
-}
+    header {
+      padding: 55px 10% 70px;
+      background: linear-gradient(135deg, #eef3e8, #ffffff);
+    }
 
-.logo img{
-    height:42px;
-}
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 55px;
+    }
 
-nav a{
-    margin-left:20px;
-    text-decoration:none;
-    color:#374151;
-    font-weight:500;
-}
+    .logo-text{
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #0f3d35;
+    }
 
-.hero{
-    text-align:center;
-    padding:120px 20px;
-    background:linear-gradient(to bottom,#eef7f3,#f5f7f6);
-}
+    .contact-btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #24483d;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.hero h1{
-    font-size:52px;
-    margin-bottom:20px;
-    color:#065f46;
-}
+    h1 {
+      font-size: 48px;
+      max-width: 850px;
+      line-height: 1.15;
+      margin: 0 0 24px;
+      color: #0f3d35;
+    }
 
-.hero p{
-    max-width:850px;
-    margin:auto;
-    font-size:20px;
-    color:#4b5563;
-}
+    .subtitle {
+      font-size: 21px;
+      max-width: 760px;
+      color: #4c5c55;
+    }
 
-.button{
-    display:inline-block;
-    margin-top:35px;
-    padding:14px 34px;
-    background:#065f46;
-    color:white;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-}
+    .cta {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      background: #24483d;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-section{
-    max-width:1100px;
-    margin:auto;
-    padding:90px 20px;
-}
+    section {
+      padding: 60px 10%;
+      background: #ffffff;
+      border-bottom: 1px solid #e6e2d8;
+    }
 
-h2{
-    font-size:38px;
-    margin-bottom:25px;
-    color:#111827;
-}
+    section.alt {
+      background: #f7f5ef;
+    }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-    margin-top:40px;
-}
+    h2 {
+      font-size: 32px;
+      margin-top: 0;
+      color: #0f3d35;
+    }
 
-.card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.05);
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
 
-.card h3{
-    margin-top:0;
-    color:#065f46;
-}
+    .card {
+      background: #ffffff;
+      border: 1px solid #e1ddd2;
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
 
-.note{
-    background:#ecfdf5;
-    border-left:5px solid #10b981;
-    padding:25px;
-    border-radius:12px;
-    margin-top:40px;
-}
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 25px;
+    }
 
-footer{
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-    margin-top:80px;
-}
+    .team-card {
+      background: #ffffff;
+      border: 1px solid #e1ddd2;
+      padding: 26px;
+      border-radius: 16px;
+    }
 
-footer p{
-    color:#d1d5db;
-}
-</style>
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #e6efe4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .note {
+      margin-top: 30px;
+      background: #eef3e8;
+      border: 1px solid #d8e4d5;
+      padding: 22px;
+      border-radius: 14px;
+    }
+
+    footer {
+      padding: 40px 10%;
+      background: #24342f;
+      color: white;
+    }
+
+    footer a {
+      color: #d8eadf;
+    }
+
+    @media (max-width: 700px) {
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg">
-    </div>
+  <header>
 
-    <nav>
-        <a href="#">About</a>
-        <a href="#">Platform</a>
-        <a href="#">Nutrition</a>
-        <a href="#">Medication Support</a>
-        <a href="#">Contact</a>
-    </nav>
-</header>
+    <div class="topbar">
 
-<section class="hero">
-    <h1>AI-Enabled Veterinary HealthTech Platform</h1>
+      <div class="logo-text">
+        SALVETRA
+      </div>
 
-    <p>
-        Salvetra is building a next-generation veterinary HealthTech company focused on
-        personalized nutrition, medication adherence, and digital wellness infrastructure
-        for companion animals.
-    </p>
-
-    <a class="button" href="#">Learn More</a>
-</section>
-
-<section>
-    <h2>What We Do</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Personalized Nutrition</h3>
-            <p>
-                AI-driven nutritional systems tailored to companion animals
-                using scientific veterinary data and precision feeding models.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Medication Support</h3>
-            <p>
-                Improving medication adherence through smart reminders,
-                flavor systems, and simplified veterinary care workflows.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Digital Health Platform</h3>
-            <p>
-                Building scalable veterinary infrastructure connecting clinics,
-                pet owners, nutrition systems, and wellness data.
-            </p>
-        </div>
+      <a class="contact-btn" href="mailto:hello@salvetra.com">
+        Contact Founder
+      </a>
 
     </div>
-</section>
 
-<section>
+    <h1>
+      Personalized pet healthcare through veterinary science, nutrition, and digital care.
+    </h1>
 
-    <h2>Our Vision</h2>
+    <p class="subtitle">
+      Salvetra is an AI-enabled Veterinary HealthTech platform building personalized fresh nutrition,
+      medication adherence support, and digital wellness infrastructure for companion animals.
+    </p>
+
+    <a class="cta" href="mailto:hello@salvetra.com">
+      Get in Touch
+    </a>
+
+  </header>
+
+  <section>
+
+    <h2>What We Are Building</h2>
 
     <p>
-        Salvetra aims to become a globally scalable veterinary HealthTech company
-        operating at the intersection of AI, nutrition science, digital therapeutics,
-        and preventive care for companion animals.
+      Salvetra combines veterinary-guided nutrition, food science, medication administration workflows,
+      subscription wellness systems, and future AI-assisted healthcare optimization into a scalable European Pet HealthTech platform.
     </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Personalized Fresh Nutrition</h3>
+
+        <p>
+          Customized fresh meal plans based on breed, age, weight, lifestyle,
+          medical condition, allergies, and veterinary assessment.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Medication Adherence</h3>
+
+        <p>
+          Veterinary-guided support systems designed to improve oral medication
+          administration and treatment compliance.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Digital Care Infrastructure</h3>
+
+        <p>
+          Planned owner dashboards, adherence tracking, reminder systems,
+          pet health records, and veterinary workflow tools.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>AI-Assisted Health Optimization</h3>
+
+        <p>
+          Future recommendation systems for personalized pet wellness,
+          nutrition optimization, and long-term healthcare support.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="alt">
+
+    <h2>Founding Team</h2>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+
+        <div class="icon-circle">🐾</div>
+
+        <h3>Dr. RezaAli Salek</h3>
+
+        <p><strong>Co-founder & CEO</strong></p>
+
+        <p>
+          Veterinarian, Pet HealthTech entrepreneur, and shareholder at Pendar Veterinary Hospital in Tehran, Iran.
+          Dr. Salek brings more than 12 years of experience across companion animal medicine,
+          veterinary clinical practice, pharmaceutical raw materials, veterinary workflow systems,
+          healthcare business development, and medication adherence operations.
+        </p>
+
+      </div>
+
+      <div class="team-card">
+
+        <div class="icon-circle">🌿</div>
+
+        <h3>Saharnaz Tarighati</h3>
+
+        <p><strong>Co-founder & Head of Nutrition</strong></p>
+
+        <p>
+          MSc Food Technology specialist with professional experience in food ingredients,
+          flavour systems, nutritional formulation, palatability, and international food companies
+          including Kerry Group, IFF, and Döhler.
+        </p>
+
+      </div>
+
+    </div>
 
     <div class="note">
-        Through direct access to veterinary clinical environments and pharmaceutical
-        networks, Salvetra combines scientific expertise with practical healthcare delivery.
+      Through direct access to veterinary clinical workflows and pilot-testing environments
+      at Pendar Veterinary Hospital, Salvetra benefits from real-world validation infrastructure,
+      clinical implementation insight, and operational healthcare testing capabilities.
     </div>
 
-</section>
+  </section>
 
-<section>
+  <section>
 
     <h2>Why Estonia?</h2>
 
     <p>
-        Estonia provides a digital-first startup ecosystem, strong international business
-        infrastructure, EU market access, and strategic alignment with global innovation.
+      Estonia provides a digital-first startup ecosystem, efficient company formation,
+      EU market access, and strong alignment with scalable HealthTech and SaaS-driven business models.
     </p>
 
-</section>
+  </section>
 
-<footer>
+  <section class="alt">
+
+    <h2>Current Stage</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Brand & Concept</h3>
+
+        <p>
+          Brand identity, product architecture, and early startup positioning
+          are actively in development.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Clinical Validation Access</h3>
+
+        <p>
+          Access to veterinary workflow environments for pilot testing
+          and real-world healthcare validation.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Platform Roadmap</h3>
+
+        <p>
+          Personalized nutrition, medication support, owner dashboard systems,
+          and future SaaS infrastructure.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
 
     <h2>Salvetra</h2>
 
@@ -215,9 +345,18 @@ footer p{
 
     <p>Website: www.salvetra.com</p>
 
-    <p>Email: hello@salvetra.com</p>
+    <p>
+      Email:
+      <a href="mailto:hello@salvetra.com">
+        hello@salvetra.com
+      </a>
+    </p>
 
-</footer>
+    <p>
+      Founding Team: Dr. RezaAli Salek & Saharnaz Tarighati
+    </p>
+
+  </footer>
 
 </body>
 </html>

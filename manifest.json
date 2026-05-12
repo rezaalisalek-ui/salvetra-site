@@ -1,0 +1,9 @@
+{
+  "name": "Salvetra MVP",
+  "short_name": "Salvetra",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fbfaf6",
+  "theme_color": "#064c3b",
+  "icons": []
+}

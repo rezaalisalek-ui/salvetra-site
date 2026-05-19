@@ -210,12 +210,26 @@
     <section class="screen" id="profile">
       <div class="topbar"><h2>Pet Profile</h2><span>⚙️</span></div>
       <div class="card">
-        <label>Pet Name</label><input value="Luna" />
-        <label>Breed</label><input value="Golden Retriever" />
-        <label>Age</label><input value="4 years" />
-        <label>Weight</label><input value="26 kg" />
-        <label>Notes</label><textarea rows="4">Sensitive stomach. Needs daily medication support.</textarea>
-        <button class="btn">Save Profile</button>
+        <label>Pet Name</label>
+<input id="petName" placeholder="Max">
+
+<label>Species</label>
+<input id="petSpecies" placeholder="Dog or Cat">
+
+<label>Breed</label>
+<input id="petBreed" placeholder="Golden Retriever">
+
+<label>Age</label>
+<input id="petAge" placeholder="4 years">
+
+<label>Weight</label>
+<input id="petWeight" placeholder="26 kg">
+
+<label>Notes</label>
+<textarea id="petNotes" rows="4" placeholder="Allergies, conditions, special notes"></textarea>
+
+<button class="btn" onclick="savePet()">Save Profile</button>
+<p id="savePetMsg" class="small"></p>
       </div>
     </section>
 

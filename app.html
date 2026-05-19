@@ -290,6 +290,7 @@ async function savePet() {
   if (res.ok) {
     document.getElementById("savePetMsg").innerText =
       "Pet saved successfully!";
+    loadPets();
   } else {
   const errorText = await res.text();
   document.getElementById("savePetMsg").innerText =

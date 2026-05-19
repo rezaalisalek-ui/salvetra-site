@@ -289,8 +289,10 @@ async function savePet() {
     document.getElementById("savePetMsg").innerText =
       "Pet saved successfully!";
   } else {
-    document.getElementById("savePetMsg").innerText =
-      "Error saving pet";
+  const errorText = await res.text();
+  document.getElementById("savePetMsg").innerText =
+    "Error: " + errorText;
+}
   }
 }
   </script>

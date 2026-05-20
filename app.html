@@ -317,40 +317,39 @@ async function signUp() {
       : JSON.stringify(data);
 }
 async function login() {
-  alert("login clicked");
-  const email = document.getElementById("signupEmail").value;
-  const password = document.getElementById("signupPassword").value;
+  try {
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
 
-  const res = await fetch(
-    `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
-    {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
+    const res = await fetch(
+      `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
+      {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      }
+    );
+
+    const data = await res.json();
+    alert(JSON.stringify(data));
+
+    if (data.access_token) {
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      document.getElementById("authMsg").innerText = "Logged in!";
+      document.getElementById("authCard").style.display = "none";
+      document.getElementById("logoutBtn").style.display = "block";
+
+      loadPet();
+    } else {
+      document.getElementById("authMsg").innerText = JSON.stringify(data);
     }
-  );
-
-  const data = await res.json();
-alert(JSON.stringify(data));
-  if (data.access_token) {
-    localStorage.setItem("access_token", data.access_token);
-    localStorage.setItem("user", JSON.stringify(data.user));
-
-    document.getElementById("authMsg").innerText = "Logged in!";
-
-    document.getElementById("authCard").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "block";
-
-    loadPet();
-  } else {
-    document.getElementById("authMsg").innerText =
-      JSON.stringify(data);
+  } catch (err) {
+    alert("LOGIN ERROR: " + err.message);
   }
 }
     function logout() {

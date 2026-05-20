@@ -221,11 +221,17 @@
 <button class="btn" onclick="login()">
   Log In
 </button>
-   <button class="btn" onclick="logout()">
-  Log Out
-</button>    
+       
   <p id="authMsg" class="small"></p>
 </div>
+      <button
+  id="logoutBtn"
+  class="btn"
+  onclick="logout()"
+  style="display:none;"
+>
+  Log Out
+</button>
       <div class="card">
         <label>Pet Name</label>
 <input id="petName" placeholder="Max">

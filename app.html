@@ -269,22 +269,22 @@
 
   <script>
 window.login = async function () {
-  alert("LOGIN START");
-alert("STEP-1");
+
+
   const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
 
   const email = document.getElementById("signupEmail").value;
   const password = document.getElementById("signupPassword").value;
-alert("EMAIL=" + email);
-alert("PASSWORD=" + password);
+
+
   const supabaseClient =
     window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_ANON_KEY
     );
-alert("CLIENT CREATED");
-  alert("BEFORE SIGNIN");
+
+
   const res = await fetch(
   `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
   {
@@ -300,12 +300,12 @@ alert("CLIENT CREATED");
   }
 );
 
-alert("FETCH DONE");
+
 
 const data = await res.json();
 
-alert(JSON.stringify(data));
-alert("TOKEN=" + data.access_token);
+
+
 if (data.access_token) {
   localStorage.setItem("access_token", data.access_token);
   localStorage.setItem("user", JSON.stringify(data.user));

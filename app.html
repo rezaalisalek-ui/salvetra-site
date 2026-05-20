@@ -267,6 +267,9 @@
   </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+alert("NEW CODE LOADED");
+</script>
+  <script>
 window.login = async function () {
   alert("LOGIN START");
 
@@ -291,9 +294,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
   alert(JSON.stringify({ data, error }));
 };
 
-<script>
-  
-</script>
+
 
   <script>
     function go(id, btn){
@@ -307,9 +308,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
     function markGiven(){
       document.getElementById('givenMsg').textContent = 'Medication marked as given ✓';
     }
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
-    }
+    
     const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
 const supabase = window.supabase.createClient(

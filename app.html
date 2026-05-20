@@ -351,9 +351,8 @@ alert(JSON.stringify({ data, error }));
     }
   } catch (err) {
     alert("LOGIN ERROR: " + err.message);
-  }
-}
-    window.login = login;
+  };
+
     function logout() {
   localStorage.removeItem("access_token");
   localStorage.removeItem("user");

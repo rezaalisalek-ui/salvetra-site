@@ -266,7 +266,32 @@
     </nav>
   </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+window.login = async function () {
+  alert("LOGIN START");
 
+  const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
+
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  alert(JSON.stringify({ data, error }));
+
+  if (data && data.session) {
+    localStorage.setItem("access_token", data.session.access_token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    location.reload();
+  }
+};
+</script>
 
   <script>
     function go(id, btn){

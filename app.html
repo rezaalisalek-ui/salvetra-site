@@ -276,7 +276,8 @@ const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
 
   const email = document.getElementById("signupEmail").value;
   const password = document.getElementById("signupPassword").value;
-
+alert("EMAIL=" + email);
+alert("PASSWORD=" + password);
   const supabaseClient =
     window.supabase.createClient(
       SUPABASE_URL,

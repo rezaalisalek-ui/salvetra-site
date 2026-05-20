@@ -331,7 +331,7 @@ alert(SUPABASE_ANON_KEY);
 alert(JSON.stringify({ data, error }));
 
 
-    if (data.access_token) {
+    if (data.session) {
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
 

@@ -430,6 +430,9 @@ user_id: JSON.parse(
     "Error: " + errorText;
 }
 }
+if (localStorage.getItem("access_token")) {
+    loadPet();
+}
   </script>
   
 </body>

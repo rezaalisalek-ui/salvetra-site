@@ -273,7 +273,36 @@
     }
     const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
+async function signUp() {
 
+  const email =
+    document.getElementById("signupEmail").value;
+
+  const password =
+    document.getElementById("signupPassword").value;
+
+  const res = await fetch(
+    `${SUPABASE_URL}/auth/v1/signup`,
+    {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    }
+  );
+
+  const data = await res.json();
+
+  document.getElementById("authMsg").innerText =
+    data.id
+      ? "Account created!"
+      : JSON.stringify(data);
+}
 async function savePet() {
 
   const pet = {

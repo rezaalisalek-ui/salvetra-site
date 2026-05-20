@@ -320,7 +320,8 @@ const supabase = window.supabase.createClient(
       ? "Account created!"
       : JSON.stringify(data);
 }
-window.login = async function () {
+alert(typeof window.supabase);
+    window.login = async function () {
 
     alert("LOGIN START");
 

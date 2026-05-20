@@ -425,7 +425,7 @@ localStorage.setItem("pet_id", pet.id);
   }
 }
     async function savePet() {
-
+document.getElementById("savePetMsg").innerText = "Saving...";
   const pet = {
     name: document.getElementById("petName").value,
     species: document.getElementById("petSpecies").value,

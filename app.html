@@ -367,41 +367,7 @@ const supabase = window.supabase.createClient(
       : JSON.stringify(data);
 }
 
-    window.login = async function () {
-
-    alert("LOGIN START");
-alert(document.getElementById("signupEmail"));
-alert(document.getElementById("signupPassword"));
-    try {
-    const email = document.getElementById("signupEmail").value;
-    const password = document.getElementById("signupPassword").value;
-alert(email);
-alert(password);
-    alert(SUPABASE_URL);
-alert(SUPABASE_ANON_KEY);
-    const { data, error } = await supabase.auth.signInWithPassword({
-  email,
-  password
-});
-
-alert(JSON.stringify({ data, error }));
-
-
-    if (data.session) {
-      localStorage.setItem("access_token", data.session.access_token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      document.getElementById("authMsg").innerText = "Logged in!";
-      document.getElementById("authCard").style.display = "none";
-      document.getElementById("logoutBtn").style.display = "block";
-
-      loadPet();
-    } else {
-      document.getElementById("authMsg").innerText = JSON.stringify(data);
-    }
-  } catch (err) {
-    alert("LOGIN ERROR: " + err.message);
-  };
+    
 
     function logout() {
   localStorage.removeItem("access_token");

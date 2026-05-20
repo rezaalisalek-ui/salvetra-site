@@ -320,8 +320,10 @@ const supabase = window.supabase.createClient(
       : JSON.stringify(data);
 }
 window.login = async function () {
-  try {
-    alert("login clicked");
+
+    alert("LOGIN START");
+
+    try {
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
 alert(email);

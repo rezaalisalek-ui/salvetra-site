@@ -360,6 +360,9 @@ localStorage.setItem(
     age: document.getElementById("petAge").value,
     weight: document.getElementById("petWeight").value,
     notes: document.getElementById("petNotes").value
+user_id: JSON.parse(
+  localStorage.getItem("user")
+).id
   };
 
   const res = await fetch(

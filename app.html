@@ -332,7 +332,7 @@ alert(JSON.stringify({ data, error }));
 
 
     if (data.session) {
-      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("access_token", data.session.access_token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
       document.getElementById("authMsg").innerText = "Logged in!";

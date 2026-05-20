@@ -315,12 +315,8 @@ async function signUp() {
       : JSON.stringify(data);
 }
 async function login() {
-
-  const email =
-    document.getElementById("signupEmail").value;
-
-  const password =
-    document.getElementById("signupPassword").value;
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
 
   const res = await fetch(
     `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
@@ -340,27 +336,19 @@ async function login() {
   const data = await res.json();
 
   if (data.access_token) {
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("user", JSON.stringify(data.user));
 
-    localStorage.setItem(
-      "access_token",
-      data.access_token
-    );
-localStorage.setItem(
-  "user",
-  JSON.stringify(data.user)
-);
-    document.getElementById("authMsg").innerText =
-      "Logged in!";
-loadPet();
- document.getElementById("authCard").style.display = "none";   
- document.getElementById("logoutBtn").style.display = "block";
+    document.getElementById("authMsg").innerText = "Logged in!";
+
+    document.getElementById("authCard").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "block";
+
+    loadPet();
   } else {
-
     document.getElementById("authMsg").innerText =
       JSON.stringify(data);
-
   }
-
 }
     function logout() {
   localStorage.removeItem("access_token");

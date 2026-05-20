@@ -333,7 +333,7 @@ async function login() {
         body: JSON.stringify({ email, password })
       }
     );
-
+alert("fetch finished");
     const data = await res.json();
     alert(JSON.stringify(data));
 

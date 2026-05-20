@@ -323,17 +323,12 @@ async function login() {
     const password = document.getElementById("signupPassword").value;
 alert(SUPABASE_URL);
 alert(SUPABASE_ANON_KEY);
-    const res = await fetch(
-      `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
-      {
-        method: "POST",
-        headers: {
-          apikey: SUPABASE_ANON_KEY,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      }
-    );
+    const { data, error } = await supabase.auth.signInWithPassword({
+  email,
+  password
+});
+
+alert(JSON.stringify({ data, error }));
 alert("fetch finished");
     const data = await res.json();
     alert(JSON.stringify(data));

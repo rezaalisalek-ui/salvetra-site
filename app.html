@@ -285,19 +285,31 @@ alert("PASSWORD=" + password);
     );
 alert("CLIENT CREATED");
   alert("BEFORE SIGNIN");
-  try {
-  const result =
-    await supabaseClient.auth.signInWithPassword({
+  const res = await fetch(
+  `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
+  {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
       email,
       password
-    });
+    })
+  }
+);
 
-  alert("AFTER SIGNIN");
-  alert(JSON.stringify(result));
+alert("FETCH DONE");
 
-} catch (e) {
-  alert("SIGNIN FAILED");
-  alert(e.message);
+const data = await res.json();
+
+alert(JSON.stringify(data));
+
+if (data.access_token) {
+  localStorage.setItem("access_token", data.access_token);
+  localStorage.setItem("user", JSON.stringify(data.user));
+  location.reload();
 }
 alert("AFTER SIGNIN");
   alert(JSON.stringify({ data, error }));

@@ -285,11 +285,20 @@ alert("PASSWORD=" + password);
     );
 alert("CLIENT CREATED");
   alert("BEFORE SIGNIN");
-  const { data, error } =
+  try {
+  const result =
     await supabaseClient.auth.signInWithPassword({
       email,
       password
     });
+
+  alert("AFTER SIGNIN");
+  alert(JSON.stringify(result));
+
+} catch (e) {
+  alert("SIGNIN FAILED");
+  alert(e.message);
+}
 alert("AFTER SIGNIN");
   alert(JSON.stringify({ data, error }));
 };

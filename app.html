@@ -283,7 +283,7 @@ alert("PASSWORD=" + password);
       SUPABASE_URL,
       SUPABASE_ANON_KEY
     );
-
+alert("CLIENT CREATED");
   const { data, error } =
     await supabaseClient.auth.signInWithPassword({
       email,

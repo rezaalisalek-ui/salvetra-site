@@ -372,7 +372,7 @@ loadPet();
   if (pets.length > 0) {
 
     const pet = pets[0];
-
+localStorage.setItem("pet_id", pet.id);
     document.getElementById("petName").value =
       pet.name || "";
 

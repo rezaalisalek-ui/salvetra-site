@@ -305,7 +305,50 @@ async function signUp() {
       ? "Account created!"
       : JSON.stringify(data);
 }
-async function savePet() {
+async function login() {
+
+  const email =
+    document.getElementById("signupEmail").value;
+
+  const password =
+    document.getElementById("signupPassword").value;
+
+  const res = await fetch(
+    `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
+    {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    }
+  );
+
+  const data = await res.json();
+
+  if (data.access_token) {
+
+    localStorage.setItem(
+      "access_token",
+      data.access_token
+    );
+
+    document.getElementById("authMsg").innerText =
+      "Logged in!";
+
+  } else {
+
+    document.getElementById("authMsg").innerText =
+      JSON.stringify(data);
+
+  }
+
+}
+    async function savePet() {
 
   const pet = {
     name: document.getElementById("petName").value,

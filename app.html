@@ -336,7 +336,10 @@ async function login() {
       "access_token",
       data.access_token
     );
-
+localStorage.setItem(
+  "user",
+  JSON.stringify(data.user)
+);
     document.getElementById("authMsg").innerText =
       "Logged in!";
 

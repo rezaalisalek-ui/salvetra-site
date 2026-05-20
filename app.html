@@ -325,7 +325,9 @@ async function login() {
     alert("login clicked");
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
-alert(SUPABASE_URL);
+alert(email);
+alert(password);
+    alert(SUPABASE_URL);
 alert(SUPABASE_ANON_KEY);
     const { data, error } = await supabase.auth.signInWithPassword({
   email,

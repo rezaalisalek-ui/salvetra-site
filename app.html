@@ -355,6 +355,15 @@ loadPet();
   }
 
 }
+    function logout() {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("pet_id");
+
+  document.getElementById("authCard").style.display = "block";
+
+  location.reload();
+}
     async function loadPet() {
 
   const user = JSON.parse(

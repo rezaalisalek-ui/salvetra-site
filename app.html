@@ -329,9 +329,7 @@ alert(SUPABASE_ANON_KEY);
 });
 
 alert(JSON.stringify({ data, error }));
-alert("fetch finished");
-    const data = await res.json();
-    alert(JSON.stringify(data));
+
 
     if (data.access_token) {
       localStorage.setItem("access_token", data.access_token);

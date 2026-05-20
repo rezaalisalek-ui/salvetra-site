@@ -351,6 +351,47 @@ localStorage.setItem(
   }
 
 }
+    async function loadPet() {
+
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
+
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/pets?user_id=eq.${user.id}&select=*`,
+    {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`
+      }
+    }
+  );
+
+  const pets = await res.json();
+
+  if (pets.length > 0) {
+
+    const pet = pets[0];
+
+    document.getElementById("petName").value =
+      pet.name || "";
+
+    document.getElementById("petSpecies").value =
+      pet.species || "";
+
+    document.getElementById("petBreed").value =
+      pet.breed || "";
+
+    document.getElementById("petAge").value =
+      pet.age || "";
+
+    document.getElementById("petWeight").value =
+      pet.weight || "";
+
+    document.getElementById("petNotes").value =
+      pet.notes || "";
+  }
+}
     async function savePet() {
 
   const pet = {

@@ -269,6 +269,26 @@
 <script>
 window.login = async function () {
   alert("LOGIN START");
+
+  const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
+  const SUPABASE_ANON_KEY = "...";
+
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+  alert(JSON.stringify({ data, error }));
 };
 </script>
 

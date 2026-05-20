@@ -437,10 +437,9 @@ const res = await fetch(
 }
 if (localStorage.getItem("access_token")) {
 
-  document.querySelector(".card").style.display = "none";
+    document.getElementById("authCard").style.display = "none";
 
-  loadPet();
-
+    loadPet();
 }
 
   </script>

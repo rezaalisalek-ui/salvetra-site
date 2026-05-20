@@ -309,7 +309,12 @@ const data = await res.json();
 if (data.access_token) {
   localStorage.setItem("access_token", data.access_token);
   localStorage.setItem("user", JSON.stringify(data.user));
-  go("profile");
+document.getElementById("authCard").style.display = "none";
+document.getElementById("logoutBtn").style.display = "block";
+document.getElementById("authMsg").innerText = "Logged in!";
+
+loadPet();
+go("profile");
 }
 
 };

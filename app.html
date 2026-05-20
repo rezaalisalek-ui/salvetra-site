@@ -424,7 +424,8 @@ localStorage.setItem("pet_id", pet.id);
       pet.notes || "";
   }
 }
-    async function savePet() {
+window.savePet = async function () {
+  alert("SAVEPET START");
 alert("SAVEPET START");
       document.getElementById("savePetMsg").innerText = "Saving...";
   const pet = {

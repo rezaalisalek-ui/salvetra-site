@@ -305,7 +305,7 @@ alert("FETCH DONE");
 const data = await res.json();
 
 alert(JSON.stringify(data));
-
+alert("TOKEN=" + data.access_token);
 if (data.access_token) {
   localStorage.setItem("access_token", data.access_token);
   localStorage.setItem("user", JSON.stringify(data.user));

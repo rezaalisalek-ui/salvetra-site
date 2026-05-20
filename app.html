@@ -140,7 +140,7 @@
         <p class="subtitle" style="max-width:190px;margin-top:18px">Track meals, medication and wellness in one simple pet care dashboard.</p>
         <div class="animals">🐱🐶</div>
       </div>
-      <button class="btn" onclick="go('profile',this)">Get Started</button>
+      <button class="btn" onclick="document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('profile').classList.add('active');window.scrollTo(0,0);">Get Started</button>
       
     </section>
 

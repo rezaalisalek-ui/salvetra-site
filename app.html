@@ -284,6 +284,7 @@ alert("PASSWORD=" + password);
       SUPABASE_ANON_KEY
     );
 alert("CLIENT CREATED");
+  alert("BEFORE SIGNIN");
   const { data, error } =
     await supabaseClient.auth.signInWithPassword({
       email,

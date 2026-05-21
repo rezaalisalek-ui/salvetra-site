@@ -160,6 +160,43 @@
         <label>Breed</label><input id="petBreed" placeholder="Golden Retriever">
         <label>Age</label><input id="petAge" placeholder="4 years">
         <label>Weight</label><input id="petWeight" placeholder="26 kg">
+        <label>Sex</label>
+<select id="petSex">
+  <option value="">Select sex</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+</select>
+
+<label>Neutered / Spayed</label>
+<select id="petNeutered">
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+
+<label>Activity Level</label>
+<select id="petActivity">
+  <option value="">Select activity</option>
+  <option value="Low">Low</option>
+  <option value="Normal">Normal</option>
+  <option value="High">High</option>
+</select>
+
+<label>Body Condition</label>
+<select id="petBodyCondition">
+  <option value="">Select condition</option>
+  <option value="Underweight">Underweight</option>
+  <option value="Ideal">Ideal</option>
+  <option value="Overweight">Overweight</option>
+</select>
+
+<label>Life Stage</label>
+<select id="petLifeStage">
+  <option value="">Select stage</option>
+  <option value="Puppy/Kitten">Puppy/Kitten</option>
+  <option value="Adult">Adult</option>
+  <option value="Senior">Senior</option>
+</select>
         <label>Notes</label><textarea id="petNotes" rows="4" placeholder="Allergies, conditions, special notes"></textarea>
         <button class="btn" id="savePetBtn" onclick="savePet()">Save Profile</button>
         <p id="savePetMsg" class="small msg"></p>

@@ -529,6 +529,7 @@ if (mealProtein === "Salmon") {
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
   $("mealCalories").textContent = meal + " kcal";
+$("mealSuggestion").textContent = mealText;
 }
     document.addEventListener("DOMContentLoaded", async () => {
       const loggedIn = Boolean(getToken() && getUser()?.id);

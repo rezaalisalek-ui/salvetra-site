@@ -481,17 +481,17 @@ alert("SAVEPET START");
    alert("AFTER USER");
 alert("CONTINUE");   
   document.getElementById("savePetMsg").innerText = "Saving...";
-  const pet = {
-    name: document.getElementById("petName").value,
-    species: document.getElementById("petSpecies").value,
-    breed: document.getElementById("petBreed").value,
-age: document.getElementById("petAge")?.value || "",
-weight: document.getElementById("petWeight")?.value || "",
-notes: document.getElementById("petNotes")?.value || "",
-user_id: JSON.parse(
-  localStorage.getItem("user")
-).id
-  };
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+const pet = {
+  name: document.getElementById("petName")?.value || "",
+  species: document.getElementById("petSpecies")?.value || "",
+  breed: document.getElementById("petBreed")?.value || "",
+  age: document.getElementById("petAge")?.value || "",
+  weight: document.getElementById("petWeight")?.value || "",
+  notes: document.getElementById("petNotes")?.value || "",
+  user_id: user.id || user.sub || ""
+};
 const petId = localStorage.getItem("pet_id");
 
 try {

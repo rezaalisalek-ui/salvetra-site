@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salvetra Mobile App MVP</title>
+  <meta name="theme-color" content="#064c3b" />
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    :root{
+      --green:#064c3b;
+      --green2:#08735c;
+      --soft:#f7f5ef;
+      --card:#ffffff;
+      --text:#102a27;
+      --muted:#6d7674;
+      --line:#e8e5dc;
+      --shadow:0 18px 45px rgba(19,57,48,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#fbfaf6 0%,#f4f1e9 100%);
+      color:var(--text);
+    }
+    .app{
+      max-width:430px;
+      min-height:100vh;
+      margin:0 auto;
+      background:#fbfaf6;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 0 0 1px #eee;
+      padding-bottom:94px;
+    }
+    .screen{display:none;padding:22px 20px 0}
+    .screen.active{display:block}
+    .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:16px;object-fit:contain;background:#fff;padding:4px;box-shadow:0 6px 18px rgba(6,76,59,.08)}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:30px;line-height:1.08;color:var(--green);letter-spacing:-.8px}
+    h2{font-size:24px;color:var(--green);letter-spacing:-.5px}
+    h3{font-size:15px}
+    .subtitle{color:var(--muted);font-size:15px;line-height:1.5;margin-top:10px}
+    .hero{margin-top:26px;background:linear-gradient(180deg,#fff 0%,#edf6f1 100%);border-radius:32px;min-height:330px;box-shadow:var(--shadow);padding:24px;position:relative;overflow:hidden}
+    .animals{font-size:110px;position:absolute;bottom:20px;right:18px;letter-spacing:-28px}
+    .btn{width:100%;border:0;border-radius:18px;background:var(--green);color:white;font-weight:700;font-size:16px;padding:17px;margin-top:18px;box-shadow:0 10px 20px rgba(6,76,59,.18)}
+    .btn:disabled{opacity:.55}
+    .btn.secondary{background:white;color:var(--green);border:1px solid var(--line);box-shadow:none}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.03);margin:14px 0}
+    .pet-card{display:flex;align-items:center;gap:14px}
+    .pet-img{width:68px;height:68px;border-radius:22px;background:#f0dfc4;display:grid;place-items:center;font-size:34px}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:12px;color:var(--muted);line-height:1.5;word-break:break-word}
+    .list{display:grid;gap:12px;margin-top:16px}
+    .item{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;align-items:center;gap:12px}
+    .icon{width:42px;height:42px;border-radius:14px;background:#e8f3ef;display:grid;place-items:center;font-size:20px;color:var(--green);flex:0 0 auto}
+    .check{margin-left:auto;color:var(--green);font-weight:800}
+    .tabs{display:flex;background:#f1eee6;border-radius:16px;padding:4px;margin:18px 0}
+    .tab{flex:1;text-align:center;padding:10px;border-radius:13px;font-size:13px;color:var(--muted)}
+    .tab.active{background:var(--green);color:#fff;font-weight:700}
+    .nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);max-width:430px;width:100%;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:9px 4px 16px;z-index:10}
+    .nav button{border:0;background:transparent;color:#7a817e;font-size:11px;display:grid;place-items:center;gap:3px}
+    .nav span{font-size:22px}.nav button.active{color:var(--green);font-weight:700}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:16px;padding:14px;font:inherit;background:#fff;margin-top:8px;color:var(--text)}
+    label{font-size:13px;font-weight:700;color:var(--green);display:block;margin-top:12px}
+    .ai-box{background:linear-gradient(135deg,#e7f4ef,#fff);border:1px solid #d8ebe3}
+    .pill{display:inline-block;background:#e8f3ef;color:var(--green);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .hidden{display:none!important}
+    .msg{margin-top:12px;font-weight:700}
+    .ok{color:var(--green)}
+    .err{color:#a22626}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="screen active" id="welcome">
+      <div class="topbar">
+        <div class="brand"><img class="logo" src="logo.png" alt="Salvetra logo"><div><h3>SALVETRA</h3><div class="small">Veterinary Nutrition & Care</div></div></div>
+      </div>
+      <h1>Personalized care.<br>Every pet.<br>Every day.</h1>
+      <p class="subtitle">AI-driven nutrition, medication tracking and health support for a longer, happier life.</p>
+      <div class="hero">
+        <span class="pill">MVP Mobile Web App</span>
+        <p class="subtitle" style="max-width:210px;margin-top:18px">Track meals, medication and wellness in one simple pet care dashboard.</p>
+        <div class="animals">🐱🐶</div>
+      </div>
+      <button class="btn" onclick="go('profile')">Get Started</button>
+    </section>
+
+    <section class="screen" id="dashboard">
+      <div class="topbar"><h2>Pet Dashboard</h2><button class="btn secondary" style="width:auto;margin:0;padding:11px 15px" onclick="go('profile')">＋</button></div>
+      <div class="card pet-card">
+        <div class="pet-img">🐶</div>
+        <div><h3 id="dashPetName">Your Pet</h3><p class="small" id="dashPetInfo">Add your pet profile to personalize care.</p></div>
+      </div>
+      <h3 style="margin-top:20px">Today's Plan</h3>
+      <div class="list">
+        <div class="item"><div class="icon">🍲</div><div><h3>Breakfast</h3><p class="small">Personalized meal</p></div><div class="check">✓</div></div>
+        <div class="item"><div class="icon">💊</div><div><h3>Medication</h3><p class="small">Pill Pocket</p></div><span class="small">8:00 AM</span></div>
+        <div class="item"><div class="icon">🩺</div><div><h3>Health Check</h3><p class="small">Appetite, activity, symptoms</p></div></div>
+      </div>
+    </section>
+
+    <section class="screen" id="nutrition">
+      <div class="topbar"><h2>Nutrition Plan</h2><span>⚙️</span></div>
+      <div class="tabs"><div class="tab active">Today</div><div class="tab">Week</div><div class="tab">Month</div></div>
+      <div class="list">
+        <div class="item"><div class="icon">🥣</div><div><h3>Breakfast</h3><p class="small">Chicken, pumpkin, brown rice</p><p class="small">350 kcal</p></div><div class="check">✓</div></div>
+        <div class="item"><div class="icon">🥗</div><div><h3>Lunch</h3><p class="small">Salmon, sweet potato, quinoa</p><p class="small">320 kcal</p></div></div>
+        <div class="item"><div class="icon">🍛</div><div><h3>Dinner</h3><p class="small">Turkey, carrot, brown rice</p><p class="small">300 kcal</p></div></div>
+      </div>
+      <div class="card"><h3>Supplements</h3><div class="item" style="box-shadow:none;margin-top:10px"><div class="icon">🟡</div><div><h3>Omega-3</h3><p class="small">1 softgel with meal</p></div><div class="check">✓</div></div></div>
+    </section>
+
+    <section class="screen" id="medication">
+      <div class="topbar"><h2>Medication</h2><span>🔔</span></div>
+      <div class="card"><p class="small">Next Medication</p><div class="row"><div><h2 style="font-size:22px">Pill Pocket</h2><p class="muted">Today, 8:00 AM</p></div><div style="font-size:64px">🥨</div></div><button class="btn" onclick="markGiven()">Mark as Given</button><p id="givenMsg" class="small msg"></p></div>
+      <h3>Upcoming</h3>
+      <div class="list">
+        <div class="item"><div class="icon">💊</div><div><h3>Pill Pocket</h3><p class="small">Tomorrow, 8:00 AM</p></div></div>
+        <div class="item"><div class="icon">🩺</div><div><h3>Digestive Support</h3><p class="small">After Dinner</p></div></div>
+        <div class="item"><div class="icon">🟡</div><div><h3>Omega-3 Softgel</h3><p class="small">With Meal</p></div></div>
+      </div>
+      <div class="card ai-box"><h3>Tip</h3><p class="muted">Hiding pills in a soft support dough can make medication easier and less stressful.</p></div>
+    </section>
+
+    <section class="screen" id="health">
+      <div class="topbar"><h2>Health</h2><span>♡</span></div>
+      <div class="card"><p class="small">Health Score</p><div class="row"><h1>82<span style="font-size:19px;color:#111"> /100</span></h1><div style="font-size:58px">💚</div></div><p style="color:var(--green);font-weight:700">Great</p></div>
+      <div class="list">
+        <div class="item"><div class="icon">⚖️</div><div><h3>Weight</h3></div><span class="pill">Good</span></div>
+        <div class="item"><div class="icon">🏃</div><div><h3>Activity</h3></div><span class="pill">Good</span></div>
+        <div class="item"><div class="icon">🍽️</div><div><h3>Appetite</h3></div><span class="pill">Good</span></div>
+        <div class="item"><div class="icon">💧</div><div><h3>Hydration</h3></div><span class="pill">Good</span></div>
+      </div>
+      <div class="card ai-box"><h3>AI Insight</h3><p class="muted">Your pet is doing great. Keep the current routine and monitor hydration during active days.</p></div>
+    </section>
+
+    <section class="screen" id="profile">
+      <div class="topbar"><h2>Pet Profile</h2><span>⚙️</span></div>
+      <div class="card" id="authCard">
+        <h3>Create Account / Log In</h3>
+        <input id="signupEmail" type="email" placeholder="Email" autocomplete="email">
+        <input id="signupPassword" type="password" placeholder="Password" autocomplete="current-password">
+        <button class="btn" id="signupBtn" onclick="signUp()">Sign Up</button>
+        <button class="btn" id="loginBtn" onclick="login()">Log In</button>
+        <p id="authMsg" class="small msg"></p>
+      </div>
+
+      <button id="logoutBtn" class="btn hidden" onclick="logout()">Log Out</button>
+
+      <div class="card">
+        <label>Pet Name</label><input id="petName" placeholder="Max">
+        <label>Species</label><input id="petSpecies" placeholder="Dog or Cat">
+        <label>Breed</label><input id="petBreed" placeholder="Golden Retriever">
+        <label>Age</label><input id="petAge" placeholder="4 years">
+        <label>Weight</label><input id="petWeight" placeholder="26 kg">
+        <label>Notes</label><textarea id="petNotes" rows="4" placeholder="Allergies, conditions, special notes"></textarea>
+        <button class="btn" id="savePetBtn" onclick="savePet()">Save Profile</button>
+        <p id="savePetMsg" class="small msg"></p>
+      </div>
+    </section>
+
+    <nav class="nav">
+      <button id="nav-dashboard" onclick="go('dashboard',this)"><span>🏠</span>Home</button>
+      <button id="nav-nutrition" onclick="go('nutrition',this)"><span>🥣</span>Plan</button>
+      <button id="nav-medication" onclick="go('medication',this)"><span>💊</span>Meds</button>
+      <button id="nav-health" onclick="go('health',this)"><span>💚</span>Health</button>
+      <button id="nav-profile" onclick="go('profile',this)"><span>👤</span>Profile</button>
+    </nav>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "https://kjzdacjxocfraqitlxqi.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
+
+    const $ = (id) => document.getElementById(id);
+
+    function setMsg(id, text, type="") {
+      const el = $(id);
+      if (!el) return;
+      el.textContent = text || "";
+      el.classList.remove("ok", "err");
+      if (type) el.classList.add(type);
+    }
+
+    function getToken() {
+      return localStorage.getItem("access_token") || "";
+    }
+
+    function getUser() {
+      try { return JSON.parse(localStorage.getItem("user") || "null"); }
+      catch { return null; }
+    }
+
+    function setAuthUI(isLoggedIn) {
+      $("authCard").classList.toggle("hidden", isLoggedIn);
+      $("logoutBtn").classList.toggle("hidden", !isLoggedIn);
+    }
+
+    function go(id, btn){
+      document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+      const screen = $(id);
+      if (screen) screen.classList.add('active');
+      document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+      const navBtn = btn || $("nav-" + id);
+      if (navBtn) navBtn.classList.add('active');
+      window.scrollTo(0,0);
+    }
+
+    function markGiven(){
+      setMsg('givenMsg', 'Medication marked as given ✓', 'ok');
+    }
+
+    async function authFetch(path, options={}) {
+      const res = await fetch(`${SUPABASE_URL}${path}`, options);
+      const text = await res.text();
+      let json = null;
+      try { json = text ? JSON.parse(text) : null; } catch { json = null; }
+      if (!res.ok) {
+        const msg = json?.msg || json?.message || json?.error_description || json?.error || text || `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
+      return json;
+    }
+
+    async function signUp() {
+      const email = $("signupEmail").value.trim();
+      const password = $("signupPassword").value;
+      if (!email || !password) return setMsg("authMsg", "Enter email and password.", "err");
+      setMsg("authMsg", "Creating account...");
+      $("signupBtn").disabled = true;
+      try {
+        await authFetch("/auth/v1/signup", {
+          method: "POST",
+          headers: { apikey: SUPABASE_ANON_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        setMsg("authMsg", "Account created. Now tap Log In.", "ok");
+      } catch (e) {
+        setMsg("authMsg", "Sign up failed: " + e.message, "err");
+      } finally {
+        $("signupBtn").disabled = false;
+      }
+    }
+
+    async function login() {
+      const email = $("signupEmail").value.trim();
+      const password = $("signupPassword").value;
+      if (!email || !password) return setMsg("authMsg", "Enter email and password.", "err");
+      setMsg("authMsg", "Logging in...");
+      $("loginBtn").disabled = true;
+      try {
+        const data = await authFetch("/auth/v1/token?grant_type=password", {
+          method: "POST",
+          headers: { apikey: SUPABASE_ANON_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        setAuthUI(true);
+        setMsg("authMsg", "Logged in.", "ok");
+        await loadPet();
+        go("profile");
+      } catch (e) {
+        setMsg("authMsg", "Login failed: " + e.message, "err");
+      } finally {
+        $("loginBtn").disabled = false;
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("pet_id");
+      setAuthUI(false);
+      clearPetForm();
+      updateDashboard(null);
+      setMsg("authMsg", "Logged out.", "ok");
+      go("profile");
+    }
+
+    function clearPetForm() {
+      ["petName","petSpecies","petBreed","petAge","petWeight","petNotes"].forEach(id => $(id).value = "");
+      setMsg("savePetMsg", "");
+    }
+
+    function fillPetForm(pet) {
+      $("petName").value = pet?.name || "";
+      $("petSpecies").value = pet?.species || "";
+      $("petBreed").value = pet?.breed || "";
+      $("petAge").value = pet?.age || "";
+      $("petWeight").value = pet?.weight || "";
+      $("petNotes").value = pet?.notes || "";
+    }
+
+    function updateDashboard(pet) {
+      $("dashPetName").textContent = pet?.name || "Your Pet";
+      const info = [pet?.species, pet?.breed, pet?.age, pet?.weight].filter(Boolean).join(" • ");
+      $("dashPetInfo").textContent = info || "Add your pet profile to personalize care.";
+    }
+
+    async function restFetch(path, options={}) {
+      const token = getToken();
+      if (!token) throw new Error("Please log in first.");
+      const res = await fetch(`${SUPABASE_URL}${path}`, {
+        ...options,
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${token}`,
+          ...(options.headers || {})
+        }
+      });
+      const text = await res.text();
+      let json = null;
+      try { json = text ? JSON.parse(text) : null; } catch { json = null; }
+      if (!res.ok) throw new Error(json?.message || json?.details || json?.hint || text || `HTTP ${res.status}`);
+      return json;
+    }
+
+    async function loadPet() {
+      const user = getUser();
+      if (!user?.id) return;
+      setMsg("savePetMsg", "Loading profile...");
+      try {
+        const pets = await restFetch(`/rest/v1/pets?user_id=eq.${encodeURIComponent(user.id)}&select=*&order=id.desc&limit=1`);
+        if (Array.isArray(pets) && pets.length > 0) {
+          const pet = pets[0];
+          localStorage.setItem("pet_id", pet.id);
+          fillPetForm(pet);
+          updateDashboard(pet);
+          setMsg("savePetMsg", "Profile loaded.", "ok");
+        } else {
+          localStorage.removeItem("pet_id");
+          updateDashboard(null);
+          setMsg("savePetMsg", "No pet profile yet.");
+        }
+      } catch (e) {
+        setMsg("savePetMsg", "Load failed: " + e.message, "err");
+      }
+    }
+
+    async function savePet() {
+      const user = getUser();
+      if (!getToken() || !user?.id) {
+        setMsg("savePetMsg", "Please log in first.", "err");
+        go("profile");
+        return;
+      }
+
+      const pet = {
+        name: $("petName").value.trim(),
+        species: $("petSpecies").value.trim(),
+        breed: $("petBreed").value.trim(),
+        age: $("petAge").value.trim(),
+        weight: $("petWeight").value.trim(),
+        notes: $("petNotes").value.trim(),
+        user_id: user.id
+      };
+
+      if (!pet.name) {
+        setMsg("savePetMsg", "Pet name is required.", "err");
+        return;
+      }
+
+      const petId = localStorage.getItem("pet_id");
+      $("savePetBtn").disabled = true;
+      setMsg("savePetMsg", "Saving...");
+
+      try {
+        const path = petId ? `/rest/v1/pets?id=eq.${encodeURIComponent(petId)}` : `/rest/v1/pets`;
+        const data = await restFetch(path, {
+          method: petId ? "PATCH" : "POST",
+          headers: { "Content-Type": "application/json", Prefer: "return=representation" },
+          body: JSON.stringify(pet)
+        });
+
+        const savedPet = Array.isArray(data) && data.length ? data[0] : { ...pet, id: petId };
+        if (savedPet.id) localStorage.setItem("pet_id", savedPet.id);
+        fillPetForm(savedPet);
+        updateDashboard(savedPet);
+        setMsg("savePetMsg", "Pet saved successfully!", "ok");
+      } catch (e) {
+        setMsg("savePetMsg", "Save failed: " + e.message, "err");
+      } finally {
+        $("savePetBtn").disabled = false;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const loggedIn = Boolean(getToken() && getUser()?.id);
+      setAuthUI(loggedIn);
+      if (loggedIn) await loadPet();
+      go("welcome");
+    });
+  </script>
+</body>
+</html>

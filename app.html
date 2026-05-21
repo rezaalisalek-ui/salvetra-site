@@ -322,7 +322,7 @@ go("profile");
 window.savePet = async function () {
 
   alert("SAVEPET START");
-
+alert(localStorage.getItem("user"));
   const pet = {
     name: document.getElementById("petName").value,
     species: document.getElementById("petSpecies").value,

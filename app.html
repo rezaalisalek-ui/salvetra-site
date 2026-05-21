@@ -491,11 +491,14 @@ user_id: JSON.parse(
   };
 const petId = localStorage.getItem("pet_id");
 
-const res = await fetch(
-  
+try {
+
+  alert("BEFORE FETCH");
+
+  const res = await fetch(
     petId
-  ? `${SUPABASE_URL}/rest/v1/pets?id=eq.${petId}`
-  : `${SUPABASE_URL}/rest/v1/pets`,
+      ? `${SUPABASE_URL}/rest/v1/pets?id=eq.${petId}`
+      : `${SUPABASE_URL}/rest/v1/pets`,
     {
       method: petId ? "PATCH" : "POST",
       headers: {
@@ -508,14 +511,17 @@ const res = await fetch(
     }
   );
 
-  if (res.ok) {
-    document.getElementById("savePetMsg").innerText =
-      "Pet saved successfully!";
-    
-  } else {
-  const errorText = await res.text();
-  document.getElementById("savePetMsg").innerText =
-    "Error: " + errorText;
+  alert("FETCH DONE");
+  alert(res.status);
+
+  const txt = await res.text();
+  alert(txt);
+
+} catch (e) {
+
+  alert("FETCH ERROR");
+  alert(e.message);
+
 }
 }
 if (localStorage.getItem("access_token")) {

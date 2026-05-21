@@ -482,7 +482,7 @@ alert("SAVEPET START");
     name: document.getElementById("petName").value,
     species: document.getElementById("petSpecies").value,
     breed: document.getElementById("petBreed").value,
-    age: document.getElementById("petAge").value,
+age: document.getElementById("petAge")?.value || "",
     weight: document.getElementById("petWeight").value,
     notes: document.getElementById("petNotes").value,
 user_id: JSON.parse(

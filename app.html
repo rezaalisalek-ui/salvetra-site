@@ -503,7 +503,7 @@ const protein = $("petProtein").value;
 
   const daily = Math.round(rer * factor);
   const meal = Math.round(daily / 2);
-
+console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
   $("mealCalories").textContent = meal + " kcal";
 }

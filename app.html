@@ -503,7 +503,28 @@ const protein = $("petProtein").value;
 
   const daily = Math.round(rer * factor);
   const meal = Math.round(daily / 2);
-console.log("Recommended protein:", mealProtein);
+let mealText = "";
+
+if (mealProtein === "Chicken") {
+  mealText = `Chicken + Rice (${meal} kcal)`;
+}
+
+if (mealProtein === "Turkey") {
+  mealText = `Turkey + Sweet Potato (${meal} kcal)`;
+}
+
+if (mealProtein === "Beef") {
+  mealText = `Beef + Pumpkin (${meal} kcal)`;
+}
+
+if (mealProtein === "Lamb") {
+  mealText = `Lamb + Rice (${meal} kcal)`;
+}
+
+if (mealProtein === "Salmon") {
+  mealText = `Salmon + Potato (${meal} kcal)`;
+}
+  console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
   $("mealCalories").textContent = meal + " kcal";
 }

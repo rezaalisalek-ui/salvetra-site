@@ -321,24 +321,19 @@ go("profile");
 
 window.savePet = async function () {
 
-  alert("SAVEPET START");
-alert(localStorage.getItem("user"));
-  const userObj = JSON.parse(localStorage.getItem("user"));
-
-alert(userObj.id);
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
 const pet = {
-  name: document.getElementById("petName").value,
-  species: document.getElementById("petSpecies").value,
-  breed: document.getElementById("petBreed").value,
-  age: document.getElementById("petAge").value,
-  weight: document.getElementById("petWeight").value,
-  notes: document.getElementById("petNotes").value,
-  user_id: userObj.id
+  name: document.getElementById("petName")?.value || "",
+  species: document.getElementById("petSpecies")?.value || "",
+  breed: document.getElementById("petBreed")?.value || "",
+  age: document.getElementById("petAge")?.value || "",
+  weight: document.getElementById("petWeight")?.value || "",
+  notes: document.getElementById("petNotes")?.value || "",
+  user_id: user.id || user.sub || ""
 };
 
-alert(JSON.stringify(pet));
-  alert("AFTER PET");
+
 alert(localStorage.getItem("pet_id"));
 
   const petId = localStorage.getItem("pet_id");

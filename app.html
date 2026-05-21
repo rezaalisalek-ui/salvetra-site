@@ -461,7 +461,40 @@ life_stage: $("petLifeStage").value,
         $("savePetBtn").disabled = false;
       }
     }
+function calculateCalories() {
+  const weight = parseFloat($("petWeight").value) || 0;
+  const species = $("petSpecies").value.toLowerCase();
 
+  if (!weight) {
+    $("dailyCalories").textContent = "--";
+    $("mealCalories").textContent = "--";
+    return;
+  }
+
+  const rer = 70 * Math.pow(weight, 0.75);
+  let factor = 1.6;
+
+  const lifeStage = $("petLifeStage").value;
+  const activity = $("petActivity").value;
+  const bodyCondition = $("petBodyCondition").value;
+
+  if (lifeStage === "Puppy/Kitten") factor = 2.5;
+  if (lifeStage === "Senior") factor = 1.2;
+
+  if (activity === "High") factor += 0.3;
+  if (activity === "Low") factor -= 0.2;
+
+  if (bodyCondition === "Overweight") factor -= 0.2;
+  if (bodyCondition === "Underweight") factor += 0.2;
+
+  if (species.includes("cat")) factor -= 0.2;
+
+  const daily = Math.round(rer * factor);
+  const meal = Math.round(daily / 2);
+
+  $("dailyCalories").textContent = daily + " kcal/day";
+  $("mealCalories").textContent = meal + " kcal";
+}
     document.addEventListener("DOMContentLoaded", async () => {
       const loggedIn = Boolean(getToken() && getUser()?.id);
       setAuthUI(loggedIn);

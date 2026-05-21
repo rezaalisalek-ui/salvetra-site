@@ -108,6 +108,29 @@
 
     <section class="screen" id="nutrition">
       <div class="topbar"><h2>Nutrition Plan</h2><span>⚙️</span></div>
+      <div class="card">
+  <h3>Daily Calorie Needs</h3>
+
+  <div style="font-size:32px;font-weight:700;margin:12px 0"
+       id="dailyCalories">
+    --
+  </div>
+
+  <p class="small">
+    Estimated daily calories based on profile data
+  </p>
+
+  <div class="list">
+    <div class="item">
+      <div>Calories per meal (2 meals/day)</div>
+      <strong id="mealCalories">--</strong>
+    </div>
+  </div>
+
+  <button class="btn" onclick="calculateCalories()">
+    Calculate Calories
+  </button>
+</div>
       <div class="tabs"><div class="tab active">Today</div><div class="tab">Week</div><div class="tab">Month</div></div>
       <div class="list">
         <div class="item"><div class="icon">🥣</div><div><h3>Breakfast</h3><p class="small">Chicken, pumpkin, brown rice</p><p class="small">350 kcal</p></div><div class="check">✓</div></div>

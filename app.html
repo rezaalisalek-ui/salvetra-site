@@ -541,7 +541,11 @@ async function loadMedications() {
     const meds = await restFetch(
       `/rest/v1/medications?pet_id=eq.${petId}&order=created_at.desc`
     );
-
+if (meds.length) {
+  $("nextMedName").textContent = meds[0].name;
+  $("nextMedTime").textContent =
+    `${meds[0].frequency || ""} • ${meds[0].notes || ""}`;
+}
     const list = $("medicationsList");
 
     if (!meds.length) {

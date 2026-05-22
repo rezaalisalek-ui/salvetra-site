@@ -621,7 +621,10 @@ $("mealSuggestion").textContent = mealText;
     document.addEventListener("DOMContentLoaded", async () => {
       const loggedIn = Boolean(getToken() && getUser()?.id);
       setAuthUI(loggedIn);
-      if (loggedIn) await loadPet();
+if (loggedIn) {
+  await loadPet();
+  await loadMedications();
+}
       go("welcome");
     });
   </script>

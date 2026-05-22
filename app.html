@@ -491,6 +491,46 @@ life_stage: $("petLifeStage").value,
         $("savePetBtn").disabled = false;
       }
     }
+  async function saveMedication() {
+  const user = getUser();
+  const petId = localStorage.getItem("pet_id");
+
+  if (!user?.id || !petId) {
+    setMsg("medMsg", "Please save pet profile first");
+    return;
+  }
+
+  const medication = {
+    pet_id: Number(petId),
+    user_id: user.id,
+    name: $("medName").value.trim(),
+    dose: $("medDose").value.trim(),
+    frequency: $("medFrequency").value.trim(),
+    notes: $("medTime").value
+  };
+
+  if (!medication.name) {
+    setMsg("medMsg", "Medication name is required");
+    return;
+  }
+
+  try {
+    setMsg("medMsg", "Saving...");
+
+    await restFetch("/rest/v1/medications", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(medication)
+    });
+
+    setMsg("medMsg", "Medication saved successfully!", "ok");
+
+  } catch (e) {
+    setMsg("medMsg", "Save failed: " + e.message, "err");
+  }
+}  
 function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();

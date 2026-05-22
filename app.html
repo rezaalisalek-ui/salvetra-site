@@ -527,7 +527,41 @@ life_stage: $("petLifeStage").value,
     setMsg("medMsg", "Save failed: " + e.message, "err");
   }
 }  
-function calculateCalories() {
+async function loadMedications() {
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) return;
+
+  try {
+    const meds = await restFetch(
+      `/rest/v1/medications?pet_id=eq.${petId}&order=created_at.desc`
+    );
+
+    const list = $("medicationsList");
+
+    if (!meds.length) {
+      list.innerHTML =
+        '<p class="small">No medications added yet.</p>';
+      return;
+    }
+
+    list.innerHTML = meds.map(m => `
+      <div class="item">
+        <div class="icon">💊</div>
+        <div>
+          <strong>${m.name}</strong><br>
+          <span class="small">
+            ${m.dose || ""} • ${m.frequency || ""} • ${m.notes || ""}
+          </span>
+        </div>
+      </div>
+    `).join("");
+
+  } catch (e) {
+    console.error(e);
+  }
+}
+    function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();
 

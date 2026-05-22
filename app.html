@@ -522,7 +522,7 @@ life_stage: $("petLifeStage").value,
     });
 
     setMsg("medMsg", "Medication saved successfully!", "ok");
-
+loadMedications();
   } catch (e) {
     setMsg("medMsg", "Save failed: " + e.message, "err");
   }

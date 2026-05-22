@@ -144,8 +144,13 @@
 
     <section class="screen" id="medication">
       <div class="topbar"><h2>Medication</h2><span>🔔</span></div>
-      <div class="card"><p class="small">Next Medication</p><div class="row"><div><h2 style="font-size:22px">Pill Pocket</h2><p class="muted">Today, 8:00 AM</p></div><div style="font-size:64px">🥨</div></div><button class="btn" onclick="markGiven()">Mark as Given</button><p id="givenMsg" class="small msg"></p></div>
-      <h3>Upcoming</h3>
+      <div class="card">
+  <p class="small">Next Medication</p>
+
+  <div id="nextMedicationCard">
+    <h3 id="nextMedName">No medication</h3>
+    <p class="small" id="nextMedTime">--</p>
+  </div>
 <div class="list" id="medicationsList"></div>
       <div class="card">
   <h3>Add Medication</h3>

@@ -649,7 +649,7 @@ async function loadHealthLogs() {
 
   try {
     const logs = await restFetch(
-      `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc`
+`/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc`
     );
 
     const list = $("healthLogsList");

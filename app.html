@@ -604,6 +604,76 @@ if (meds.length) {
     console.error(e);
   }
 }
+    async function saveHealthLog() {
+  const petId = localStorage.getItem("pet_id");
+  const user = getUser();
+
+  if (!petId || !user?.id) return;
+
+  const log = {
+    pet_id: Number(petId),
+    user_id: user.id,
+    weight: $("healthWeight").value.trim(),
+    appetite: $("healthAppetite").value,
+    energy: $("healthEnergy").value,
+    notes: $("healthNotes").value.trim()
+  };
+
+  try {
+    await restFetch("/rest/v1/health_logs", {
+      method: "POST",
+      body: JSON.stringify(log)
+    });
+
+    setMsg("healthMsg", "Health log saved");
+
+    $("healthWeight").value = "";
+    $("healthAppetite").value = "";
+    $("healthEnergy").value = "";
+    $("healthNotes").value = "";
+
+    loadHealthLogs();
+
+  } catch (e) {
+    setMsg("healthMsg", "Save failed: " + e.message);
+  }
+}
+
+async function loadHealthLogs() {
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) return;
+
+  try {
+    const logs = await restFetch(
+      `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc`
+    );
+
+    const list = $("healthLogsList");
+
+    if (!logs.length) {
+      list.innerHTML =
+        '<p class="small">No health logs yet.</p>';
+      return;
+    }
+
+    list.innerHTML = logs.map(log => `
+      <div class="item">
+        <div>
+          <strong>${log.weight || "-"} kg</strong><br>
+          <span class="small">
+            Appetite: ${log.appetite || "-"} •
+            Energy: ${log.energy || "-"}
+          </span><br>
+          <span class="small">${log.notes || ""}</span>
+        </div>
+      </div>
+    `).join("");
+
+  } catch (e) {
+    console.error(e);
+  }
+}
     function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();

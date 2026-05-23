@@ -752,6 +752,23 @@ if (mealProtein === "Salmon") {
   $("mealCalories").textContent = meal + " kcal";
 $("mealSuggestion").textContent = mealText;
 }
+    async function askSalvetraAI() {
+  const question = $("aiQuestion").value.trim();
+
+  if (!question) {
+    $("aiAnswer").textContent = "Please enter a question.";
+    return;
+  }
+
+  $("aiAnswer").textContent = "Thinking...";
+
+  try {
+    const answer = "Salvetra AI response: " + question;
+    $("aiAnswer").textContent = answer;
+  } catch (e) {
+    $("aiAnswer").textContent = "AI unavailable.";
+  }
+}
     document.addEventListener("DOMContentLoaded", async () => {
       const loggedIn = Boolean(getToken() && getUser()?.id);
       setAuthUI(loggedIn);

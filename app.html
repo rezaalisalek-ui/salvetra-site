@@ -456,6 +456,7 @@ $("petLifeStage").value = pet?.life_stage || "";
       $("dashPetName").textContent = pet?.name || "Your Pet";
       const info = [pet?.species, pet?.breed, pet?.age, pet?.weight].filter(Boolean).join(" • ");
       $("dashPetInfo").textContent = info || "Add your pet profile to personalize care.";
+   $("dashPetPhoto").src = pet?.photo_url || "";
     }
 
     async function restFetch(path, options={}) {

@@ -754,7 +754,13 @@ $("mealSuggestion").textContent = mealText;
 }
     async function askSalvetraAI() {
   const question = $("aiQuestion").value.trim();
+const user = getUser();
 
+if (!user) {
+  $("aiAnswer").textContent =
+    "Please login to use Salvetra AI.";
+  return;
+}
   if (!question) {
     $("aiAnswer").textContent = "Please enter a question.";
     return;

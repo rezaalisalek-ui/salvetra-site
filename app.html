@@ -669,6 +669,10 @@ async function loadHealthLogs() {
             Energy: ${log.energy || "-"}
           </span><br>
           <span class="small">${log.notes || ""}</span>
+      <br>
+<span class="small">
+  ${new Date(log.created_at).toLocaleString()}
+</span>
         </div>
       </div>
     `).join("");

@@ -789,6 +789,28 @@ if (!user) {
     $("aiAnswer").textContent = "AI unavailable.";
   }
 }
+    async function askSalvetraAIDashboard() {
+  const question = $("aiQuestionDashboard").value.trim();
+  const user = getUser();
+
+  if (!user) {
+    $("aiAnswerDashboard").textContent =
+      "Please login to use Salvetra AI.";
+    return;
+  }
+
+  if (!question) {
+    $("aiAnswerDashboard").textContent =
+      "Please enter a question.";
+    return;
+  }
+
+  $("aiAnswerDashboard").textContent = "Thinking...";
+
+  const answer = "Salvetra AI response: " + question;
+
+  $("aiAnswerDashboard").textContent = answer;
+}
     document.addEventListener("DOMContentLoaded", async () => {
       const loggedIn = Boolean(getToken() && getUser()?.id);
       setAuthUI(loggedIn);

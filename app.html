@@ -789,7 +789,47 @@ if (!user) {
     $("aiAnswer").textContent = "AI unavailable.";
   }
 }
-    async function askSalvetraAIDashboard() {
+async function askSalvetraAIDashboard() {
+  const question = $("aiQuestionDashboard").value.trim();
+  const user = getUser();
+
+  if (!user) {
+    $("aiAnswerDashboard").textContent =
+      "Please login to use Salvetra AI.";
+    return;
+  }
+
+  if (!question) {
+    $("aiAnswerDashboard").textContent =
+      "Please enter a question.";
+    return;
+  }
+
+  $("aiAnswerDashboard").textContent = "Thinking...";
+
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) {
+    $("aiAnswerDashboard").textContent =
+      "Please create a pet profile first.";
+    return;
+  }
+
+  const pets = await restFetch(
+    `/rest/v1/pets?id=eq.${petId}`
+  );
+
+  const pet = pets[0];
+
+  const answer =
+    `Pet profile:
+${pet.name}, ${pet.species}, ${pet.breed}, ${pet.age} years old, ${pet.weight} kg.
+
+Question:
+${question}`;
+
+  $("aiAnswerDashboard").textContent = answer;
+}
   const question = $("aiQuestionDashboard").value.trim();
   const user = getUser();
 

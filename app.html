@@ -821,15 +821,26 @@ async function askSalvetraAIDashboard() {
 
   const pet = pets[0];
 
-  const answer =
-    `Pet profile:
-${pet.name}, ${pet.species}, ${pet.breed}, ${pet.age} years old, ${pet.weight} kg.
+  const response = await fetch(
+  "https://kjzdacjxocfraqitlxqi.supabase.co/functions/v1/hyper-service",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      question,
+      pet
+    })
+  }
+);
 
-Question:
-${question}`;
+const data = await response.json();
 
-  $("aiAnswerDashboard").textContent = answer;
-  return;
+$("aiAnswerDashboard").textContent =
+  data.answer || "No response";
+
+return;
 }
   
 

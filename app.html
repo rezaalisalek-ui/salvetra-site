@@ -530,7 +530,8 @@ user_id: user.id,
       const petId = localStorage.getItem("pet_id");
       $("savePetBtn").disabled = true;
       setMsg("savePetMsg", "Saving...");
-const photoFile = $("petPhoto").files[0];
+
+      try {const photoFile = $("petPhoto").files[0];
 
 if (photoFile) {
   const ext = photoFile.name.split(".").pop();
@@ -551,9 +552,9 @@ if (photoFile) {
 
   if (!uploadRes.ok) throw new Error("Photo upload failed");
 
-  pet.photo_url = `${SUPABASE_URL}/storage/v1/object/public/pet-photos/${filePath}`;
+  pet.photo_url =
+    `${SUPABASE_URL}/storage/v1/object/public/pet-photos/${filePath}`;
 }
-      try {
         const path = petId ? `/rest/v1/pets?id=eq.${encodeURIComponent(petId)}` : `/rest/v1/pets`;
         const data = await restFetch(path, {
           method: petId ? "PATCH" : "POST",

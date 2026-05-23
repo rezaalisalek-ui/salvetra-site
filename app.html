@@ -173,16 +173,50 @@
     </section>
 
     <section class="screen" id="health">
-      <div class="topbar"><h2>Health</h2><span>♡</span></div>
-      <div class="card"><p class="small">Health Score</p><div class="row"><h1>82<span style="font-size:19px;color:#111"> /100</span></h1><div style="font-size:58px">💚</div></div><p style="color:var(--green);font-weight:700">Great</p></div>
-      <div class="list">
-        <div class="item"><div class="icon">⚖️</div><div><h3>Weight</h3></div><span class="pill">Good</span></div>
-        <div class="item"><div class="icon">🏃</div><div><h3>Activity</h3></div><span class="pill">Good</span></div>
-        <div class="item"><div class="icon">🍽️</div><div><h3>Appetite</h3></div><span class="pill">Good</span></div>
-        <div class="item"><div class="icon">💧</div><div><h3>Hydration</h3></div><span class="pill">Good</span></div>
-      </div>
-      <div class="card ai-box"><h3>AI Insight</h3><p class="muted">Your pet is doing great. Keep the current routine and monitor hydration during active days.</p></div>
-    </section>
+
+  <div class="topbar">
+    <h2>Health Tracking</h2>
+    <span>📊</span>
+  </div>
+
+  <div class="card">
+    <h3>Today's Health Log</h3>
+
+    <input id="healthWeight" placeholder="Weight (kg)">
+
+    <select id="healthAppetite">
+      <option value="">Appetite</option>
+      <option>Excellent</option>
+      <option>Normal</option>
+      <option>Reduced</option>
+      <option>Poor</option>
+    </select>
+
+    <select id="healthEnergy">
+      <option value="">Energy Level</option>
+      <option>High</option>
+      <option>Normal</option>
+      <option>Low</option>
+    </select>
+
+    <input id="healthNotes" placeholder="Notes">
+
+    <button class="btn" onclick="saveHealthLog()">
+      Save Health Log
+    </button>
+
+    <p id="healthMsg" class="small"></p>
+  </div>
+
+  <div class="card">
+    <h3>Recent Health Logs</h3>
+
+    <div class="list" id="healthLogsList">
+      <p class="small">No health logs yet.</p>
+    </div>
+  </div>
+
+</section>
 
     <section class="screen" id="profile">
       <div class="topbar"><h2>Pet Profile</h2><span>⚙️</span></div>

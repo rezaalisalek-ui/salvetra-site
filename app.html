@@ -530,7 +530,29 @@ user_id: user.id,
       const petId = localStorage.getItem("pet_id");
       $("savePetBtn").disabled = true;
       setMsg("savePetMsg", "Saving...");
+const photoFile = $("petPhoto").files[0];
 
+if (photoFile) {
+  const ext = photoFile.name.split(".").pop();
+  const filePath = `${user.id}/${Date.now()}.${ext}`;
+
+  const uploadRes = await fetch(
+    `${SUPABASE_URL}/storage/v1/object/pet-photos/${filePath}`,
+    {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${getToken()}`,
+        "Content-Type": photoFile.type
+      },
+      body: photoFile
+    }
+  );
+
+  if (!uploadRes.ok) throw new Error("Photo upload failed");
+
+  pet.photo_url = `${SUPABASE_URL}/storage/v1/object/public/pet-photos/${filePath}`;
+}
       try {
         const path = petId ? `/rest/v1/pets?id=eq.${encodeURIComponent(petId)}` : `/rest/v1/pets`;
         const data = await restFetch(path, {

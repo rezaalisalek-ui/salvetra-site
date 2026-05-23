@@ -621,9 +621,12 @@ if (meds.length) {
 
   try {
     await restFetch("/rest/v1/health_logs", {
-      method: "POST",
-      body: JSON.stringify(log)
-    });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(log)
+});
 
     setMsg("healthMsg", "Health log saved");
 

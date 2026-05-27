@@ -912,7 +912,9 @@ if (mealProtein === "Salmon") {
 $("mealCalories").textContent =
   `Breakfast ${breakfast} kcal • Dinner ${dinner} kcal`;
 $("mealSuggestion").textContent = mealText;
-}
+$("mealSuggestion").style.whiteSpace = "pre-line";
+$("mealSuggestion").style.lineHeight = "1.6";
+    }
     async function askSalvetraAI() {
   const question = $("aiQuestion").value.trim();
 const user = getUser();

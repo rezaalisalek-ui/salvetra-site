@@ -879,23 +879,33 @@ const dinner = Math.round(daily * 0.55);
 let mealText = "";
 
 if (mealProtein === "Chicken") {
-  mealText = `Chicken + Rice (${meal} kcal)`;
+  mealText =
+    `Breakfast: Chicken + Rice (${breakfast} kcal)\n\n` +
+    `Dinner: Chicken + Rice (${dinner} kcal)`;
 }
 
 if (mealProtein === "Turkey") {
-  mealText = `Turkey + Sweet Potato (${meal} kcal)`;
+  mealText =
+    `Breakfast: Turkey + Sweet Potato (${breakfast} kcal)\n\n` +
+    `Dinner: Turkey + Sweet Potato (${dinner} kcal)`;
 }
 
 if (mealProtein === "Beef") {
-  mealText = `Beef + Pumpkin (${meal} kcal)`;
+  mealText =
+    `Breakfast: Beef + Pumpkin (${breakfast} kcal)\n\n` +
+    `Dinner: Beef + Pumpkin (${dinner} kcal)`;
 }
 
 if (mealProtein === "Lamb") {
-  mealText = `Lamb + Rice (${meal} kcal)`;
+  mealText =
+    `Breakfast: Lamb + Rice (${breakfast} kcal)\n\n` +
+    `Dinner: Lamb + Rice (${dinner} kcal)`;
 }
 
 if (mealProtein === "Salmon") {
-  mealText = `Salmon + Potato (${meal} kcal)`;
+  mealText =
+    `Breakfast: Salmon + Potato (${breakfast} kcal)\n\n` +
+    `Dinner: Salmon + Potato (${dinner} kcal)`;
 }
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";

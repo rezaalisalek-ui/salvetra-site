@@ -692,15 +692,21 @@ if (meds.length) {
     return;
   }
 
-  const reminder = {
-    pet_id: Number(petId),
-    user_id: user.id,
-    type: $("careType").value,
-    title: $("careTitle").value.trim(),
-    due_date: $("careDate").value,
-    notes: $("careNotes").value.trim(),
-    status: "pending"
-  };
+  const typeMap = {
+  "Vaccination": "vaccination",
+  "Deworming": "deworming",
+  "Veterinary Check-up": "vet_checkup",
+  "Other": "other"
+};
+
+const reminder = {
+  pet_id: Number(petId),
+  type: typeMap[$("careType").value],
+  title: $("careTitle").value.trim() || $("careType").value,
+  due_date: $("careDate").value,
+  notes: $("careNotes").value.trim(),
+  status: "upcoming"
+};
 
   if (!reminder.type || !reminder.due_date) {
     setMsg("careMsg", "Type and date are required.");

@@ -909,7 +909,8 @@ if (mealProtein === "Salmon") {
 }
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
-  $("mealCalories").textContent = meal + " kcal";
+$("mealCalories").textContent =
+  `Breakfast ${breakfast} kcal • Dinner ${dinner} kcal`;
 $("mealSuggestion").textContent = mealText;
 }
     async function askSalvetraAI() {

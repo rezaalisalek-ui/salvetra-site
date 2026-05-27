@@ -687,7 +687,9 @@ if (meds.length) {
 
   const reminder = {
     pet_id: Number(petId),
-    type: $("careType").value.toLowerCase(),
+type: $("careType").value === "Veterinary Check-up"
+  ? "veterinary_checkup"
+  : $("careType").value.toLowerCase(),
     title: $("careTitle").value.trim(),
     due_date: $("careDate").value,
     status: "upcoming"

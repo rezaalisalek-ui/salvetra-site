@@ -819,7 +819,16 @@ const homeBox = $("homeCareReminder");
         '<p class="small">No reminders yet.</p>';
       return;
     }
+const next = reminders[0];
 
+homeBox.innerHTML = `
+  <div class="item">
+    <strong>${next.title || next.type}</strong><br>
+    <span class="small">
+      Due ${new Date(next.due_date).toLocaleDateString()}
+    </span>
+  </div>
+`;
     list.innerHTML = reminders.map(item => `
       <div class="item">
         <strong>${item.title || item.type}</strong><br>

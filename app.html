@@ -873,7 +873,9 @@ const protein = $("petProtein").value;
   if (species.includes("cat")) factor -= 0.2;
 
   const daily = Math.round(rer * factor);
-  const meal = Math.round(daily / 2);
+  const breakfast = Math.round(daily * 0.45);
+const dinner = Math.round(daily * 0.55);
+
 let mealText = "";
 
 if (mealProtein === "Chicken") {

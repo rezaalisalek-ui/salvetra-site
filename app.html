@@ -817,6 +817,7 @@ const homeBox = $("homeCareReminder");
     if (!reminders.length) {
       list.innerHTML =
         '<p class="small">No reminders yet.</p>';
+      homeBox.innerHTML = '<p class="small">No upcoming care reminders.</p>';
       return;
     }
 const next = reminders[0];

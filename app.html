@@ -197,45 +197,18 @@
     <section class="screen" id="health">
 
   <div class="topbar">
-    <h2>Health Tracking</h2>
-    <span>📊</span>
+    <h2>Health</h2>
+    <span>💚</span>
   </div>
 
-  <div class="card">
-    <h3>Today's Health Log</h3>
-
-    <input id="healthWeight" placeholder="Weight (kg)">
-
-    <select id="healthAppetite">
-      <option value="">Appetite</option>
-      <option>Excellent</option>
-      <option>Normal</option>
-      <option>Reduced</option>
-      <option>Poor</option>
-    </select>
-
-    <select id="healthEnergy">
-      <option value="">Energy Level</option>
-      <option>High</option>
-      <option>Normal</option>
-      <option>Low</option>
-    </select>
-
-    <input id="healthNotes" placeholder="Notes">
-
-    <button class="btn" onclick="saveHealthLog()">
-      Save Health Log
-    </button>
-
-    <p id="healthMsg" class="small"></p>
+  <div class="card" onclick="showScreen('healthCheck')">
+    <h3>🩺 Health Check</h3>
+    <p>Appetite, activity and symptoms tracking.</p>
   </div>
 
-  <div class="card">
-    <h3>Recent Health Logs</h3>
-
-    <div class="list" id="healthLogsList">
-      <p class="small">No health logs yet.</p>
-    </div>
+  <div class="card" onclick="showScreen('preventiveCare')">
+    <h3>🛡️ Preventive Care</h3>
+    <p>Vaccination, deworming and veterinary check-up reminders.</p>
   </div>
 
 </section>

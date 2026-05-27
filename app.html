@@ -725,6 +725,38 @@ if (meds.length) {
     setMsg("careMsg", e.message);
   }
 }
+async function loadPreventiveCare() {
+
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) return;
+
+  try {
+
+    const items = await restFetch(
+      `/rest/v1/preventive_care?pet_id=eq.${petId}&order=due_date.asc`
+    );
+
+    const list = $("preventiveCareList");
+
+    if (!items.length) {
+      list.innerHTML =
+        "<p class='small'>No reminders yet.</p>";
+      return;
+    }
+
+    list.innerHTML = items.map(item => `
+      <div class="card">
+        <b>${item.title || item.type}</b><br>
+        ${item.due_date}<br>
+        ${item.type}
+      </div>
+    `).join("");
+
+  } catch (e) {
+
+    console.error(e);
+  }
 }
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");

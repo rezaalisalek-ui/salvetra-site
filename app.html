@@ -87,7 +87,7 @@
       <div class="hero">
         <span class="pill">MVP Mobile Web App</span>
         <p class="subtitle" style="max-width:210px;margin-top:18px">Track meals, medication and wellness in one simple pet care dashboard.</p>
-        <div class="animals">🐱🐶</div>
+        <div class="animals">ð±ð¶</div>
       </div>
       <button class="btn" onclick="go('profile')">Get Started</button>
    <div class="card ai-box" style="margin-top:20px">
@@ -107,16 +107,16 @@
     </section>
 
     <section class="screen" id="dashboard">
-      <div class="topbar"><h2>Pet Dashboard</h2><button class="btn secondary" style="width:auto;margin:0;padding:11px 15px" onclick="go('profile')">＋</button></div>
+      <div class="topbar"><h2>Pet Dashboard</h2><button class="btn secondary" style="width:auto;margin:0;padding:11px 15px" onclick="go('profile')">ï¼</button></div>
       <div class="card pet-card">
 <img id="dashPetPhoto" class="pet-img" src="" alt="Pet">
         <div><h3 id="dashPetName">Your Pet</h3><p class="small" id="dashPetInfo">Add your pet profile to personalize care.</p></div>
       </div>
       <h3 style="margin-top:20px">Today's Plan</h3>
       <div class="list">
-        <div class="item"><div class="icon">🍲</div><div><h3>Breakfast</h3><p class="small">Personalized meal</p></div><div class="check">✓</div></div>
-        <div class="item"><div class="icon">💊</div><div><h3>Medication</h3><p class="small">Pill Pocket</p></div><span class="small">8:00 AM</span></div>
-        <div class="item"><div class="icon">🩺</div><div><h3>Health Check</h3><p class="small">Appetite, activity, symptoms</p></div></div>
+        <div class="item"><div class="icon">ð²</div><div><h3>Breakfast</h3><p class="small">Personalized meal</p></div><div class="check">â</div></div>
+        <div class="item"><div class="icon">ð</div><div><h3>Medication</h3><p class="small">Pill Pocket</p></div><span class="small">8:00 AM</span></div>
+        <div class="item"><div class="icon">ð©º</div><div><h3>Health Check</h3><p class="small">Appetite, activity, symptoms</p></div></div>
       </div>
   <div class="card ai-box" style="margin-top:20px">
   <h3>Ask Salvetra AI</h3>
@@ -135,7 +135,7 @@
     </section>
 
     <section class="screen" id="nutrition">
-      <div class="topbar"><h2>Nutrition Plan</h2><span>⚙️</span></div>
+      <div class="topbar"><h2>Nutrition Plan</h2><span>âï¸</span></div>
       <div class="card">
   <h3>Daily Calorie Needs</h3>
 
@@ -165,7 +165,7 @@
     </section>
 
     <section class="screen" id="medication">
-      <div class="topbar"><h2>Medication</h2><span>🔔</span></div>
+      <div class="topbar"><h2>Medication</h2><span>ð</span></div>
       <div class="card">
   <p class="small">Next Medication</p>
 
@@ -197,81 +197,51 @@
     <section class="screen" id="health">
 
   <div class="topbar">
-    <h2>Health</h2>
-    <span>💚</span>
-  </div>
-
-<div class="card" onclick="go('healthCheck')">
-    <h3>🩺 Health Check</h3>
-    <p>Appetite, activity and symptoms tracking.</p>
-  </div>
-
-<div class="card" onclick="go('preventiveCare')">
-    <h3>🛡️ Preventive Care</h3>
-    <p>Vaccination, deworming and veterinary check-up reminders.</p>
-  </div>
-
-</section>
-<section class="screen" id="healthCheck">
-
-  <div class="topbar">
-    <h2>Health Check</h2>
-    <span>🩺</span>
+    <h2>Health Tracking</h2>
+    <span>ð</span>
   </div>
 
   <div class="card">
-    <h3>Health Check</h3>
-    <p>Coming soon</p>
-  </div>
+    <h3>Today's Health Log</h3>
 
-</section>
+    <input id="healthWeight" placeholder="Weight (kg)">
 
-<section class="screen" id="preventiveCare">
+    <select id="healthAppetite">
+      <option value="">Appetite</option>
+      <option>Excellent</option>
+      <option>Normal</option>
+      <option>Reduced</option>
+      <option>Poor</option>
+    </select>
 
-  <div class="topbar">
-    <h2>Preventive Care</h2>
-    <span>🛡️</span>
+    <select id="healthEnergy">
+      <option value="">Energy Level</option>
+      <option>High</option>
+      <option>Normal</option>
+      <option>Low</option>
+    </select>
+
+    <input id="healthNotes" placeholder="Notes">
+
+    <button class="btn" onclick="saveHealthLog()">
+      Save Health Log
+    </button>
+
+    <p id="healthMsg" class="small"></p>
   </div>
 
   <div class="card">
+    <h3>Recent Health Logs</h3>
 
-  <h3>Schedule Care</h3>
-
-  <select id="careType">
-    <option value="">Select care type</option>
-    <option>Vaccination</option>
-    <option>Deworming</option>
-    <option>Veterinary Check-up</option>
-
-  </select>
-
-  <input id="careTitle" placeholder="Title">
-
-  <input id="careDate" type="date">
-
-  <input id="careNotes" placeholder="Notes">
-
-  <button class="btn" onclick="savePreventiveCare()">
-    Save Reminder
-  </button>
-
-  <p id="careMsg" class="small"></p>
-
-</div>
-
-<div class="card">
-
-  <h3>Upcoming Reminders</h3>
-
-  <div id="preventiveCareList">
-    <p class="small">No reminders yet.</p>
+    <div class="list" id="healthLogsList">
+      <p class="small">No health logs yet.</p>
+    </div>
   </div>
 
-</div>
-
 </section>
+
     <section class="screen" id="profile">
-      <div class="topbar"><h2>Pet Profile</h2><span>⚙️</span></div>
+      <div class="topbar"><h2>Pet Profile</h2><span>âï¸</span></div>
       <div class="card" id="authCard">
         <h3>Create Account / Log In</h3>
         <input id="signupEmail" type="email" placeholder="Email" autocomplete="email">
@@ -344,11 +314,11 @@
     </section>
 
     <nav class="nav">
-      <button id="nav-dashboard" onclick="go('dashboard',this)"><span>🏠</span>Home</button>
-      <button id="nav-nutrition" onclick="go('nutrition',this)"><span>🥣</span>Plan</button>
-      <button id="nav-medication" onclick="go('medication',this)"><span>💊</span>Meds</button>
-      <button id="nav-health" onclick="go('health',this)"><span>💚</span>Health</button>
-      <button id="nav-profile" onclick="go('profile',this)"><span>👤</span>Profile</button>
+      <button id="nav-dashboard" onclick="go('dashboard',this)"><span>ð </span>Home</button>
+      <button id="nav-nutrition" onclick="go('nutrition',this)"><span>ð¥£</span>Plan</button>
+      <button id="nav-medication" onclick="go('medication',this)"><span>ð</span>Meds</button>
+      <button id="nav-health" onclick="go('health',this)"><span>ð</span>Health</button>
+      <button id="nav-profile" onclick="go('profile',this)"><span>ð¤</span>Profile</button>
     </nav>
   </main>
 
@@ -391,7 +361,7 @@
     }
 
     function markGiven(){
-      setMsg('givenMsg', 'Medication marked as given ✓', 'ok');
+      setMsg('givenMsg', 'Medication marked as given â', 'ok');
     }
 
     async function authFetch(path, options={}) {
@@ -484,7 +454,7 @@ $("petLifeStage").value = pet?.life_stage || "";
 
     function updateDashboard(pet) {
       $("dashPetName").textContent = pet?.name || "Your Pet";
-      const info = [pet?.species, pet?.breed, pet?.age, pet?.weight].filter(Boolean).join(" • ");
+      const info = [pet?.species, pet?.breed, pet?.age, pet?.weight].filter(Boolean).join(" â¢ ");
       $("dashPetInfo").textContent = info || "Add your pet profile to personalize care.";
    $("dashPetPhoto").src = pet?.photo_url || "";
     }
@@ -657,7 +627,7 @@ async function loadMedications() {
 if (meds.length) {
   $("nextMedName").textContent = meds[0].name;
   $("nextMedTime").textContent =
-    `${meds[0].frequency || ""} • ${meds[0].notes || ""}`;
+    `${meds[0].frequency || ""} â¢ ${meds[0].notes || ""}`;
 }
     const list = $("medicationsList");
 
@@ -669,11 +639,11 @@ if (meds.length) {
 
     list.innerHTML = meds.map(m => `
       <div class="item">
-        <div class="icon">💊</div>
+        <div class="icon">ð</div>
         <div>
           <strong>${m.name}</strong><br>
           <span class="small">
-            ${m.dose || ""} • ${m.frequency || ""} • ${m.notes || ""}
+            ${m.dose || ""} â¢ ${m.frequency || ""} â¢ ${m.notes || ""}
           </span>
         </div>
       </div>
@@ -682,56 +652,7 @@ if (meds.length) {
   } catch (e) {
     console.error(e);
   }
-  async function savePreventiveCare() {
-
-  const user = getUser();
-  const petId = localStorage.getItem("pet_id");
-
-  if (!user?.id || !petId) {
-    setMsg("careMsg", "Please save pet profile first.");
-    return;
-  }
-
-  const typeMap = {
-  "Vaccination": "vaccination",
-  "Deworming": "deworming",
-  "Veterinary Check-up": "vet_checkup",
-  "Other": "other"
-};
-
-const reminder = {
-  pet_id: Number(petId),
-  type: typeMap[$("careType").value],
-  title: $("careTitle").value.trim() || $("careType").value,
-  due_date: $("careDate").value,
-  notes: $("careNotes").value.trim(),
-  status: "upcoming"
-};
-
-  if (!reminder.type || !reminder.due_date) {
-    setMsg("careMsg", "Type and date are required.");
-    return;
-  }
-
-  try {
-
-    await restFetch("/rest/v1/preventive_care", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(reminder)
-    });
-
-    setMsg("careMsg", "Reminder saved.");
-
-
-  } catch (e) {
-
-    setMsg("careMsg", e.message);
-  }
 }
-
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");
   const user = getUser();
@@ -793,7 +714,7 @@ async function loadHealthLogs() {
         <div>
           <strong>${log.weight || "-"} kg</strong><br>
           <span class="small">
-            Appetite: ${log.appetite || "-"} •
+            Appetite: ${log.appetite || "-"} â¢
             Energy: ${log.energy || "-"}
           </span><br>
           <span class="small">${log.notes || ""}</span>
@@ -952,7 +873,6 @@ if (loggedIn) {
   await loadPet();
   await loadMedications();
 await loadHealthLogs();
-  
 }
       go("welcome");
     });

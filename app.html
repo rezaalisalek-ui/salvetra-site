@@ -793,6 +793,37 @@ async function loadHealthLogs() {
     console.error(e);
   }
 }
+   async function loadPreventiveCare() {
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) return;
+
+  try {
+    const reminders = await restFetch(
+      `/rest/v1/preventive_care?pet_id=eq.${petId}&status=eq.upcoming&order=due_date.asc`
+    );
+
+    const list = $("careList");
+
+    if (!reminders.length) {
+      list.innerHTML =
+        '<p class="small">No reminders yet.</p>';
+      return;
+    }
+
+    list.innerHTML = reminders.map(item => `
+      <div class="item">
+        <strong>${item.title || item.type}</strong><br>
+        <span class="small">
+          ${item.type} • Due ${new Date(item.due_date).toLocaleDateString()}
+        </span>
+      </div>
+    `).join("");
+
+  } catch (e) {
+    console.error(e);
+  }
+} 
     function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();

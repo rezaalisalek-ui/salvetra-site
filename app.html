@@ -670,6 +670,45 @@ if (meds.length) {
     console.error(e);
   }
 }
+    async function savePreventiveCare() {
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) {
+    alert("Please save pet profile first.");
+    return;
+  }
+
+  const reminder = {
+    pet_id: Number(petId),
+    type: $("careType").value,
+    title: $("careTitle").value.trim(),
+    due_date: $("careDate").value,
+    status: "upcoming"
+  };
+
+  if (!reminder.type || !reminder.due_date) {
+    alert("Please select care type and next due date.");
+    return;
+  }
+
+  try {
+    await restFetch("/rest/v1/preventive_care", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reminder)
+    });
+
+    alert("Reminder saved.");
+
+    $("careTitle").value = "";
+    $("careDate").value = "";
+
+  } catch (e) {
+    alert("Save failed: " + e.message);
+  }
+}
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");
   const user = getUser();

@@ -234,9 +234,40 @@
   </div>
 
   <div class="card">
-    <h3>Preventive Care</h3>
-    <p>Coming soon</p>
+
+  <h3>Schedule Care</h3>
+
+  <select id="careType">
+    <option value="">Select care type</option>
+    <option>Vaccination</option>
+    <option>Deworming</option>
+    <option>Veterinary Check-up</option>
+    <option>Other</option>
+  </select>
+
+  <input id="careTitle" placeholder="Title">
+
+  <input id="careDate" type="date">
+
+  <input id="careNotes" placeholder="Notes">
+
+  <button class="btn" onclick="savePreventiveCare()">
+    Save Reminder
+  </button>
+
+  <p id="careMsg" class="small"></p>
+
+</div>
+
+<div class="card">
+
+  <h3>Upcoming Reminders</h3>
+
+  <div id="preventiveCareList">
+    <p class="small">No reminders yet.</p>
   </div>
+
+</div>
 
 </section>
     <section class="screen" id="profile">

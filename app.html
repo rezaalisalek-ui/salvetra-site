@@ -952,7 +952,7 @@ homeBox.innerHTML = `
   </div>
 `;
     list.innerHTML = reminders.map(item => `
-    <div class="item">
+<div class="item" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
         <strong>${item.title || item.type}</strong>
 
         <span class="small">

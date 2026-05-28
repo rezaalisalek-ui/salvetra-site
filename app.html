@@ -972,6 +972,13 @@ homeBox.innerHTML = `
   Carrot: { kcal: 41, carb: 10 },
   "Green Beans": { kcal: 31, carb: 7 }
 }
+    const proteinData = {
+  Chicken: { kcal: 165, protein: 31 },
+  Turkey: { kcal: 135, protein: 29 },
+  Beef: { kcal: 250, protein: 26 },
+  Lamb: { kcal: 294, protein: 25 },
+  Salmon: { kcal: 208, protein: 20 }
+}
     function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();

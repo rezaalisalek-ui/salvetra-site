@@ -1053,7 +1053,9 @@ Healthy fats:
 ${fatGrams}g daily`
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
-$("mealCalories").textContent =
+$("mealFrequency").textContent = "2 meals/day";
+$("proteinSuggestion").textContent = mealProtein;
+      $("mealCalories").textContent =
   `Breakfast ${breakfast} kcal • Dinner ${dinner} kcal`;
 $("mealSuggestion").textContent = mealText;
 $("mealSuggestion").style.whiteSpace = "pre-line";

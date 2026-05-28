@@ -1018,8 +1018,10 @@ ${carbList
   .join("\n")}
 
 Dinner:
-${mealProtein} ${Math.round(proteinGrams / 2)}g
-${carbText}
+${mealProtein} ${Math.round((proteinGrams * 0.55))}g
+${carbList
+  .map(item => `${item} ${Math.round((carbGrams * 0.55) / carbList.length)}g`)
+  .join("\n")}
 
 Healthy fats:
 ${fatGrams}g daily`

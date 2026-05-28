@@ -1026,7 +1026,7 @@ const carbGrams = Math.round((daily * 0.40) / 4)
 const fatGrams = Math.round((daily * 0.25) / 9)
 
 let mealText = `Breakfast:
-${mealProtein} ${Math.round((proteinGrams * 0.45))}g
+${mealProtein} ${Math.round((((breakfast * 0.35) / proteinInfo.kcal) * 100))}g
 ${carbList
   .map(item => {
     const data = ingredientData[item]

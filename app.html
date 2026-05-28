@@ -1068,6 +1068,36 @@ $("proteinSuggestion").textContent = mealProtein;
 $("mealSuggestion").textContent = mealText;
 $("mealSuggestion").style.whiteSpace = "pre-line";
 $("mealSuggestion").style.lineHeight = "1.6";
+   const notes = []
+
+if (lifeStage === "Senior") {
+  notes.push("Senior pet: monitor weight and appetite regularly.")
+}
+
+if (lifeStage === "Puppy/Kitten") {
+  notes.push("Growth stage: calorie needs may change quickly.")
+}
+
+if (bodyCondition === "Underweight") {
+  notes.push("Underweight: portions are slightly increased to support healthy weight gain.")
+}
+
+if (bodyCondition === "Overweight") {
+  notes.push("Overweight: portions are reduced to support safer weight management.")
+}
+
+if (activity === "Low") {
+  notes.push("Low activity: avoid overfeeding and monitor weekly weight.")
+}
+
+if (activity === "High") {
+  notes.push("High activity: higher energy needs are included in this plan.")
+}
+
+notes.push("Portions are estimated and should be adjusted with veterinary guidance.")
+
+$("nutritionNotes").textContent = notes.join("\n");
+$("nutritionNotes").style.whiteSpace = "pre-line";
     }
     async function askSalvetraAI() {
   const question = $("aiQuestion").value.trim();

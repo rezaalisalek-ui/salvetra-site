@@ -1036,7 +1036,17 @@ ${carbList
 Dinner:
 ${mealProtein} ${Math.round((proteinGrams * 0.55))}g
 ${carbList
-  .map(item => `${item} ${Math.round((carbGrams * 0.55) / carbList.length)}g`)
+  .map(item => {
+    const data = ingredientData[item]
+
+    if (!data) return item
+
+    const gramsNeeded = Math.round(
+      (((carbGrams * 0.55) / carbList.length) / data.carb) * 100
+    )
+
+    return `${item} ${gramsNeeded}g`
+  })
   .join("\n")}
 
 Healthy fats:

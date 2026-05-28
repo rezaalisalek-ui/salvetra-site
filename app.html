@@ -1001,7 +1001,11 @@ const ingredients = Array.from(
   document.querySelectorAll(".ingredientCheck:checked")
 ).map(el => el.value)
 
-const carb = ingredients[0] || "Rice"
+const carbList = ingredients.length ? ingredients : ["Rice"];
+
+const carbText = carbList
+  .map(item => `${item} ${Math.round(carbGrams / carbList.length / 2)}g`)
+  .join("\n");
 
 const proteinGrams = Math.round((daily * 0.35) / 4)
 const carbGrams = Math.round((daily * 0.40) / 4)

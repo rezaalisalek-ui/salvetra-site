@@ -353,35 +353,39 @@
 </select>
     <h3 style="margin-top:20px">Favorite Ingredients</h3>
 
-<label>
-  <input type="checkbox" value="Rice" class="favIngredient">
-  Rice
-</label><br>
+<div class="ingredient-grid">
 
-<label>
-  <input type="checkbox" value="Potato" class="favIngredient">
-  Potato
-</label><br>
+  <label class="ingredient-option">
+    <input type="checkbox" value="Rice" class="ingredientCheck">
+    Rice
+  </label>
 
-<label>
-  <input type="checkbox" value="Sweet Potato" class="favIngredient">
-  Sweet Potato
-</label><br>
+  <label class="ingredient-option">
+    <input type="checkbox" value="Potato" class="ingredientCheck">
+    Potato
+  </label>
 
-<label>
-  <input type="checkbox" value="Pumpkin" class="favIngredient">
-  Pumpkin
-</label><br>
+  <label class="ingredient-option">
+    <input type="checkbox" value="Sweet Potato" class="ingredientCheck">
+    Sweet Potato
+  </label>
 
-<label>
-  <input type="checkbox" value="Carrot" class="favIngredient">
-  Carrot
-</label><br>
+  <label class="ingredient-option">
+    <input type="checkbox" value="Pumpkin" class="ingredientCheck">
+    Pumpkin
+  </label>
 
-<label>
-  <input type="checkbox" value="Green Beans" class="favIngredient">
-  Green Beans
-</label>    
+  <label class="ingredient-option">
+    <input type="checkbox" value="Carrot" class="ingredientCheck">
+    Carrot
+  </label>
+
+  <label class="ingredient-option">
+    <input type="checkbox" value="Green Beans" class="ingredientCheck">
+    Green Beans
+  </label>
+
+</div>    
         <label>Notes</label><textarea id="petNotes" rows="4" placeholder="Allergies, conditions, special notes"></textarea>
       <label>Pet Photo</label>
 <input id="petPhoto" type="file" accept="image/*">

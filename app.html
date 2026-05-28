@@ -1026,8 +1026,8 @@ ${carbList
     if (!data) return item
 
     const gramsNeeded = Math.round(
-      (((carbGrams * 0.45) / carbList.length) / data.carb) * 100
-    )
+  ((((carbGrams * 0.45) / carbList.length) / data.carb) * 100)
+)
 
     return `${item} ${gramsNeeded}g`
   })

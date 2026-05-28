@@ -953,11 +953,13 @@ homeBox.innerHTML = `
 `;
     list.innerHTML = reminders.map(item => `
 <div class="item" style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-        <strong>${item.title || item.type}</strong>
+        <div style="flex:1;">
+  <strong>${item.title || item.type}</strong>
 
-        <span class="small">
-            ${item.type} • Due ${new Date(item.due_date).toLocaleDateString()}
-        </span>
+  <span class="small">
+    ${item.type} • Due ${new Date(item.due_date).toLocaleDateString()}
+  </span>
+</div>
 
 <button
   onclick="completeReminder('${item.id}')"

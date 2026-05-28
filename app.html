@@ -1012,7 +1012,7 @@ const carbText = carbList
   .map(item => `${item} ${Math.round(carbGrams / carbList.length / 2)}g`)
   .join("\n");
 let mealText = `Breakfast:
-${mealProtein} ${Math.round(proteinGrams / 2)}g
+${mealProtein} ${Math.round((proteinGrams * 0.45))}g
 ${carbText}
 
 Dinner:

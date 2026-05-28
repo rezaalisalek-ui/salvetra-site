@@ -930,8 +930,8 @@ async function loadHealthLogs() {
 
   try {
     const reminders = await restFetch(
-`/rest/v1/preventive_care?pet_id=eq.${petId}&order=due_date.asc`
-    );
+  `/rest/v1/preventive_care?pet_id=eq.${petId}&completed=eq.false&order=due_date.asc`
+);
 
     const list = $("careList");
 const homeBox = $("homeCareReminder");

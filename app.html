@@ -964,6 +964,14 @@ homeBox.innerHTML = `
     console.error(e);
   }
 } 
+    const ingredientData = {
+  Rice: { kcal: 130, carb: 28 },
+  Potato: { kcal: 77, carb: 17 },
+  Pumpkin: { kcal: 26, carb: 7 },
+  "Sweet Potato": { kcal: 86, carb: 20 },
+  Carrot: { kcal: 41, carb: 10 },
+  "Green Beans": { kcal: 31, carb: 7 }
+}
     function calculateCalories() {
   const weight = parseFloat($("petWeight").value) || 0;
   const species = $("petSpecies").value.toLowerCase();

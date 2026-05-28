@@ -997,7 +997,8 @@ homeBox.innerHTML = `
   const bodyCondition = $("petBodyCondition").value;
 const protein = $("petProtein").value;
  let mealProtein = protein || "Chicken";
-  if (lifeStage === "Puppy/Kitten") factor = 2.5;
+const proteinInfo = proteinData[mealProtein] || proteinData["Chicken"]
+      if (lifeStage === "Puppy/Kitten") factor = 2.5;
   if (lifeStage === "Senior") factor = 1.2;
 
   if (activity === "High") factor += 0.3;

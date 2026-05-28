@@ -959,7 +959,19 @@ homeBox.innerHTML = `
             ${item.type} • Due ${new Date(item.due_date).toLocaleDateString()}
         </span>
 
-        <button onclick="completeReminder('${item.id}')">
+<button
+  onclick="completeReminder('${item.id}')"
+  style="
+    border:none;
+    padding:8px 14px;
+    border-radius:999px;
+    background:#e8f5ee;
+    color:#0b6b43;
+    font-weight:600;
+    cursor:pointer;
+    pointer-events:auto;
+  "
+>
             Done
         </button>
     </div>

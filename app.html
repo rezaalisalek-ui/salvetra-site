@@ -1004,7 +1004,7 @@ const ingredients = Array.from(
 const carbList = ingredients.length ? ingredients : ["Rice"];
 
 const carbText = carbList
-  .map(item => `${item} ${Math.round(carbGrams / carbList.length / 2)}g`)
+.map(item => `${item} ${Math.round(carbGrams / carbList.length / 2)}g`)
   .join("\n");
 
 const proteinGrams = Math.round((daily * 0.35) / 4)

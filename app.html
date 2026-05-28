@@ -997,37 +997,28 @@ const protein = $("petProtein").value;
   const breakfast = Math.round(daily * 0.45);
 const dinner = Math.round(daily * 0.55);
 
-let mealText = "";
+const ingredients = Array.from(
+  document.querySelectorAll(".ingredientCheck:checked")
+).map(el => el.value)
 
-if (mealProtein === "Chicken") {
-  mealText =
-    `Breakfast: Chicken + Rice (${breakfast} kcal)\n\n` +
-    `Dinner: Chicken + Rice (${dinner} kcal)`;
-}
+const carb = ingredients[0] || "Rice"
 
-if (mealProtein === "Turkey") {
-  mealText =
-    `Breakfast: Turkey + Sweet Potato (${breakfast} kcal)\n\n` +
-    `Dinner: Turkey + Sweet Potato (${dinner} kcal)`;
-}
+const proteinGrams = Math.round((daily * 0.35) / 4)
+const carbGrams = Math.round((daily * 0.40) / 4)
+const fatGrams = Math.round((daily * 0.25) / 9)
 
-if (mealProtein === "Beef") {
-  mealText =
-    `Breakfast: Beef + Pumpkin (${breakfast} kcal)\n\n` +
-    `Dinner: Beef + Pumpkin (${dinner} kcal)`;
-}
+let mealText = `
+Breakfast:
+${mealProtein} ${Math.round(proteinGrams / 2)}g
+${carb} ${Math.round(carbGrams / 2)}g
 
-if (mealProtein === "Lamb") {
-  mealText =
-    `Breakfast: Lamb + Rice (${breakfast} kcal)\n\n` +
-    `Dinner: Lamb + Rice (${dinner} kcal)`;
-}
+Dinner:
+${mealProtein} ${Math.round(proteinGrams / 2)}g
+${carb} ${Math.round(carbGrams / 2)}g
 
-if (mealProtein === "Salmon") {
-  mealText =
-    `Breakfast: Salmon + Potato (${breakfast} kcal)\n\n` +
-    `Dinner: Salmon + Potato (${dinner} kcal)`;
-}
+Healthy fats:
+${fatGrams}g daily
+`
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
 $("mealCalories").textContent =

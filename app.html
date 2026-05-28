@@ -1007,8 +1007,7 @@ const proteinGrams = Math.round((daily * 0.35) / 4)
 const carbGrams = Math.round((daily * 0.40) / 4)
 const fatGrams = Math.round((daily * 0.25) / 9)
 
-let mealText = `
-Breakfast:
+let mealText = `Breakfast:
 ${mealProtein} ${Math.round(proteinGrams / 2)}g
 ${carb} ${Math.round(carbGrams / 2)}g
 
@@ -1017,8 +1016,7 @@ ${mealProtein} ${Math.round(proteinGrams / 2)}g
 ${carb} ${Math.round(carbGrams / 2)}g
 
 Healthy fats:
-${fatGrams}g daily
-`
+${fatGrams}g daily`
   console.log("Recommended protein:", mealProtein);
   $("dailyCalories").textContent = daily + " kcal/day";
 $("mealCalories").textContent =

@@ -192,29 +192,65 @@
     <section class="screen" id="nutrition">
       <div class="topbar"><h2>Nutrition Plan</h2><span>⚙️</span></div>
       <div class="card">
-  <h3>Daily Calorie Needs</h3>
 
-  <div style="font-size:32px;font-weight:700;margin:12px 0"
-       id="dailyCalories">
-    --
+<h3>Daily Nutrition Plan</h3>
+
+<div
+  style="
+    font-size:32px;
+    font-weight:700;
+    color:var(--green);
+    margin-top:8px;
+  "
+  id="dailyCalories"
+>
+  --
+</div>
+
+<p class="small">
+  Personalized calorie target based on your pet profile.
+</p>
+
+<div style="margin-top:18px;display:grid;gap:12px">
+
+  <div class="card" style="padding:14px;background:#fff">
+    <div class="small">Meals Per Day</div>
+    <strong id="mealFrequency">--</strong>
   </div>
 
-  <p class="small">
-    Estimated daily calories based on profile data
-  </p>
+  <div class="card" style="padding:14px;background:#fff">
+    <div class="small">Calories Per Meal</div>
+    <strong id="mealCalories">--</strong>
+  </div>
 
-<div style="display:block;margin-top:16px">
-<div style="display:block;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px">
-      <div>Calories per meal (2 meals/day)</div>
-      <strong id="mealCalories">--</strong>
-   <div class="small">Suggested Meal</div>
-<strong id="mealSuggestion">--</strong>
+  <div class="card" style="padding:14px;background:#fff">
+    <div class="small">Recommended Protein</div>
+    <strong id="proteinSuggestion">--</strong>
+  </div>
+
+  <div class="card" style="padding:14px;background:#fff">
+    <div class="small">Suggested Meal</div>
+    <strong id="mealSuggestion">--</strong>
+  </div>
+
+  <div class="card" style="padding:14px;background:#fff">
+    <div class="small">Nutrition Notes</div>
+    <div id="nutritionNotes" class="small">
+      --
     </div>
   </div>
 
-  <button class="btn" onclick="calculateCalories()">
-    Calculate Calories
-  </button>
+</div>
+
+<button
+  class="btn"
+  style="margin-top:18px"
+  onclick="calculateCalories()"
+>
+  Generate Nutrition Plan
+</button>
+
+</div>
 </div>
 
     </section>

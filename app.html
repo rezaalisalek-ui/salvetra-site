@@ -1008,9 +1008,7 @@ const carbList = ingredients.length ? ingredients : ["Rice"];
 const proteinGrams = Math.round((daily * 0.35) / 4)
 const carbGrams = Math.round((daily * 0.40) / 4)
 const fatGrams = Math.round((daily * 0.25) / 9)
-const carbText = carbList
-  .map(item => `${item} ${Math.round(carbGrams / carbList.length / 2)}g`)
-  .join("\n");
+
 let mealText = `Breakfast:
 ${mealProtein} ${Math.round((proteinGrams * 0.45))}g
 ${carbList

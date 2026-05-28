@@ -969,6 +969,28 @@ homeBox.innerHTML = `
     console.error(e);
   }
 } 
+   async function completeReminder(id) {
+  try {
+    await restFetch(
+      `/rest/v1/preventive_care?id=eq.${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Prefer: "return=minimal"
+        },
+        body: JSON.stringify({
+          completed: true
+        })
+      }
+    )
+
+    loadPreventiveCare()
+
+  } catch (e) {
+    console.error(e)
+  }
+} 
     const ingredientData = {
   Rice: { kcal: 130, carb: 28 },
   Potato: { kcal: 77, carb: 17 },

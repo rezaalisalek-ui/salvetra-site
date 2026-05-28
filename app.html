@@ -596,6 +596,8 @@ activity_level: $("petActivity").value,
 body_condition: $("petBodyCondition").value,
 life_stage: $("petLifeStage").value,
        preferred_protein: $("petProtein").value,
+       favorite_ingredients: [...document.querySelectorAll(".favIngredient:checked")]
+  .map(el => el.value),
         notes: $("petNotes").value.trim(),
 user_id: user.id,
       };

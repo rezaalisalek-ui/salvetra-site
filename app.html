@@ -744,6 +744,102 @@ if (photoFile) {
         $("savePetBtn").disabled = false;
       }
     }
+    const medicationDatabase = {
+  parasite: [
+    "Bravecto",
+    "NexGard",
+    "Simparica",
+    "Credelio",
+    "Revolution Plus",
+    "Advocate"
+  ],
+
+  vaccine: [
+    "Rabies",
+    "DHPP",
+    "Bordetella",
+    "Leptospirosis",
+    "Canine Influenza",
+    "FVRCP"
+  ],
+
+  antibiotic: [
+    "Amoxicillin",
+    "Clindamycin",
+    "Doxycycline",
+    "Cephalexin",
+    "Metronidazole",
+    "Enrofloxacin"
+  ],
+
+  pain: [
+    "Carprofen",
+    "Meloxicam",
+    "Robenacoxib",
+    "Gabapentin",
+    "Tramadol"
+  ],
+
+  skin: [
+    "Apoquel",
+    "Cytopoint",
+    "Prednisolone",
+    "Cetirizine"
+  ],
+
+  heart: [
+    "Pimobendan",
+    "Amlodipine",
+    "Benazepril",
+    "Furosemide"
+  ],
+
+  digestive: [
+    "Omeprazole",
+    "Famotidine",
+    "Sucralfate",
+    "Lactulose"
+  ],
+
+  hormonal: [
+    "Insulin",
+    "Trilostane",
+    "Levothyroxine"
+  ],
+
+  neurological: [
+    "Phenobarbital",
+    "Levetiracetam",
+    "Pregabalin"
+  ],
+
+  eye_ear: [
+    "Ofloxacin",
+    "Ciprofloxacin",
+    "Tacrolimus"
+  ],
+
+  other: [
+    "Other Medication"
+  ]
+};
+
+function updateMedicationOptions() {
+  const category = document.getElementById("medCategory").value;
+  const medSelect = document.getElementById("medName");
+
+  medSelect.innerHTML =
+    '<option value="">Select medication</option>';
+
+  if (!category) return;
+
+  medicationDatabase[category].forEach(med => {
+    const option = document.createElement("option");
+    option.value = med;
+    option.textContent = med;
+    medSelect.appendChild(option);
+  });
+}
   async function saveMedication() {
   const user = getUser();
   const petId = localStorage.getItem("pet_id");

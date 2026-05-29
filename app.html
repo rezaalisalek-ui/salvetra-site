@@ -1328,9 +1328,16 @@ if (!user) {
         },
         body: JSON.stringify({
           pet: pet[0],
-          medications: [],
-          plan: {},
-          health: {}
+          medications: await restFetch(
+  `/rest/v1/medications?pet_id=eq.${petId}&select=*`
+),
+plan: {
+  breakfast: $("mealCalories")?.textContent || "",
+  nutritionNotes: $("nutritionNotes")?.textContent || ""
+},
+health: await restFetch(
+  `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc&limit=3&select=*`
+)
         })
       }
     );

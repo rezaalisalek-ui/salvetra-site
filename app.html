@@ -1331,7 +1331,10 @@ if (!user) {
           medications: await restFetch(
   `/rest/v1/medications?pet_id=eq.${petId}&select=*`
 ),
-plan: {},
+plan: {
+  mealCalories: $("#mealCalories")?.textContent || "",
+  nutritionNotes: $("#nutritionNotes")?.textContent || ""
+},
 health: await restFetch(
   `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc&limit=3&select=*`
 )

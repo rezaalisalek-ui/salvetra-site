@@ -835,7 +835,14 @@ const customInput =
   document.getElementById("customMedName");
   medSelect.innerHTML =
     '<option value="">Select medication</option>';
+if (category === "other") {
+  customInput.style.display = "block";
+  medSelect.style.display = "none";
+  return;
+}
 
+customInput.style.display = "none";
+medSelect.style.display = "block";
   if (!category) return;
 
   medicationDatabase[category].forEach(med => {

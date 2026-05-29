@@ -268,7 +268,24 @@
       <div class="card">
   <h3>Add Medication</h3>
 
-  <input id="medName" placeholder="Medication name">
+<select id="medCategory" onchange="updateMedicationOptions()">
+  <option value="">Select category</option>
+  <option value="parasite">Parasite Control</option>
+  <option value="vaccine">Vaccines</option>
+  <option value="antibiotic">Antibiotics</option>
+  <option value="pain">Pain Relief</option>
+  <option value="skin">Skin & Allergy</option>
+  <option value="heart">Heart</option>
+  <option value="digestive">Digestive</option>
+  <option value="hormonal">Hormonal</option>
+  <option value="neurological">Neurological</option>
+  <option value="eye_ear">Eye & Ear</option>
+  <option value="other">Other</option>
+</select>
+
+<select id="medName">
+  <option value="">Select medication</option>
+</select>
 
   <input id="medDose" placeholder="Dose">
 

@@ -831,7 +831,8 @@ if (photoFile) {
 function updateMedicationOptions() {
   const category = document.getElementById("medCategory").value;
   const medSelect = document.getElementById("medName");
-
+const customInput =
+  document.getElementById("customMedName");
   medSelect.innerHTML =
     '<option value="">Select medication</option>';
 

@@ -1303,6 +1303,47 @@ if (!user) {
     $("aiAnswer").textContent = "AI unavailable.";
   }
 }
+   async function loadAIInsights() {
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) {
+    $("aiInsights").textContent =
+      "Please create a pet profile first.";
+    return;
+  }
+
+  $("aiInsights").textContent = "Generating insights...";
+
+  try {
+    const pet = await restFetch(
+      `/rest/v1/pets?id=eq.${petId}&select=*`
+    );
+
+    const data = await fetch(
+      "https://kjzdacjxocfraqitlxqi.supabase.co/functions/v1/ai-insights",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          pet: pet[0],
+          medications: [],
+          plan: {},
+          health: {}
+        })
+      }
+    );
+
+    const result = await data.json();
+
+    $("aiInsights").innerHTML =
+      result.insights.map(i => `• ${i}`).join("<br>");
+  } catch (e) {
+    $("aiInsights").textContent =
+      "Unable to generate insights.";
+  }
+} 
 async function askSalvetraAIDashboard() {
   const question = $("aiQuestionDashboard").value.trim();
   const user = getUser();

@@ -864,7 +864,10 @@ medSelect.style.display = "block";
   const medication = {
     pet_id: Number(petId),
     user_id: user.id,
-    name: $("medName").value.trim(),
+name:
+  $("medCategory").value === "other"
+    ? $("customMedName").value.trim()
+    : $("medName").value.trim(),
     dose: $("medDose").value.trim(),
     frequency: $("medFrequency").value.trim(),
     notes: $("medTime").value

@@ -1414,14 +1414,21 @@ return;
   setAuthUI(loggedIn);
 
   if (loggedIn) {
-  go("dashboard");
+
+  const lastScreen =
+    localStorage.getItem("currentScreen") || "dashboard";
+
+  go(lastScreen);
 
   await loadPet();
   await loadMedications();
   await loadHealthLogs();
   await loadPreventiveCare();
+
 } else {
+
   go("welcome");
+
 }
 });
   </script>

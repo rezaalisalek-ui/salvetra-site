@@ -1408,16 +1408,21 @@ return;
   
 
     document.addEventListener("DOMContentLoaded", async () => {
-      const loggedIn = Boolean(getToken() && getUser()?.id);
-      setAuthUI(loggedIn);
-if (loggedIn) {
-  await loadPet();
-  await loadMedications();
-await loadHealthLogs();
- await loadPreventiveCare(); 
-}
-      go("welcome");
-    });
+  const loggedIn = Boolean(getToken() && getUser());
+
+  setAuthUI(loggedIn);
+
+  if (loggedIn) {
+    await loadPet();
+    await loadMedications();
+    await loadHealthLogs();
+    await loadPreventiveCare();
+
+    go("dashboard");
+  } else {
+    go("welcome");
+  }
+});
   </script>
 </body>
 </html>

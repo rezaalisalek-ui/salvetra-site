@@ -534,6 +534,7 @@ Tap Refresh Insights to generate updated AI recommendations.
     }
 
     function go(id, btn){
+      localStorage.setItem("currentScreen", id);
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
       const screen = $(id);
       if (screen) screen.classList.add('active');

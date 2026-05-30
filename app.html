@@ -1413,15 +1413,15 @@ return;
   setAuthUI(loggedIn);
 
   if (loggedIn) {
-    await loadPet();
-    await loadMedications();
-    await loadHealthLogs();
-    await loadPreventiveCare();
+  go("dashboard");
 
-    go("dashboard");
-  } else {
-    go("welcome");
-  }
+  await loadPet();
+  await loadMedications();
+  await loadHealthLogs();
+  await loadPreventiveCare();
+} else {
+  go("welcome");
+}
 });
   </script>
 </body>

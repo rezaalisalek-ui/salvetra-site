@@ -978,22 +978,12 @@ if (!meds.length) {
   }
 }
     async function removeMedication(id) {
-  alert("Medication ID: " + id);
-
   if (!confirm("Remove this medication?")) return;
 
   try {
-    const result = await restFetch(
-      `/rest/v1/medications?id=eq.${id}&select=id`,
-      {
-        method: "DELETE",
-        headers: {
-          Prefer: "return=representation",
-        },
-      }
-    );
-
-    alert("Delete result: " + JSON.stringify(result));
+    await restFetch(`/rest/v1/medications?id=eq.${id}`, {
+      method: "DELETE",
+    });
 
     await loadMedications();
   } catch (e) {

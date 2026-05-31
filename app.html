@@ -823,7 +823,7 @@ const info = [
       const pet = {
         name: $("petName").value.trim(),
         species: $("petSpecies").value.trim(),
-        breed: $("petBreed").value.trim(),
+breed: $("petBreed").value === "Other" ? $("customBreed").value.trim() : $("petBreed").value,
         age: $("petAge").value.trim(),
         weight: $("petWeight").value.trim(),
        sex: $("petSex").value,

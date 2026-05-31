@@ -635,7 +635,15 @@ await loadHealthLogs();
 await loadPreventiveCare();
 go("dashboard");
       } catch (e) {
-        setMsg("authMsg", "Login failed: " + e.message, "err");
+if (e.message.includes("Invalid login credentials")) {
+  setMsg(
+    "authMsg",
+    "Email or password is incorrect. If you just signed up, please verify your email first.",
+    "err"
+  );
+} else {
+  setMsg("authMsg", "Login failed. Please try again.", "err");
+}
       } finally {
         $("loginBtn").disabled = false;
       }

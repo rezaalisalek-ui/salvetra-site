@@ -1119,7 +1119,7 @@ if (!meds.length) {
   }
 }
     async function removeMedication(id) {
-  if (!confirm("Remove this medication?")) return;
+if (!confirm("Are you sure you want to remove this medication?")) return;
 
   try {
     await restFetch(`/rest/v1/medications?id=eq.${id}`, {

@@ -535,6 +535,11 @@ Tap Refresh Insights to generate updated AI recommendations.
       localStorage.setItem("currentScreen", id);
       document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
       const screen = $(id);
+      const nav = $("bottomNav");
+
+if (nav) {
+  nav.style.display = id === "welcome" ? "none" : "flex";
+}
       if (screen) screen.classList.add('active');
       document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
       const navBtn = btn || $("nav-" + id);

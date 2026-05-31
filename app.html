@@ -573,7 +573,13 @@ nav.style.display = id === "welcome" ? "none" : "";
         await authFetch("/auth/v1/signup", {
           method: "POST",
           headers: { apikey: SUPABASE_ANON_KEY, "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password })
+body: JSON.stringify({
+  email,
+  password,
+  options: {
+    emailRedirectTo: "https://salvetra.com/"
+  }
+})
         });
         setMsg("authMsg", "Account created. Now tap Log In.", "ok");
       } catch (e) {

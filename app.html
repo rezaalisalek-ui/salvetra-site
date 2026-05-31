@@ -1041,7 +1041,10 @@ name:
     ? $("customMedName").value.trim()
     : $("medName").value.trim(),
     dose: $("medDose").value.trim(),
-    frequency: $("medFrequency").value.trim(),
+frequency:
+  $("medFrequency").value === "Other"
+    ? $("customFrequency").value.trim()
+    : $("medFrequency").value,
     notes: $("medTime").value
   };
 

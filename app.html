@@ -652,7 +652,7 @@ go("dashboard");
     function fillPetForm(pet) {
       $("petName").value = pet?.name || "";
       $("petSpecies").value = pet?.species || "";
-      $("petBreed").value = pet?.breed || "";
+updateBreedOptions(pet?.breed || "");
       $("petAge").value = pet?.age || "";
       $("petWeight").value = pet?.weight || "";
       $("petSex").value = pet?.sex || "";

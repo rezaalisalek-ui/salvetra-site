@@ -663,7 +663,101 @@ $("petLifeStage").value = pet?.life_stage || "";
       $("petProtein").value = pet?.preferred_protein || "";
       $("petNotes").value = pet?.notes || "";
     }
+function toggleCustomBreed() {
+  const isOther = $("petBreed").value === "Other";
 
+  $("customBreed").style.display =
+    isOther ? "block" : "none";
+
+  if (!isOther) {
+    $("customBreed").value = "";
+  }
+}
+    function updateBreedOptions(selectedBreed = "") {
+
+  const species = $("petSpecies").value;
+  const breedSelect = $("petBreed");
+
+  const dogBreeds = [
+    "Mixed Breed",
+    "Labrador Retriever",
+    "Golden Retriever",
+    "German Shepherd",
+    "Poodle",
+    "French Bulldog",
+    "Bulldog",
+    "Beagle",
+    "Rottweiler",
+    "Dachshund",
+    "Yorkshire Terrier",
+    "Boxer",
+    "Siberian Husky",
+    "Shih Tzu",
+    "Border Collie",
+    "Australian Shepherd",
+    "Cocker Spaniel",
+    "Cavalier King Charles Spaniel",
+    "Chihuahua",
+    "Pomeranian",
+    "Pug",
+    "Maltese",
+    "Doberman Pinscher",
+    "Great Dane",
+    "Bernese Mountain Dog",
+    "Spitz",
+    "Terrier",
+    "Other"
+  ];
+
+  const catBreeds = [
+    "Domestic Shorthair",
+    "Domestic Longhair",
+    "Persian",
+    "Maine Coon",
+    "British Shorthair",
+    "Siamese",
+    "Ragdoll",
+    "Bengal",
+    "Sphynx",
+    "Scottish Fold",
+    "Russian Blue",
+    "Abyssinian",
+    "Birman",
+    "Burmese",
+    "Norwegian Forest Cat",
+    "Oriental Shorthair",
+    "Savannah",
+    "Himalayan",
+    "Turkish Angora",
+    "Exotic Shorthair",
+    "DSH",
+    "DLH",
+    "Other"
+  ];
+
+  const breeds =
+    species === "Dog"
+      ? dogBreeds
+      : species === "Cat"
+      ? catBreeds
+      : [];
+
+  breedSelect.innerHTML =
+    '<option value="">Select breed</option>';
+
+  breeds.forEach(breed => {
+    breedSelect.innerHTML +=
+      `<option value="${breed}">${breed}</option>`;
+  });
+
+  if (selectedBreed && breeds.includes(selectedBreed)) {
+    breedSelect.value = selectedBreed;
+  } else if (selectedBreed) {
+    breedSelect.value = "Other";
+    $("customBreed").style.display = "block";
+    $("customBreed").value = selectedBreed;
+  }
+}
     function updateDashboard(pet) {
       $("dashPetName").textContent = pet?.name || "Your Pet";
 const info = [

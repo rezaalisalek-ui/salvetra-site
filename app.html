@@ -946,7 +946,22 @@ if (meds.length) {
         </div>
       </div>
     `).join("");
+const todayPlan = $("todayPlanList");
 
+if (!meds.length) {
+  todayPlan.innerHTML =
+    '<p class="small">No medications scheduled today.</p>';
+} else {
+  todayPlan.innerHTML = meds.slice(0, 3).map(m => `
+    <div class="item">
+      <div class="icon">💊</div>
+      <div>
+        <strong>${m.name}</strong><br>
+        <span class="small">${m.frequency || ""}</span>
+      </div>
+    </div>
+  `).join("");
+}
   } catch (e) {
     console.error(e);
   }

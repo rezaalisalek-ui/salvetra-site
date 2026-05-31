@@ -977,6 +977,19 @@ if (!meds.length) {
     console.error(e);
   }
 }
+    async function removeMedication(id) {
+  if (!confirm("Remove this medication?")) return;
+
+  try {
+    await restFetch(`/rest/v1/medications?id=eq.${id}`, {
+      method: "DELETE"
+    });
+
+    await loadMedications();
+  } catch (e) {
+    alert("Remove failed: " + e.message);
+  }
+}
     async function savePreventiveCare() {
   const petId = localStorage.getItem("pet_id");
 

@@ -1024,7 +1024,17 @@ medSelect.style.display = "block";
     medSelect.appendChild(option);
   });
 }
-  async function saveMedication() {
+  function toggleCustomFrequency() {
+  const isOther = $("medFrequency").value === "Other";
+
+  $("customFrequency").style.display =
+    isOther ? "block" : "none";
+
+  if (!isOther) {
+    $("customFrequency").value = "";
+  }
+}
+    async function saveMedication() {
   const user = getUser();
   const petId = localStorage.getItem("pet_id");
 

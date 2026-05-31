@@ -603,7 +603,7 @@ nav.style.display = id === "welcome" ? "none" : "";
         await loadMedications();
 await loadHealthLogs();
 await loadPreventiveCare();
-        go("profile");
+go("dashboard");
       } catch (e) {
         setMsg("authMsg", "Login failed: " + e.message, "err");
       } finally {

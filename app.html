@@ -1130,7 +1130,8 @@ const next = reminders[0];
 
 homeBox.innerHTML = `
   <div class="item">
-    <strong>${next.title || next.type}</strong><br>
+<strong>${next.title}</strong>
+<span class="small">${next.type}</span>
     <span class="small">
       Due ${new Date(next.due_date).toLocaleDateString()}
     </span>

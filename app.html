@@ -543,9 +543,10 @@ Tap Refresh Insights to generate updated AI recommendations.
     }
 
     function setAuthUI(isLoggedIn) {
-      $("authCard").classList.toggle("hidden", isLoggedIn);
-      $("logoutBtn").classList.toggle("hidden", !isLoggedIn);
-    }
+  $("authCard").classList.toggle("hidden", isLoggedIn);
+  $("logoutBtn").classList.toggle("hidden", !isLoggedIn);
+  $("petProfileCard").classList.toggle("hidden", !isLoggedIn);
+}
 
     function go(id, btn){
       localStorage.setItem("currentScreen", id);

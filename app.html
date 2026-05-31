@@ -982,7 +982,10 @@ if (!meds.length) {
 
   try {
     await restFetch(`/rest/v1/medications?id=eq.${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
 
     await loadMedications();

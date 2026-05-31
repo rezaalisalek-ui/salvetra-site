@@ -597,7 +597,11 @@ body: JSON.stringify({
   }
 })
         });
-        setMsg("authMsg", "Account created. Now tap Log In.", "ok");
+setMsg(
+  "authMsg",
+  `✅ Verification email sent to ${email}. Please check your inbox and Spam/Junk folder, then click the verification link.`,
+  "ok"
+);
       } catch (e) {
         setMsg("authMsg", "Sign up failed: " + e.message, "err");
       } finally {

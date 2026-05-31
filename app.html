@@ -602,6 +602,9 @@ setMsg(
   `✅ Verification email sent to ${email}. Please check your inbox and Spam/Junk folder, then click the verification link.`,
   "ok"
 );
+    alert(
+  `Verification email sent to ${email}.\n\nPlease check your inbox and Spam/Junk folder.`
+);
       } catch (e) {
         setMsg("authMsg", "Sign up failed: " + e.message, "err");
       } finally {

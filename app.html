@@ -538,7 +538,7 @@ Tap Refresh Insights to generate updated AI recommendations.
       const nav = $("bottomNav");
 
 if (nav) {
-  nav.style.display = id === "welcome" ? "none" : "flex";
+nav.style.display = id === "welcome" ? "none" : "";
 }
       if (screen) screen.classList.add('active');
       document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));

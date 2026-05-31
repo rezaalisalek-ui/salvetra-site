@@ -600,6 +600,9 @@ nav.style.display = id === "welcome" ? "none" : "";
         setAuthUI(true);
         setMsg("authMsg", "Logged in.", "ok");
         await loadPet();
+        await loadMedications();
+await loadHealthLogs();
+await loadPreventiveCare();
         go("profile");
       } catch (e) {
         setMsg("authMsg", "Login failed: " + e.message, "err");

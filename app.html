@@ -981,14 +981,12 @@ if (!meds.length) {
   if (!confirm("Remove this medication?")) return;
 
   try {
-    const result = await restFetch(`/rest/v1/medications?id=eq.${id}`, {
-  method: "DELETE"
-});
-
-console.log("DELETE RESULT:", result);
-alert("Deleted");
+    await restFetch(`/rest/v1/medications?id=eq.${id}`, {
+      method: "DELETE"
+    });
 
     await loadMedications();
+
   } catch (e) {
     alert("Remove failed: " + e.message);
   }

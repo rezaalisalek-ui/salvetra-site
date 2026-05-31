@@ -936,16 +936,27 @@ if (meds.length) {
     }
 
     list.innerHTML = meds.map(m => `
-      <div class="item">
-        <div class="icon">💊</div>
-        <div>
-          <strong>${m.name}</strong><br>
-          <span class="small">
-            ${m.dose || ""} • ${m.frequency || ""} • ${m.notes || ""}
-          </span>
-        </div>
+  <div class="item">
+    <div class="icon">💊</div>
+
+    <div style="flex:1">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+        <strong>${m.name}</strong>
+
+        <button
+          onclick="removeMedication(${m.id})"
+          style="border:none;background:none;color:#b94a48;font-size:13px;font-weight:600"
+        >
+          Remove
+        </button>
       </div>
-    `).join("");
+
+      <span class="small">
+        ${m.dose || ""} • ${m.frequency || ""} ${m.next_due ? "• " + m.next_due : ""}
+      </span>
+    </div>
+  </div>
+`).join("");
 const todayPlan = $("todayPlanList");
 
 if (!meds.length) {

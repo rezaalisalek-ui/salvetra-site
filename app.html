@@ -410,9 +410,15 @@ Tap Refresh Insights to generate updated AI recommendations.
 </select>
 <label>Breed</label>
 
-<select id="petBreed">
+<select id="petBreed" onchange="toggleCustomBreed()">
   <option value="">Select breed</option>
 </select>
+
+<input
+  id="customBreed"
+  placeholder="Enter breed"
+  style="display:none;"
+>
         <label>Age</label><input id="petAge" placeholder="4 years">
         <label>Weight</label><input id="petWeight" placeholder="26 kg">
         <label>Sex</label>

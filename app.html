@@ -1305,6 +1305,19 @@ if (!confirm("Are you sure you want to remove this medication?")) return;
     alert("Remove failed: " + e.message);
   }
 }
+    function toggleCareTitle() {
+  const careType = $("careType").value;
+  const vaccine = $("vaccinationType");
+  const title = $("careTitle");
+
+  if (careType === "Vaccination") {
+    vaccine.style.display = "block";
+    title.style.display = "none";
+  } else {
+    vaccine.style.display = "none";
+    title.style.display = "block";
+  }
+}
     async function savePreventiveCare() {
   const petId = localStorage.getItem("pet_id");
 

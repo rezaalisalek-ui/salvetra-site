@@ -1554,7 +1554,7 @@ async function loadHealthLogs() {
       return;
     }
 
-    list.innerHTML = logs.map(log => `
+list.innerHTML = logs.slice(0, 3).map(log => `
       <div class="item">
         <div>
           <strong>${log.weight || "-"} kg</strong><br>

@@ -1343,7 +1343,7 @@ const reminder = {
   status: "upcoming"
 };
 
-  if (!reminder.type || !reminder.due_date) {
+if (!reminder.type || !reminder.title || !reminder.due_date) {
     alert("Please select care type and next due date.");
     return;
   }

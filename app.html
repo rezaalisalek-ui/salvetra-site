@@ -1471,6 +1471,33 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
     setMsg("wellnessMsg", "Save failed: " + e.message, "err");
   }
 }
+    async function loadWellnessHistory() {
+  const petId = localStorage.getItem("pet_id");
+  const box = $("wellnessHistory");
+
+  if (!petId || !box) return;
+
+  try {
+    const checks = await restFetch(
+      `/rest/v1/wellness_checks?pet_id=eq.${petId}&select=score,status,created_at&order=created_at.desc&limit=5`
+    );
+
+    if (!checks.length) {
+      box.innerHTML = "No wellness scores yet.";
+      return;
+    }
+
+    box.innerHTML = checks.map(c => `
+      <div class="item">
+        <strong>${c.score}/100</strong>
+        <span>${c.status || ""}</span><br>
+        <span>${new Date(c.created_at).toLocaleDateString()}</span>
+      </div>
+    `).join("");
+  } catch (e) {
+    box.textContent = "Could not load wellness history.";
+  }
+}
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");
   const user = getUser();

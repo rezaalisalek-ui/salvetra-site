@@ -1631,8 +1631,8 @@ const proteinInfo = proteinData[mealProtein] || proteinData["Chicken"]
   if (activity === "High") factor += 0.3;
   if (activity === "Low") factor -= 0.2;
 
-  if (bodyCondition === "Overweight") factor -= 0.2;
-  if (bodyCondition === "Underweight") factor += 0.2;
+  if (bodyCondition === "Overweight") factor -= 0.35;
+if (bodyCondition === "Underweight") factor += 0.25;
 
   if (species.includes("cat")) factor -= 0.2;
 

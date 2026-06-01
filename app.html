@@ -1326,15 +1326,22 @@ if (!confirm("Are you sure you want to remove this medication?")) return;
     return;
   }
 
-  const reminder = {
-    pet_id: Number(petId),
-type: $("careType").value === "Veterinary Check-up"
-  ? "vet_checkup"
-  : $("careType").value.toLowerCase(),
-    title: $("careTitle").value.trim(),
-    due_date: $("careDate").value,
-    status: "upcoming"
-  };
+  const careType = $("careType").value;
+
+const title =
+  careType === "Vaccination"
+    ? $("vaccinationType").value
+    : $("careTitle").value.trim();
+
+const reminder = {
+  pet_id: Number(petId),
+  type: careType === "Veterinary Check-up"
+    ? "vet_checkup"
+    : careType.toLowerCase(),
+  title: title,
+  due_date: $("careDate").value,
+  status: "upcoming"
+};
 
   if (!reminder.type || !reminder.due_date) {
     alert("Please select care type and next due date.");

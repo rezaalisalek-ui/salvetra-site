@@ -1312,14 +1312,16 @@ type: $("careType").value === "Veterinary Check-up"
 }
     async function saveWellnessCheck() {
   const user = getUser();
+  const petId = localStorage.getItem("pet_id");
 
-  if (!user?.id) {
-    setMsg("wellnessMsg", "Please log in first.", "err");
+  if (!user?.id || !petId) {
+    setMsg("wellnessMsg", "Please log in and save pet profile first.", "err");
     return;
   }
 
   const check = {
     user_id: user.id,
+    pet_id: Number(petId),
     water_intake: $("wellWater").value,
     stool_quality: $("wellStool").value,
     vomiting: $("wellVomiting").value,
@@ -1342,6 +1344,49 @@ type: $("careType").value === "Veterinary Check-up"
     return;
   }
 
+  let healthLog = null;
+
+  try {
+    const logs = await restFetch(
+      `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc&limit=1`
+    );
+
+    healthLog = logs?.[0] || null;
+  } catch (e) {
+    healthLog = null;
+  }
+
+  const appetite = healthLog?.appetite || "";
+  const energy = healthLog?.energy || "";
+  const weightTrend = healthLog?.weight ? "Stable" : "";
+
+  const points = [];
+
+  points.push(appetite === "Excellent" ? 10 : appetite === "Normal" ? 8 : appetite === "Reduced" ? 5 : appetite === "Poor" ? 2 : 0);
+  points.push(energy === "High" ? 10 : energy === "Normal" ? 8 : energy === "Low" ? 4 : 0);
+  points.push(weightTrend === "Stable" ? 8 : 0);
+
+  points.push(check.water_intake === "Normal" ? 10 : check.water_intake === "Low" ? 6 : check.water_intake === "High" ? 6 : 0);
+  points.push(check.stool_quality === "Normal" ? 10 : check.stool_quality === "Soft" ? 7 : check.stool_quality === "Constipation" ? 5 : check.stool_quality === "Diarrhea" ? 3 : 0);
+  points.push(check.vomiting === "None" ? 10 : check.vomiting === "Once" ? 6 : check.vomiting === "2-3 times" ? 3 : check.vomiting === "Multiple times" ? 1 : 0);
+  points.push(check.mobility === "Normal" ? 10 : check.mobility === "Mild difficulty" ? 7 : check.mobility === "Moderate difficulty" ? 4 : check.mobility === "Severe difficulty" ? 1 : 0);
+  points.push(check.skin_condition === "Normal" ? 10 : check.skin_condition === "Dry" ? 7 : check.skin_condition === "Itchy" ? 5 : check.skin_condition === "Red" ? 4 : check.skin_condition === "Wounds" ? 2 : 0);
+  points.push(check.coat_condition === "Shiny" ? 10 : check.coat_condition === "Normal" ? 8 : check.coat_condition === "Dull" ? 6 : check.coat_condition === "Hair loss" ? 4 : check.coat_condition === "Patchy" ? 3 : 0);
+  points.push(check.mood === "Happy" ? 10 : check.mood === "Normal" ? 8 : check.mood === "Anxious" ? 5 : check.mood === "Withdrawn" ? 4 : 0);
+
+  const score = Math.round(points.reduce((a, b) => a + b, 0));
+
+  const status =
+    score >= 85 ? "Excellent" :
+    score >= 70 ? "Good" :
+    score >= 55 ? "Fair" :
+    score >= 40 ? "Needs Attention" :
+    "Concerning";
+
+  check.score = score;
+  check.status = status;
+  check.insight = `Wellness Score: ${score}/100 - ${status}`;
+
   try {
     setMsg("wellnessMsg", "Saving...");
 
@@ -1353,7 +1398,7 @@ type: $("careType").value === "Veterinary Check-up"
       body: JSON.stringify(check)
     });
 
-    setMsg("wellnessMsg", "Wellness check saved successfully!", "ok");
+    setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]
       .forEach(id => $(id).value = "");

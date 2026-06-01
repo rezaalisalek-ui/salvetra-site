@@ -1310,6 +1310,58 @@ type: $("careType").value === "Veterinary Check-up"
     alert("Save failed: " + e.message);
   }
 }
+    async function saveWellnessCheck() {
+  const user = getUser();
+
+  if (!user?.id) {
+    setMsg("wellnessMsg", "Please log in first.", "err");
+    return;
+  }
+
+  const check = {
+    user_id: user.id,
+    water_intake: $("wellWater").value,
+    stool_quality: $("wellStool").value,
+    vomiting: $("wellVomiting").value,
+    mobility: $("wellMobility").value,
+    skin_condition: $("wellSkin").value,
+    coat_condition: $("wellCoat").value,
+    mood: $("wellMood").value
+  };
+
+  if (
+    !check.water_intake ||
+    !check.stool_quality ||
+    !check.vomiting ||
+    !check.mobility ||
+    !check.skin_condition ||
+    !check.coat_condition ||
+    !check.mood
+  ) {
+    setMsg("wellnessMsg", "Please complete all wellness fields.", "err");
+    return;
+  }
+
+  try {
+    setMsg("wellnessMsg", "Saving...");
+
+    await restFetch("/rest/v1/wellness_checks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(check)
+    });
+
+    setMsg("wellnessMsg", "Wellness check saved successfully!", "ok");
+
+    ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]
+      .forEach(id => $(id).value = "");
+
+  } catch (e) {
+    setMsg("wellnessMsg", "Save failed: " + e.message, "err");
+  }
+}
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");
   const user = getUser();

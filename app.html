@@ -416,14 +416,26 @@ Refresh Insights
 <div class="card">
   <h3>Preventive Care</h3>
 
-  <select id="careType">
-    <option value="">Select care type</option>
-    <option>Vaccination</option>
-    <option>Deworming</option>
-    <option>Veterinary Check-up</option>
-  </select>
+  <select id="careType" onchange="toggleCareTitle()">
+  <option value="">Select care type</option>
+  <option value="Vaccination">Vaccination</option>
+  <option value="Deworming">Deworming</option>
+  <option value="Veterinary Check-up">Veterinary Check-up</option>
+</select>
 
-  <input id="careTitle" placeholder="Title">
+<select id="vaccinationType" style="display:none;">
+  <option value="">Select vaccine</option>
+  <option>DHLPP</option>
+  <option>Rabies</option>
+  <option>Bordetella</option>
+  <option>Leptospirosis</option>
+  <option>Canine Influenza</option>
+  <option>FVRCP</option>
+  <option>FeLV</option>
+  <option>Other</option>
+</select>
+
+<input id="careTitle" placeholder="Title">
 <label>Next Due Date</label>
   <input id="careDate" type="date">
 

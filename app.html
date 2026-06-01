@@ -903,7 +903,7 @@ function toggleCustomBreed() {
     $("customBreed").value = selectedBreed;
   }
 }
-    function updateDashboard(pet) {
+async function updateDashboard(pet) {
       $("dashPetName").textContent = pet?.name || "Your Pet";
 const info = [
   pet?.species,

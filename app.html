@@ -943,7 +943,7 @@ if (pet?.id) {
 
     if (latest?.score) {
       $("dashboardWellness").textContent =
-        `❤️ Wellness Score: ${latest.score}/100 • ${latest.status || ""}`;
+  `❤️ ${latest.score}/100 • ${latest.status || ""}`;
     }
   } catch (e) {
     console.error(e);

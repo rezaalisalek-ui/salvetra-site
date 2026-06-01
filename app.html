@@ -436,11 +436,76 @@ Tap Refresh Insights to generate updated AI recommendations.
   </div>
 
   <div class="card">
-    <h3>❤️ Wellness Check</h3>
-    <p class="small">
-      Track your pet's daily wellness signs and get a simple score.
-    </p>
-  </div>
+  <h3>❤️ Wellness Check</h3>
+  <p class="small">Track your pet's daily wellness signs.</p>
+
+  <label>Water Intake</label>
+  <select id="wellWater">
+    <option value="">Select water intake</option>
+    <option>Low</option>
+    <option>Normal</option>
+    <option>High</option>
+  </select>
+
+  <label>Stool Quality</label>
+  <select id="wellStool">
+    <option value="">Select stool quality</option>
+    <option>Normal</option>
+    <option>Soft</option>
+    <option>Diarrhea</option>
+    <option>Constipation</option>
+  </select>
+
+  <label>Vomiting</label>
+  <select id="wellVomiting">
+    <option value="">Select vomiting</option>
+    <option>None</option>
+    <option>Once</option>
+    <option>2-3 times</option>
+    <option>Multiple times</option>
+  </select>
+
+  <label>Mobility</label>
+  <select id="wellMobility">
+    <option value="">Select mobility</option>
+    <option>Normal</option>
+    <option>Mild difficulty</option>
+    <option>Moderate difficulty</option>
+    <option>Severe difficulty</option>
+  </select>
+
+  <label>Skin Condition</label>
+  <select id="wellSkin">
+    <option value="">Select skin condition</option>
+    <option>Normal</option>
+    <option>Dry</option>
+    <option>Itchy</option>
+    <option>Red</option>
+    <option>Wounds</option>
+  </select>
+
+  <label>Coat Condition</label>
+  <select id="wellCoat">
+    <option value="">Select coat condition</option>
+    <option>Shiny</option>
+    <option>Normal</option>
+    <option>Dull</option>
+    <option>Hair loss</option>
+    <option>Patchy</option>
+  </select>
+
+  <label>Mood</label>
+  <select id="wellMood">
+    <option value="">Select mood</option>
+    <option>Happy</option>
+    <option>Normal</option>
+    <option>Anxious</option>
+    <option>Withdrawn</option>
+  </select>
+
+  <button class="btn" onclick="saveWellnessCheck()">Save Wellness Check</button>
+  <p id="wellnessMsg" class="small msg"></p>
+</div>
 </section>
     <section class="screen" id="profile">
 <div class="topbar"><h2>Pet Profile</h2></div>

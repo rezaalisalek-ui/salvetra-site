@@ -68,9 +68,41 @@
     .tabs{display:flex;background:#f1eee6;border-radius:16px;padding:4px;margin:18px 0}
     .tab{flex:1;text-align:center;padding:10px;border-radius:13px;font-size:13px;color:var(--muted)}
     .tab.active{background:var(--green);color:#fff;font-weight:700}
-    .nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);max-width:430px;width:100%;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:9px 4px 16px;z-index:10}
-    .nav button{border:0;background:transparent;color:#7a817e;font-size:11px;display:grid;place-items:center;gap:3px}
-    .nav span{font-size:22px}.nav button.active{color:var(--green);font-weight:700}
+    .nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+  width:100%;
+  max-width:520px;
+  background:#fff;
+  border-top:1px solid #e5e5e5;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 0;
+  z-index:100;
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:22px;
+  color:#888;
+  flex:1;
+}
+
+.nav span{
+  font-size:11px;
+  font-weight:600;
+}
+
+.nav button.active{
+  color:var(--green);
+}
     input,select,textarea{width:100%;border:1px solid var(--line);border-radius:16px;padding:14px;font:inherit;background:#fff;margin-top:8px;color:var(--text)}
     label{font-size:13px;font-weight:700;color:var(--green);display:block;margin-top:12px}
     .ai-box{background:linear-gradient(135deg,#e7f4ef,#fff);border:1px solid #d8ebe3}

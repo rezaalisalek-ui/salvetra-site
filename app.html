@@ -1840,18 +1840,29 @@ if (!user) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          pet: pet[0],
-          medications: await restFetch(
-  `/rest/v1/medications?pet_id=eq.${petId}&select=*`
-),
-plan: {
-  mealCalories: $("#mealCalories")?.textContent || "",
-  nutritionNotes: $("#nutritionNotes")?.textContent || ""
-},
-health: await restFetch(
-  `/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc&limit=3&select=*`
-)
-        })
+  pet: pet[0],
+
+  wellness: await restFetch(
+    `/rest/v1/wellness_checks?pet_id=eq.${petId}&select=*&order=created_at.desc&limit=10`
+  ),
+
+  health: await restFetch(
+    `/rest/v1/health_logs?pet_id=eq.${petId}&select=*&order=created_at.desc&limit=30`
+  ),
+
+  medications: await restFetch(
+    `/rest/v1/medications?pet_id=eq.${petId}&select=*`
+  ),
+
+  preventiveCare: await restFetch(
+    `/rest/v1/preventive_care?pet_id=eq.${petId}&select=*&order=due_date.asc`
+  ),
+
+  plan: {
+    mealCalories: $("mealCalories")?.textContent,
+    nutritionNotes: $("nutritionNotes")?.textContent
+  }
+})
       }
     );
 

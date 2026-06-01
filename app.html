@@ -915,7 +915,25 @@ const info = [
 .join(" • ");
       $("dashPetInfo").textContent = info || "Add your pet profile to personalize care.";
    $("dashPetPhoto").src = pet?.photo_url || "";
+   $("dashboardWellness").textContent = "❤️ Wellness Score: --";
+
+if (pet?.id) {
+  try {
+    const checks = await restFetch(
+      `/rest/v1/wellness_checks?pet_id=eq.${pet.id}&order=created_at.desc&limit=1`
+    );
+
+    const latest = checks?.[0];
+
+    if (latest?.score) {
+      $("dashboardWellness").textContent =
+        `❤️ Wellness Score: ${latest.score}/100 • ${latest.status || ""}`;
     }
+  } catch (e) {
+    console.error(e);
+  }
+}
+}
 
     async function restFetch(path, options={}) {
       const token = getToken();

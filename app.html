@@ -972,9 +972,54 @@ if (pet?.id) {
   } catch (e) {
     console.error(e);
   }
-
+  await loadPetTwin();
 }
-  
+  async function loadPetTwin() {
+
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) {
+    $("twinSummary").textContent =
+      "Create a pet profile to start building your twin.";
+    return;
+  }
+
+  try {
+
+    const checks = await restFetch(
+      `/rest/v1/wellness_checks?pet_id=eq.${petId}&order=created_at.desc`
+    );
+
+    const confidence = Math.min(
+      100,
+      Math.round((checks?.length || 0) * 5)
+    );
+
+    let status = "Learning";
+
+    if (confidence > 70) status = "Established";
+    if (confidence > 90) status = "Highly Accurate";
+
+    $("twinSummary").innerHTML = `
+      <b>🧠 Twin Status</b><br>
+      ${status}<br><br>
+
+      <b>🎯 Twin Confidence</b><br>
+      ${confidence}%<br><br>
+
+      <b>📊 Records Learned</b><br>
+      ${checks?.length || 0}
+    `;
+
+  } catch (e) {
+
+    $("twinSummary").textContent =
+      "Unable to load twin data.";
+
+    console.error(e);
+  }
+}
+}
 
     async function restFetch(path, options={}) {
       const token = getToken();

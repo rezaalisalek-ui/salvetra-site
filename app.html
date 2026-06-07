@@ -1009,11 +1009,20 @@ if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {
 
     let status = "Learning";
 
-    if (confidence > 70) status = "Established";
-    if (confidence > 90) status = "Highly Accurate";
+if (recordsCount >= 25 && learningDays >= 30) {
+  status = "Building Baseline";
+}
+
+if (recordsCount >= 50 && learningDays >= 60) {
+  status = "Understanding Patterns";
+}
+
+if (recordsCount >= 100 && learningDays >= 120) {
+  status = "Mature Twin";
+}
 
     $("twinSummary").innerHTML = `
-    <b>🧠 Your Pet Twin is learning</b><br>
+<b>🧠 ${status}</b><br>
 ${recordsCount} health records analyzed over ${learningDays} days.<br><br>
 
     <b>📈 Learning Progress</b><br>

@@ -1009,13 +1009,15 @@ if (recordsCount >= 50) {
 const petName = $("dashPetName")?.textContent || "your pet";
 
 $("twinSummary").innerHTML = `
-  <b>🧠 Your Twin is learning ${petName}'s patterns</b><br><br>
+  <b>🧠 ${stage}</b><br><br>
 
   ${recordsCount} health records analyzed so far.<br><br>
 
-  Add more daily logs to help your Pet Twin better understand ${petName}'s normal appetite, energy, weight, and wellness patterns.<br><br>
-
-  <b>🎯 Twin Confidence:</b> ${confidence}%
+  ${
+    nextGoal
+      ? `${nextGoal - recordsCount} more records needed to unlock the next Twin level.`
+      : "Your Pet Twin has reached its highest learning level."
+  }
 `;
 
   } catch (e) {

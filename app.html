@@ -974,53 +974,7 @@ if (pet?.id) {
   }
 
 }
-  async function loadPetTwin() {
-  const petId = localStorage.getItem("pet_id");
-
-  if (!petId) {
-    $("twinSummary").textContent =
-      "Create a pet profile to start building your twin.";
-    return;
-  }
-
-  try {
-    const checks = await restFetch(
-      `/rest/v1/wellness_checks?pet_id=eq.${petId}&order=created_at.desc`
-    );
-
-    const recordsCount = checks?.length || 0;
-    const petName = $("dashPetName")?.textContent || "your pet";
-
-    let stage = "Learning";
-    let nextGoal = 20;
-
-    if (recordsCount >= 20) {
-      stage = "Established";
-      nextGoal = 50;
-    }
-
-    if (recordsCount >= 50) {
-      stage = "Highly Accurate";
-      nextGoal = null;
-    }
-
-    let nextText = "";
-
-if (nextGoal) {
-  nextText = `${nextGoal - recordsCount} more records needed to unlock the next Twin level.`;
-} else {
-  nextText = "Your Pet Twin has reached its highest learning level.";
-}
-
-$("twinSummary").innerHTML =
-  "<b>🧠 " + stage + "</b><br><br>" +
-  recordsCount + " health records analyzed so far.<br><br>" +
-  nextText;
-  } catch (e) {
-    $("twinSummary").textContent = "Unable to load twin data.";
-    console.error(e);
-  }
-}
+  
 
     async function restFetch(path, options={}) {
       const token = getToken();

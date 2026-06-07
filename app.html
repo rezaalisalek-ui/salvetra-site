@@ -1004,17 +1004,18 @@ if (pet?.id) {
       nextGoal = null;
     }
 
-    $("twinSummary").innerHTML = `
-      <b>🧠 ${stage}</b><br><br>
+    let nextText = "";
 
-      ${recordsCount} health records analyzed so far.<br><br>
+if (nextGoal) {
+  nextText = `${nextGoal - recordsCount} more records needed to unlock the next Twin level.`;
+} else {
+  nextText = "Your Pet Twin has reached its highest learning level.";
+}
 
-      ${
-        nextGoal
-          ? `${nextGoal - recordsCount} more records needed to unlock the next Twin level.`
-          : "Your Pet Twin has reached its highest learning level."
-      }
-    `;
+$("twinSummary").innerHTML =
+  "<b>🧠 " + stage + "</b><br><br>" +
+  recordsCount + " health records analyzed so far.<br><br>" +
+  nextText;
   } catch (e) {
     $("twinSummary").textContent = "Unable to load twin data.";
     console.error(e);

@@ -1001,15 +1001,14 @@ if (pet?.id) {
     if (confidence > 90) status = "Highly Accurate";
 
     $("twinSummary").innerHTML = `
-      <b>🧠 Twin Status</b><br>
-      ${status}<br><br>
+    <b>🧠 Your Pet Twin is learning</b><br>
+    ${checks?.length || 0} health records analyzed so far.<br><br>
 
-      <b>🎯 Twin Confidence</b><br>
-      ${confidence}%<br><br>
+    <b>📈 Learning Progress</b><br>
+    ${confidence}% complete<br><br>
 
-      <b>📊 Records Learned</b><br>
-      ${checks?.length || 0}
-    `;
+    Keep logging daily health updates to help your Pet Twin better understand your pet's normal patterns.
+`;
 
   } catch (e) {
 

@@ -1002,10 +1002,12 @@ if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {
     Math.floor((today - firstDate) / (1000 * 60 * 60 * 24))
   );
 }
-    const confidence = Math.min(
-      100,
-      Math.round((checks?.length || 0) * 5)
-    );
+    const recordsScore = Math.min(100, (recordsCount / 50) * 100);
+const timeScore = Math.min(100, (learningDays / 60) * 100);
+
+const confidence = Math.round(
+  recordsScore * 0.5 + timeScore * 0.5
+);
 
     let status = "Learning";
 

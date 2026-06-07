@@ -990,15 +990,20 @@ if (pet?.id) {
       `/rest/v1/wellness_checks?pet_id=eq.${petId}&order=created_at.desc`
     );
 
-    const confidence = Math.min(
-      100,
-      Math.round((checks?.length || 0) * 5)
-    );
+    const recordsCount = checks?.length || 0;
 
-    let status = "Learning";
+let stage = "Learning";
+let nextGoal = 20;
 
-    if (confidence > 70) status = "Established";
-    if (confidence > 90) status = "Highly Accurate";
+if (recordsCount >= 20) {
+  stage = "Established";
+  nextGoal = 50;
+}
+
+if (recordsCount >= 50) {
+  stage = "Highly Accurate";
+  nextGoal = null;
+}
 
     const recordsCount = checks?.length || 0;
 const petName = $("dashPetName")?.textContent || "your pet";

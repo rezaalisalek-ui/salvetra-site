@@ -1000,16 +1000,18 @@ if (pet?.id) {
     if (confidence > 70) status = "Established";
     if (confidence > 90) status = "Highly Accurate";
 
-    $("twinSummary").innerHTML = `
-      <b>🧠 Twin Status</b><br>
-      ${status}<br><br>
+    const recordsCount = checks?.length || 0;
+const petName = $("dashPetName")?.textContent || "your pet";
 
-      <b>🎯 Twin Confidence</b><br>
-      ${confidence}%<br><br>
+$("twinSummary").innerHTML = `
+  <b>🧠 Your Twin is learning ${petName}'s patterns</b><br><br>
 
-      <b>📊 Records Learned</b><br>
-      ${checks?.length || 0}
-    `;
+  ${recordsCount} health records analyzed so far.<br><br>
+
+  Add more daily logs to help your Pet Twin better understand ${petName}'s normal appetite, energy, weight, and wellness patterns.<br><br>
+
+  <b>🎯 Twin Confidence:</b> ${confidence}%
+`;
 
   } catch (e) {
 

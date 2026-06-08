@@ -1807,7 +1807,12 @@ weight: Number(weight),
   "Content-Type": "application/json",
   Prefer: "return=representation"
 },
-    body: JSON.stringify(log)
+body: JSON.stringify({
+  weight: log.weight,
+  appetite: log.appetite,
+  energy: log.energy,
+  notes: log.notes
+})
   });
       console.log("editing id:", editingHealthLogId, "log:", log);
 await loadHealthLogs();

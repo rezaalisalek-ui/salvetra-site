@@ -1764,7 +1764,7 @@ const weight = kg ? kg + gram / 1000 : "";
   const log = {
     pet_id: Number(petId),
     user_id: user.id,
-weight,
+weight: Number(weight),
     appetite: $("healthAppetite").value,
     energy: $("healthEnergy").value,
     notes: $("healthNotes").value.trim()

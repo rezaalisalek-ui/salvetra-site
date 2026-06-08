@@ -1764,7 +1764,7 @@ const weight = kg ? kg + gram / 1000 : "";
   const log = {
     pet_id: Number(petId),
     user_id: user.id,
-    weight: $("healthWeight").value.trim(),
+weight,
     appetite: $("healthAppetite").value,
     energy: $("healthEnergy").value,
     notes: $("healthNotes").value.trim()
@@ -1781,7 +1781,8 @@ const weight = kg ? kg + gram / 1000 : "";
 
     setMsg("healthMsg", "Health log saved");
 
-    $("healthWeight").value = "";
+$("healthWeightKg").value = "";
+$("healthWeightGram").value = "0";
     $("healthAppetite").value = "";
     $("healthEnergy").value = "";
     $("healthNotes").value = "";

@@ -995,7 +995,7 @@ if (pet?.id) {
       `/rest/v1/wellness_checks?pet_id=eq.${petId}&order=created_at.desc`
     );
     const healthLogs = await restFetch(
-`/rest/v1/health_logs?pet_id=eq.${petId}&select=weight,appetite,created_at&order=created_at.desc`
+`/rest/v1/health_logs?pet_id=eq.${petId}&select=weight,appetite,energy,created_at&order=created_at.desc`
 );
 const recordsCount = checks?.length || 0;
 let weightTrend = "Not enough data";

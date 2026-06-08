@@ -1057,6 +1057,51 @@ if (healthLogs?.length >= 3) {
     energyPattern = `Mostly ${mostCommonEnergy}`;
   }
 }
+    let waterPattern = "Not enough data";
+
+if (checks?.length >= 3) {
+
+    const waterCounts = {};
+
+    checks.forEach(check => {
+        if (check.water_intake) {
+            waterCounts[check.water_intake] =
+                (waterCounts[check.water_intake] || 0) + 1;
+        }
+    });
+
+    const mostCommonWater = Object.keys(waterCounts)
+        .sort((a, b) =>
+            waterCounts[b] - waterCounts[a]
+        )[0];
+
+    if (mostCommonWater) {
+        waterPattern = `Mostly ${mostCommonWater}`;
+    }
+}
+
+let stoolPattern = "Not enough data";
+
+if (checks?.length >= 3) {
+
+    const stoolCounts = {};
+
+    checks.forEach(check => {
+        if (check.stool_quality) {
+            stoolCounts[check.stool_quality] =
+                (stoolCounts[check.stool_quality] || 0) + 1;
+        }
+    });
+
+    const mostCommonStool = Object.keys(stoolCounts)
+        .sort((a, b) =>
+            stoolCounts[b] - stoolCounts[a]
+        )[0];
+
+    if (mostCommonStool) {
+        stoolPattern = `Mostly ${mostCommonStool}`;
+    }
+}
 let learningDays = 0;
 
 if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {

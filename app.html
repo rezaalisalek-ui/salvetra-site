@@ -1035,6 +1035,28 @@ if (healthLogs?.length >= 3) {
     appetitePattern = `Mostly ${mostCommon}`;
   }
 }
+    let energyPattern = "Not enough data";
+
+if (healthLogs?.length >= 3) {
+
+  const energyCounts = {};
+
+  healthLogs.forEach(log => {
+    if (log.energy) {
+      energyCounts[log.energy] =
+        (energyCounts[log.energy] || 0) + 1;
+    }
+  });
+
+  const mostCommonEnergy = Object.keys(energyCounts)
+    .sort((a, b) =>
+      energyCounts[b] - energyCounts[a]
+    )[0];
+
+  if (mostCommonEnergy) {
+    energyPattern = `Mostly ${mostCommonEnergy}`;
+  }
+}
 let learningDays = 0;
 
 if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {

@@ -714,7 +714,16 @@
     const SUPABASE_ANON_KEY = "sb_publishable_0XIJ62AV_NyUmOvo-5hI6A_twUvyI-v";
 
     const $ = (id) => document.getElementById(id);
+const kgSelect = document.getElementById("healthWeightKg");
 
+if (kgSelect) {
+  for (let i = 1; i <= 80; i++) {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = `${i} kg`;
+    kgSelect.appendChild(option);
+  }
+}
     function setMsg(id, text, type="") {
       const el = $(id);
       if (!el) return;

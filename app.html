@@ -1809,8 +1809,8 @@ weight: Number(weight),
     body: JSON.stringify(log)
   });
 
-  editingHealthLogId = null;
-      setMsg("healthMsg", "Health log updated");
+  setMsg("healthMsg", "Health log updated");
+editingHealthLogId = null;
 } else {
   await restFetch("/rest/v1/health_logs", {
     method: "POST",

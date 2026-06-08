@@ -1805,6 +1805,7 @@ weight: Number(weight),
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
+  Prefer: "return=representation"
     },
     body: JSON.stringify(log)
   });

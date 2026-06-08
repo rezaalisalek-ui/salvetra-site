@@ -998,7 +998,22 @@ if (pet?.id) {
   `/rest/v1/health_logs?pet_id=eq.${petId}&select=weight,created_at&order=created_at.desc`
 );
 const recordsCount = checks?.length || 0;
+let weightTrend = "Not enough data";
 
+if (healthLogs?.length >= 2) {
+  const latestWeight = Number(healthLogs[0].weight || 0);
+  const oldestWeight = Number(healthLogs[healthLogs.length - 1].weight || 0);
+
+  const diff = latestWeight - oldestWeight;
+
+  if (diff > 0.3) {
+    weightTrend = `Increasing (+${diff.toFixed(1)} kg)`;
+  } else if (diff < -0.3) {
+    weightTrend = `Decreasing (${diff.toFixed(1)} kg)`;
+  } else {
+    weightTrend = "Stable";
+  }
+}
 let learningDays = 0;
 
 if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {

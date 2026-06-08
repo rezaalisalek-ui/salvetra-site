@@ -802,6 +802,7 @@ alert(
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("user", JSON.stringify(data.user));
         setAuthUI(true);
+        $("bottomNav").style.display = "flex";
         setMsg("authMsg", "Logged in.", "ok");
         await loadPet();
         await loadMedications();

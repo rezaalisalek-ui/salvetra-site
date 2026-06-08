@@ -1810,6 +1810,7 @@ weight: Number(weight),
   });
 
   editingHealthLogId = null;
+      setMsg("healthMsg", "Health log updated");
 } else {
   await restFetch("/rest/v1/health_logs", {
     method: "POST",

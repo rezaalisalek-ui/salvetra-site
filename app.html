@@ -1753,6 +1753,35 @@ await loadWellnessHistory();
     box.textContent = "Could not load wellness history.";
   }
 }
+    let editingHealthLogId = null;
+
+async function editHealthLog(id) {
+  const log = await restFetch(
+    `/rest/v1/health_logs?id=eq.${id}&select=*`
+  );
+
+  if (!log.length) return;
+
+  const item = log[0];
+
+  editingHealthLogId = item.id;
+
+  const weight = Number(item.weight || 0);
+  const kg = Math.floor(weight);
+  const gram = Math.round((weight - kg) * 1000);
+
+  $("healthWeightKg").value = kg;
+  $("healthWeightGram").value = gram.toString();
+
+  $("healthAppetite").value = item.appetite || "";
+  $("healthEnergy").value = item.energy || "";
+  $("healthNotes").value = item.notes || "";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
     async function saveHealthLog() {
   const petId = localStorage.getItem("pet_id");
   const user = getUser();

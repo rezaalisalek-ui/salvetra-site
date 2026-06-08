@@ -825,15 +825,18 @@ if (e.message.includes("Invalid login credentials")) {
     }
 
     function logout() {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("pet_id");
-      setAuthUI(false);
-      clearPetForm();
-      updateDashboard(null);
-      setMsg("authMsg", "Logged out.", "ok");
-      go("profile");
-    }
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("pet_id");
+
+  $("bottomNav").style.display = "none";
+
+  setAuthUI(false);
+  clearPetForm();
+  updateDashboard(null);
+  setMsg("authMsg", "Logged out.", "ok");
+  go("profile");
+}
 
     function clearPetForm() {
       ["petName","petSpecies","petBreed","petAge","petWeight","petNotes"].forEach(id => $(id).value = "");

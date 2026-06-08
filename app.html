@@ -1014,6 +1014,27 @@ if (healthLogs?.length >= 2) {
     weightTrend = "Stable";
   }
 }
+    let appetitePattern = "Not enough data";
+
+if (healthLogs?.length >= 3) {
+
+  const appetiteCounts = {};
+
+  healthLogs.forEach(log => {
+    if (log.appetite) {
+      appetiteCounts[log.appetite] =
+        (appetiteCounts[log.appetite] || 0) + 1;
+    }
+  });
+
+  const mostCommon = Object.keys(appetiteCounts).sort(
+    (a, b) => appetiteCounts[b] - appetiteCounts[a]
+  )[0];
+
+  if (mostCommon) {
+    appetitePattern = `Mostly ${mostCommon}`;
+  }
+}
 let learningDays = 0;
 
 if (recordsCount > 0 && checks[recordsCount - 1]?.created_at) {

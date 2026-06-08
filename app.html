@@ -1758,7 +1758,9 @@ await loadWellnessHistory();
   const user = getUser();
 
   if (!petId || !user?.id) return;
-
+const kg = Number($("healthWeightKg").value || 0);
+const gram = Number($("healthWeightGram").value || 0);
+const weight = kg ? kg + gram / 1000 : "";
   const log = {
     pet_id: Number(petId),
     user_id: user.id,

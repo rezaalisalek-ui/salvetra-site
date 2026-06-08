@@ -994,6 +994,9 @@ if (pet?.id) {
     const checks = await restFetch(
       `/rest/v1/wellness_checks?pet_id=eq.${petId}&order=created_at.desc`
     );
+    const healthLogs = await restFetch(
+  `/rest/v1/health_logs?pet_id=eq.${petId}&select=weight,created_at&order=created_at.desc`
+);
 const recordsCount = checks?.length || 0;
 
 let learningDays = 0;

@@ -1040,9 +1040,10 @@ ${confidence}% • learning more with every health record<br><br>
 if (status === "Understanding Patterns" || status === "Mature Twin") {
   $("twinPatterns").style.display = "block";
   $("twinPatterns").innerHTML = `
-    <b>✨ Pattern Insights</b><br>
-    Appetite, energy, weight, water intake, and stool patterns will appear here.
-  `;
+  <b>✨ Pattern Insights</b><br>
+  📈 Weight Trend<br>
+  Calculating...
+`;
 } else {
   $("twinPatterns").style.display = "none";
 }

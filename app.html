@@ -1825,7 +1825,7 @@ list.innerHTML = logs.slice(0, 3).map(log => `
 <span class="small">
   ${new Date(log.created_at).toLocaleString()}
 </span>
-<button class="btn secondary" style="margin-top:10px" onclick='editHealthLog(${JSON.stringify(log)})'>
+<button class="btn secondary" style="margin-top:10px" onclick="editHealthLog(${log.id})">
   Edit
 </button>
         </div>

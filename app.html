@@ -1804,9 +1804,9 @@ weight: Number(weight),
   await restFetch(`/rest/v1/health_logs?id=eq.${editingHealthLogId}`, {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+  "Content-Type": "application/json",
   Prefer: "return=representation"
-    },
+},
     body: JSON.stringify(log)
   });
       console.log("editing id:", editingHealthLogId, "log:", log);

@@ -728,7 +728,7 @@
       const nav = $("bottomNav");
 
 if (nav) {
-nav.style.display = id === "welcome" ? "none" : "";
+nav.style.display = (id === "welcome" || (id === "profile" && !getUser())) ? "none" : "flex";
 }
       if (screen) screen.classList.add('active');
       document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));

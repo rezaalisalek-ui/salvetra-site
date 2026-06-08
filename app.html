@@ -1808,7 +1808,7 @@ weight: Number(weight),
     },
     body: JSON.stringify(log)
   });
-
+await loadHealthLogs();
   setMsg("healthMsg", "Health log updated");
 editingHealthLogId = null;
 } else {

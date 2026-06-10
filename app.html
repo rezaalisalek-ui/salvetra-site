@@ -1457,13 +1457,14 @@ if (appetitePattern.includes("Reduced")) {
 petVoiceEvidence.push("reduced appetite");
 }
 
-if (waterPattern.includes("Low")) {
+if (waterPattern.toLowerCase().includes("low")) {
 petVoiceEvidence.push("something changed");
 }
 
 if (
-  stoolPattern.includes("Loose") ||
-  stoolPattern.includes("Diarrhea")
+  stoolPattern.toLowerCase().includes("loose") ||
+  stoolPattern.toLowerCase().includes("diarrhea") ||
+  stoolPattern.toLowerCase().includes("soft")
 ) {
 petVoiceEvidence.push("something changed");
 }

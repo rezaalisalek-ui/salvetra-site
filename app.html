@@ -987,23 +987,23 @@ function calculatePetVoiceConfidence({
 
   return PET_VOICE_CONFIDENCE.LOW;
 }
-    function buildPetVoiceState(recordsCount = 0, evidence = [], recommendations = []) {
+    function buildPetVoiceState(
+  recordsCount = 0,
+  evidence = [],
+  recommendations = [],
+  confidenceInputs = {}
+) {
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {
-theme: selectPetVoiceThemeFromEvidence(
-  evidence,
-  PET_VOICE_THEMES.PREFER_ROUTINE
-),
-confidence:
-    familiarity === PET_VOICE_FAMILIARITY.EARLY_LEARNING
-        ? PET_VOICE_CONFIDENCE.LOW
-        : familiarity === PET_VOICE_FAMILIARITY.GROWING_UNDERSTANDING
-            ? PET_VOICE_CONFIDENCE.MODERATE
-            : PET_VOICE_CONFIDENCE.HIGH,
+    theme: selectPetVoiceThemeFromEvidence(
+      evidence,
+      PET_VOICE_THEMES.PREFER_ROUTINE
+    ),
+    confidence: calculatePetVoiceConfidence(confidenceInputs),
     familiarity,
     evidence: evidence || [],
-recommendations: recommendations || []
+    recommendations: recommendations || []
   };
 }
     function getPetVoiceTonePrefix(confidence) {

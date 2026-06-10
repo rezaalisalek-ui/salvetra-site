@@ -1446,6 +1446,36 @@ ${confidence}% • learning more with every health record<br><br>
 
     Keep logging daily health updates to help your Pet Twin better understand your pet's normal patterns.
 `;
+    const petVoiceEvidence = [];
+
+if (energyPattern.includes("Low")) {
+  petVoiceEvidence.push("low_energy");
+}
+
+if (appetitePattern.includes("Reduced")) {
+  petVoiceEvidence.push("reduced_appetite");
+}
+
+if (waterPattern.includes("Low")) {
+  petVoiceEvidence.push("low_water");
+}
+
+if (
+  stoolPattern.includes("Loose") ||
+  stoolPattern.includes("Diarrhea")
+) {
+  petVoiceEvidence.push("digestive_changes");
+}
+
+const latestCheck = checks?.[0];
+
+if (latestCheck?.mood === "Anxious") {
+  petVoiceEvidence.push("anxious");
+}
+
+if (latestCheck?.mood === "Happy") {
+  petVoiceEvidence.push("playful");
+}
     const petVoiceState = buildPetVoiceState(recordsCount);
 const petName = $("dashPetName")?.textContent || "your pet";
 const petVoiceText = getPetVoiceText(petVoiceState, petName);

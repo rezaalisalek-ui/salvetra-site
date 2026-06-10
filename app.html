@@ -1476,7 +1476,10 @@ if (latestCheck?.mood === "Anxious") {
 if (latestCheck?.mood === "Happy") {
   petVoiceEvidence.push("playful");
 }
-    const petVoiceState = buildPetVoiceState(recordsCount);
+const petVoiceState = buildPetVoiceState(
+  recordsCount,
+  petVoiceEvidence
+);
 const petName = $("dashPetName")?.textContent || "your pet";
 const petVoiceText = getPetVoiceText(petVoiceState, petName);
 const petVoiceFamiliarity = getPetVoiceFamiliarityLabel(

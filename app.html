@@ -843,8 +843,8 @@ confidence:
             ? PET_VOICE_CONFIDENCE.MODERATE
             : PET_VOICE_CONFIDENCE.HIGH,
     familiarity,
-    evidence: [],
-    recommendations: []
+    evidence: evidence || [],
+recommendations: recommendations || []
   };
 }
     function getPetVoiceText(state, petName = "your pet") {

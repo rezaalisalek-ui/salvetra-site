@@ -1563,7 +1563,9 @@ if (
 petVoiceEvidence.push("something changed");
 }
 
-const latestCheck = checks?.[0];
+const latestCheck = [...(checks || [])].sort(
+  (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
+)[0];
 if (latestCheck?.water_intake?.toLowerCase() === "low") {
 petVoiceEvidence.push("low water");
 }

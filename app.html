@@ -743,6 +743,18 @@ if (kgSelect) {
 // ===============================
 // PET VOICE FOUNDATION
 // ===============================
+   const PET_VOICE_THEMES = {
+  NEED_SPACE: "need_space",
+  NEED_REASSURANCE: "need_reassurance",
+  WANT_CONNECTION: "want_connection",
+  FEEL_PLAYFUL: "feel_playful",
+  PREFER_ROUTINE: "prefer_routine",
+  SOMETHING_FEELS_DIFFERENT: "something_feels_different",
+  NEED_REST: "need_rest",
+  CURIOUS: "curious",
+  NEED_PATIENCE: "need_patience",
+  ADJUSTING_TO_CHANGE: "adjusting_to_change"
+};
     function setAuthUI(isLoggedIn) {
   $("authCard").classList.toggle("hidden", isLoggedIn);
   $("logoutBtn").classList.toggle("hidden", !isLoggedIn);

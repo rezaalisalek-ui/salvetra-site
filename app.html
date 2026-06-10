@@ -1481,11 +1481,11 @@ if (
 ) {
   petVoiceEvidence.push("something changed");
 }
-if (latestCheck?.mood === "Anxious") {
+if (latestCheck?.mood?.toLowerCase() === "anxious") {
   petVoiceEvidence.push("anxious");
 }
 
-if (latestCheck?.mood === "Happy") {
+if (latestCheck?.mood?.toLowerCase() === "happy") {
   petVoiceEvidence.push("playful");
 }
 const petVoiceState = buildPetVoiceState(

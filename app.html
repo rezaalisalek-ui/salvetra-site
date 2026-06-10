@@ -2124,7 +2124,9 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
       body: JSON.stringify(check)
     });
 await loadWellnessHistory();
-   await loadPetTwin();
+if (typeof loadPetTwin === "function") {
+  await loadPetTwin();
+}
     setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]

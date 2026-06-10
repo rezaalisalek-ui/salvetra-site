@@ -1044,7 +1044,7 @@ const reassurance = [
 const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
       if (state.evidence?.includes("low water")) {
 return compose(
-  `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today. ${pick(reassurance)}`
+`I don't think I've been drinking as much as usual. Could you remind me to visit my water bowl? ${pick(reassurance)}`
 );
 }
 

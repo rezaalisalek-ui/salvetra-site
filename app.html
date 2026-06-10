@@ -1040,6 +1040,8 @@ const reassurance = [
   "I know you'll look after me.",
   "You know me better than anyone."
 ];
+     const pick = (list) => list[Math.floor(Math.random() * list.length)];
+const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
       if (state.evidence?.includes("low water")) {
   return `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today.`;
 }

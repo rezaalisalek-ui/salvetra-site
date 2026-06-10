@@ -1470,7 +1470,17 @@ petVoiceEvidence.push("something changed");
 }
 
 const latestCheck = checks?.[0];
+if (latestCheck?.water_intake?.toLowerCase() === "low") {
+  petVoiceEvidence.push("something changed");
+}
 
+if (
+  latestCheck?.stool_quality?.toLowerCase() === "soft" ||
+  latestCheck?.stool_quality?.toLowerCase() === "diarrhea" ||
+  latestCheck?.stool_quality?.toLowerCase() === "constipation"
+) {
+  petVoiceEvidence.push("something changed");
+}
 if (latestCheck?.mood === "Anxious") {
   petVoiceEvidence.push("anxious");
 }

@@ -1579,6 +1579,9 @@ Confidence: ${petVoiceState.confidence}
 • Twin Familiarity: ${petVoiceFamiliarity}
 </span>
 `;
+  } else {
+  $("petVoiceCard").innerHTML = "";
+}
 if (
   status === "Understanding Patterns" ||
   status === "Mature Twin"

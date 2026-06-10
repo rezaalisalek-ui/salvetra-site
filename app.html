@@ -2213,7 +2213,7 @@ await loadWellnessHistory();
 
   try {
     const checks = await restFetch(
-`/rest/v1/wellness_checks?pet_id=eq.${petId}&select=*&order=created_at.desc`
+`/rest/v1/wellness_checks?pet_id=eq.${petId}&select=score,status,created_at&order=created_at.desc`
     );
 
     if (!checks.length) {

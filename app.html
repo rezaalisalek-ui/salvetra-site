@@ -1066,7 +1066,9 @@ return compose(
 }
 
 if (state.evidence?.includes("skin wounds")) {
-  return `${tonePrefix} ${petName} may have a skin spot that needs a closer look today.`;
+return compose(
+  `${tonePrefix} ${petName} may have a skin spot that needs a closer look today. ${pick(reassurance)}`
+);
 }
       if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
     return `${tonePrefix} ${petName} may appreciate familiar routines today.`;

@@ -1535,6 +1535,13 @@ const twinScore = Math.min(1, Math.max(0, confidence / 100));
   personalityScore: 0.5,
   temporalScore: petVoiceEvidence.length ? 0.5 : 0
 };
+    const shouldTriggerPetVoice =
+  petVoiceEvidence.includes("anxious") ||
+  petVoiceEvidence.includes("low energy") ||
+  petVoiceEvidence.includes("reduced appetite") ||
+  petVoiceEvidence.includes("low water") ||
+  petVoiceEvidence.includes("digestive change") ||
+  petVoiceEvidence.includes("something changed");
     const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence,

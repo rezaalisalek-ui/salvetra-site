@@ -1274,6 +1274,22 @@ ${confidence}% • learning more with every health record<br><br>
 
     Keep logging daily health updates to help your Pet Twin better understand your pet's normal patterns.
 `;
+    const petVoiceState = buildPetVoiceState(recordsCount);
+const petName = $("dashPetName")?.textContent || "your pet";
+const petVoiceText = getPetVoiceText(petVoiceState, petName);
+const petVoiceFamiliarity = getPetVoiceFamiliarityLabel(
+    petVoiceState.familiarity
+);
+
+$("petVoiceCard").innerHTML = `
+<b>🐾 Pet Voice</b><br>
+${petVoiceText}
+<br><br>
+<span style="font-size:13px;color:#6d7674">
+Confidence: ${petVoiceState.confidence}
+• Twin Familiarity: ${petVoiceFamiliarity}
+</span>
+`;
 if (
   status === "Understanding Patterns" ||
   status === "Mature Twin"

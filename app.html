@@ -1471,7 +1471,7 @@ petVoiceEvidence.push("something changed");
 
 const latestCheck = checks?.[0];
 if (latestCheck?.water_intake?.toLowerCase() === "low") {
-  petVoiceEvidence.push("something changed");
+petVoiceEvidence.push("low water");
 }
 
 if (
@@ -1479,7 +1479,7 @@ if (
   latestCheck?.stool_quality?.toLowerCase() === "diarrhea" ||
   latestCheck?.stool_quality?.toLowerCase() === "constipation"
 ) {
-  petVoiceEvidence.push("something changed");
+petVoiceEvidence.push("digestive change");
 }
 if (latestCheck?.mood?.toLowerCase() === "anxious") {
   petVoiceEvidence.push("anxious");

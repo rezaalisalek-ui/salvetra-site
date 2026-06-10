@@ -1527,7 +1527,8 @@ if (latestCheck?.mood?.toLowerCase() === "anxious") {
 if (latestCheck?.mood?.toLowerCase() === "happy") {
   petVoiceEvidence.push("playful");
 }
-const petVoiceState = buildPetVoiceState(
+const twinScore = Math.min(1, Math.max(0, confidence / 100));
+    const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence
 );

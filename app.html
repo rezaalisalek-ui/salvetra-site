@@ -815,6 +815,9 @@ nav.style.display = (id === "welcome" || (id === "profile" && !getUser())) ? "no
       const navBtn = btn || $("nav-" + id);
       if (navBtn) navBtn.classList.add('active');
       window.scrollTo(0,0);
+  if (id === "home" && typeof loadPetTwin === "function") {
+  loadPetTwin();
+}
     }
 
     function markGiven(){

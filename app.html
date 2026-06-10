@@ -1390,8 +1390,8 @@ if (pet?.id) {
   try {
 
     const checks = await restFetch(
-`/rest/v1/wellness_checks?pet_id=eq.${petId}&select=water_intake,stool_quality,mood,skin_condition,created_at&order=created_at.desc`
-    );
+  `/rest/v1/wellness_checks?pet_id=eq.${petId}&select=water_intake,stool_quality,vomiting,mobility,mood,skin_condition,created_at&order=created_at.desc`
+);
     const healthLogs = await restFetch(
 `/rest/v1/health_logs?pet_id=eq.${petId}&select=weight,appetite,energy,created_at&order=created_at.desc`
 );

@@ -829,7 +829,12 @@ theme:
 recordsCount >= 14
         ? PET_VOICE_THEMES.CURIOUS
         : PET_VOICE_THEMES.PREFER_ROUTINE,
-    confidence: PET_VOICE_CONFIDENCE.LOW,
+confidence:
+    familiarity === PET_VOICE_FAMILIARITY.EARLY_LEARNING
+        ? PET_VOICE_CONFIDENCE.LOW
+        : familiarity === PET_VOICE_FAMILIARITY.GROWING_UNDERSTANDING
+            ? PET_VOICE_CONFIDENCE.MODERATE
+            : PET_VOICE_CONFIDENCE.HIGH,
     familiarity,
     evidence: [],
     recommendations: []

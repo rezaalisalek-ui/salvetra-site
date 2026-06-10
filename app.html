@@ -1060,7 +1060,9 @@ return compose(
 }
 
 if (state.evidence?.includes("red skin")) {
-  return `${tonePrefix} ${petName} may have some skin irritation today. Keeping an eye on it may be helpful.`;
+return compose(
+  `${tonePrefix} ${petName} may have some skin irritation today. Keeping an eye on it may be helpful. ${pick(reassurance)}`
+);
 }
 
 if (state.evidence?.includes("skin wounds")) {

@@ -959,6 +959,16 @@ recommendations: recommendations || []
 
   return `${tonePrefix} ${petName} may be trying to tell you something subtle today. Gentle observation can help us understand more.`;
 }
+    function showTrinityInfo(type) {
+  if (type === "twin") {
+    alert("🐾 My Pet Twin\n\nLearns your pet.\n\nWhat's normal for my pet?");
+    return;
+  }
+
+  if (type === "insights") {
+    alert("✨ AI Wellness Insights\n\nHelps you care for your pet.\n\nWhat should I pay attention to?");
+  }
+}
     async function authFetch(path, options={}) {
       const res = await fetch(`${SUPABASE_URL}${path}`, options);
       const text = await res.text();

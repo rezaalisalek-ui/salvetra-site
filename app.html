@@ -892,7 +892,15 @@ function calculatePetVoiceFamiliarity(recordsCount) {
   ) {
     return PET_VOICE_THEMES.WANT_CONNECTION;
   }
-
+if (
+  text.includes("routine") ||
+  text.includes("predictable") ||
+  text.includes("schedule") ||
+  text.includes("same time") ||
+  text.includes("usual")
+) {
+  return PET_VOICE_THEMES.PREFER_ROUTINE;
+}
   if (
     text.includes("low energy") ||
     text.includes("sleeping more") ||

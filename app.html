@@ -1450,22 +1450,22 @@ ${confidence}% • learning more with every health record<br><br>
     const petVoiceEvidence = [];
 
 if (energyPattern.includes("Low")) {
-  petVoiceEvidence.push("low_energy");
+petVoiceEvidence.push("low energy");
 }
 
 if (appetitePattern.includes("Reduced")) {
-  petVoiceEvidence.push("reduced_appetite");
+petVoiceEvidence.push("reduced appetite");
 }
 
 if (waterPattern.includes("Low")) {
-  petVoiceEvidence.push("low_water");
+petVoiceEvidence.push("something changed");
 }
 
 if (
   stoolPattern.includes("Loose") ||
   stoolPattern.includes("Diarrhea")
 ) {
-  petVoiceEvidence.push("digestive_changes");
+petVoiceEvidence.push("something changed");
 }
 
 const latestCheck = checks?.[0];

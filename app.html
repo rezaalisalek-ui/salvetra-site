@@ -1527,6 +1527,17 @@ if (latestCheck?.mood?.toLowerCase() === "anxious") {
 if (latestCheck?.mood?.toLowerCase() === "happy") {
   petVoiceEvidence.push("playful");
 }
+    if (latestCheck?.skin_condition?.toLowerCase() === "itchy") {
+  petVoiceEvidence.push("itchy skin");
+}
+
+if (latestCheck?.skin_condition?.toLowerCase() === "red") {
+  petVoiceEvidence.push("red skin");
+}
+
+if (latestCheck?.skin_condition?.toLowerCase() === "wounds") {
+  petVoiceEvidence.push("skin wounds");
+}
 const twinScore = Math.min(1, Math.max(0, confidence / 100));
     const petVoiceConfidenceInputs = {
   contextScore: 0,

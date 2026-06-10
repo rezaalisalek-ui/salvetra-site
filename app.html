@@ -1567,7 +1567,21 @@ const latestCheck = checks?.[0];
 if (latestCheck?.water_intake?.toLowerCase() === "low") {
 petVoiceEvidence.push("low water");
 }
+if (
+  latestCheck?.vomiting?.toLowerCase() === "once" ||
+  latestCheck?.vomiting?.toLowerCase() === "2-3 times" ||
+  latestCheck?.vomiting?.toLowerCase() === "multiple times"
+) {
+  petVoiceEvidence.push("vomiting");
+}
 
+if (
+  latestCheck?.mobility?.toLowerCase() === "mild difficulty" ||
+  latestCheck?.mobility?.toLowerCase() === "moderate difficulty" ||
+  latestCheck?.mobility?.toLowerCase() === "severe difficulty"
+) {
+  petVoiceEvidence.push("mobility");
+}
 if (
   latestCheck?.stool_quality?.toLowerCase() === "soft" ||
   latestCheck?.stool_quality?.toLowerCase() === "diarrhea" ||

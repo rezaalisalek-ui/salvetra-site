@@ -963,7 +963,31 @@ text.includes("digestive change") ||
 
   return fallbackTheme;
 }
-function buildPetVoiceState(recordsCount = 0, evidence = [], recommendations = []) {
+function calculatePetVoiceConfidence({
+  contextScore = 0,
+  observableScore = 0,
+  twinScore = 0,
+  personalityScore = 0,
+  temporalScore = 0
+} = {}) {
+  const score =
+    contextScore * PET_VOICE_SCORE_WEIGHTS.CONTEXT +
+    observableScore * PET_VOICE_SCORE_WEIGHTS.OBSERVABLE +
+    twinScore * PET_VOICE_SCORE_WEIGHTS.TWIN +
+    personalityScore * PET_VOICE_SCORE_WEIGHTS.PERSONALITY +
+    temporalScore * PET_VOICE_SCORE_WEIGHTS.TEMPORAL;
+
+  if (score >= 0.70) {
+    return PET_VOICE_CONFIDENCE.HIGH;
+  }
+
+  if (score >= 0.40) {
+    return PET_VOICE_CONFIDENCE.MODERATE;
+  }
+
+  return PET_VOICE_CONFIDENCE.LOW;
+}
+    function buildPetVoiceState(recordsCount = 0, evidence = [], recommendations = []) {
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {

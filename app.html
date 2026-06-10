@@ -1540,7 +1540,7 @@ if (latestCheck?.skin_condition?.toLowerCase() === "wounds") {
 const twinScore = Math.min(1, Math.max(0, confidence / 100));
     const petVoiceConfidenceInputs = {
   contextScore: 0,
-  observableScore: 0,
+observableScore: petVoiceEvidence.length ? Math.min(1, petVoiceEvidence.length / 3) : 0,
   twinScore,
   personalityScore: 0.5,
   temporalScore: petVoiceEvidence.length ? 0.5 : 0

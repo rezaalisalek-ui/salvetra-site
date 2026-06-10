@@ -1020,7 +1020,27 @@ if (score >= 0.35) {
 }
     function getPetVoiceText(state, petName = "your pet") {
   const tonePrefix = getPetVoiceTonePrefix(state.confidence);
-if (state.evidence?.includes("low water")) {
+const openings = [
+  "I can't quite explain it, but",
+  "Something feels a little different today.",
+  "I've been noticing that",
+  "I think I may need your attention for a moment."
+];
+
+const closings = [
+  "Thank you for noticing.",
+  "I always feel safer when you're paying attention.",
+  "Maybe we can take things gently today.",
+  "I trust you'll know what to do."
+];
+
+const reassurance = [
+  "It may be nothing serious.",
+  "I just wanted you to know.",
+  "I know you'll look after me.",
+  "You know me better than anyone."
+];
+      if (state.evidence?.includes("low water")) {
   return `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today.`;
 }
 

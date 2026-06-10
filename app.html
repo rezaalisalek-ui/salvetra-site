@@ -788,6 +788,13 @@ if (kgSelect) {
   WELL_ESTABLISHED: "well_established",
   DEEP_UNDERSTANDING: "deep_understanding"
 };
+    const PET_VOICE_SCORE_WEIGHTS = {
+  CONTEXT: 0.30,
+  OBSERVABLE: 0.25,
+  TWIN: 0.25,
+  PERSONALITY: 0.15,
+  TEMPORAL: 0.05
+};
     function setAuthUI(isLoggedIn) {
   $("authCard").classList.toggle("hidden", isLoggedIn);
   $("logoutBtn").classList.toggle("hidden", !isLoggedIn);

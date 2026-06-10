@@ -988,7 +988,13 @@ recommendations: recommendations || []
 }
     function getPetVoiceText(state, petName = "your pet") {
   const tonePrefix = getPetVoiceTonePrefix(state.confidence);
+if (state.evidence?.includes("low water")) {
+  return `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today.`;
+}
 
+if (state.evidence?.includes("digestive change")) {
+  return `${tonePrefix} ${petName} may be experiencing a small digestive change. Gentle observation may help us understand what changed.`;
+}
   if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
     return `${tonePrefix} ${petName} may appreciate familiar routines today.`;
   }

@@ -1054,7 +1054,9 @@ return compose(
 );
 }
   if (state.evidence?.includes("itchy skin")) {
-  return `${tonePrefix} ${petName} may be feeling a little itchy or uncomfortable today. Gentle observation may help.`;
+return compose(
+  `${tonePrefix} ${petName} may be feeling a little itchy or uncomfortable today. Gentle observation may help. ${pick(reassurance)}`
+);
 }
 
 if (state.evidence?.includes("red skin")) {

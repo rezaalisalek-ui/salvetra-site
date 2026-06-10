@@ -816,7 +816,7 @@ nav.style.display = (id === "welcome" || (id === "profile" && !getUser())) ? "no
       if (navBtn) navBtn.classList.add('active');
       window.scrollTo(0,0);
   if (id === "home" && typeof loadPetTwin === "function") {
-  loadPetTwin();
+setTimeout(() => loadPetTwin(), 100);
 }
     }
 

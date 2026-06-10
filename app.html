@@ -970,9 +970,11 @@ recommendations: recommendations || []
 }
     function showTrinityInfo(type) {
   if (type === "twin") {
-    alert("🐾 My Pet Twin\n\nLearns your pet.\n\nWhat's normal for my pet?");
-    return;
-  }
+  alert(
+    "🧠 My Pet Twin\n\nLearns your pet.\n\nWhat's normal for my pet?\n\n🐾 Pet Voice\n\nHelps you understand your pet.\n\nWhat is my pet trying to tell me?"
+  );
+  return;
+}
 
   if (type === "insights") {
     alert("✨ AI Wellness Insights\n\nHelps you care for your pet.\n\nWhat should I pay attention to?");

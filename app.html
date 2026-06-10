@@ -1568,17 +1568,15 @@ if (latestCheck?.water_intake?.toLowerCase() === "low") {
 petVoiceEvidence.push("low water");
 }
 if (
-  latestCheck?.vomiting?.toLowerCase() === "once" ||
-  latestCheck?.vomiting?.toLowerCase() === "2-3 times" ||
-  latestCheck?.vomiting?.toLowerCase() === "multiple times"
+  latestCheck?.vomiting &&
+  latestCheck.vomiting.toLowerCase() !== "none"
 ) {
   petVoiceEvidence.push("vomiting");
 }
 
 if (
-  latestCheck?.mobility?.toLowerCase() === "mild difficulty" ||
-  latestCheck?.mobility?.toLowerCase() === "moderate difficulty" ||
-  latestCheck?.mobility?.toLowerCase() === "severe difficulty"
+  latestCheck?.mobility &&
+  latestCheck.mobility.toLowerCase() !== "normal"
 ) {
   petVoiceEvidence.push("mobility");
 }

@@ -1049,7 +1049,9 @@ return compose(
 }
 
 if (state.evidence?.includes("digestive change")) {
-  return `${tonePrefix} ${petName} may be experiencing a small digestive change. Gentle observation may help us understand what changed.`;
+return compose(
+  `${tonePrefix} ${petName} may be experiencing a small digestive change. Gentle observation may help us understand what changed. ${pick(reassurance)}`
+);
 }
   if (state.evidence?.includes("itchy skin")) {
   return `${tonePrefix} ${petName} may be feeling a little itchy or uncomfortable today. Gentle observation may help.`;

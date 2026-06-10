@@ -910,25 +910,48 @@ recommendations: recommendations || []
 }
     function getPetVoiceText(state, petName = "your pet") {
   const tonePrefix = getPetVoiceTonePrefix(state.confidence);
-      if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
-return `${tonePrefix} ${petName} may appreciate familiar routines today.`;
+
+  if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
+    return `${tonePrefix} ${petName} may appreciate familiar routines today.`;
   }
-if (state.theme === PET_VOICE_THEMES.CURIOUS) {
-  return `I'm beginning to notice some interesting patterns in ${petName}'s daily life. I'm still learning, but these observations may help us understand them better together.`;
-}
+
+  if (state.theme === PET_VOICE_THEMES.CURIOUS) {
+    return `${tonePrefix} ${petName} may be exploring or noticing something interesting today.`;
+  }
+
   if (state.theme === PET_VOICE_THEMES.SOMETHING_FEELS_DIFFERENT) {
-    return `Something seems a little different today. I may need a bit more observation, patience, and gentle care.`;
+    return `${tonePrefix} something feels a little different today. More gentle observation may help us understand what changed.`;
   }
 
   if (state.theme === PET_VOICE_THEMES.NEED_REASSURANCE) {
-    return `I might appreciate staying close to you and having a calm, reassuring space right now.`;
+    return `${tonePrefix} ${petName} may appreciate staying close to you and having a calm, reassuring space right now.`;
   }
 
   if (state.theme === PET_VOICE_THEMES.NEED_SPACE) {
-    return `I might feel more comfortable if I can take things at my own pace and have a little space.`;
+    return `${tonePrefix} ${petName} may feel more comfortable if they can take things at their own pace and have a little space.`;
   }
 
-  return `I'm still learning how to communicate clearly, but your observations are helping me become easier to understand.`;
+  if (state.theme === PET_VOICE_THEMES.NEED_REST) {
+    return `${tonePrefix} ${petName} may benefit from a quieter, lower-energy day.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.FEEL_PLAYFUL) {
+    return `${tonePrefix} ${petName} may be feeling playful and ready for gentle engagement.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.WANT_CONNECTION) {
+    return `${tonePrefix} ${petName} may be looking for a little more connection with you today.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.NEED_PATIENCE) {
+    return `${tonePrefix} ${petName} may need a little extra patience and time today.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.ADJUSTING_TO_CHANGE) {
+    return `${tonePrefix} ${petName} may still be adjusting to a recent change. Familiar routines could help.`;
+  }
+
+  return `${tonePrefix} ${petName} may be trying to tell you something subtle today. Gentle observation can help us understand more.`;
 }
     async function authFetch(path, options={}) {
       const res = await fetch(`${SUPABASE_URL}${path}`, options);

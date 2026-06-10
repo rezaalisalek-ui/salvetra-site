@@ -828,7 +828,7 @@ function calculatePetVoiceFamiliarity(recordsCount) {
 
   return "Deep Understanding";
 }
-    function buildPetVoiceState(recordsCount = 0) {
+function buildPetVoiceState(recordsCount = 0, evidence = [], recommendations = []) {
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {

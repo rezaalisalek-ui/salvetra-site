@@ -897,6 +897,17 @@ confidence:
 recommendations: recommendations || []
   };
 }
+    function getPetVoiceTonePrefix(confidence) {
+  if (confidence === PET_VOICE_CONFIDENCE.HIGH) {
+    return "I think";
+  }
+
+  if (confidence === PET_VOICE_CONFIDENCE.MODERATE) {
+    return "One possibility is that";
+  }
+
+  return "I might be noticing that";
+}
     function getPetVoiceText(state, petName = "your pet") {
   if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
     return `I'm still learning ${petName}'s patterns, but today may be a good day for familiar routines and gentle consistency.`;

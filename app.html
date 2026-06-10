@@ -978,11 +978,11 @@ function calculatePetVoiceConfidence({
     personalityScore * PET_VOICE_SCORE_WEIGHTS.PERSONALITY +
     temporalScore * PET_VOICE_SCORE_WEIGHTS.TEMPORAL;
 
-  if (score >= 0.70) {
+if (score >= 0.65) {
     return PET_VOICE_CONFIDENCE.HIGH;
   }
 
-  if (score >= 0.40) {
+if (score >= 0.35) {
     return PET_VOICE_CONFIDENCE.MODERATE;
   }
 

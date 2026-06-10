@@ -1556,6 +1556,9 @@ const twinScore = Math.min(1, Math.max(0, confidence / 100));
   petVoiceEvidence.includes("red skin") ||
   petVoiceEvidence.includes("skin wounds") ||
   petVoiceEvidence.includes("something changed");
+   if (!shouldTriggerPetVoice) {
+  return;
+}
     const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence,

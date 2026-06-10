@@ -1043,7 +1043,9 @@ const reassurance = [
      const pick = (list) => list[Math.floor(Math.random() * list.length)];
 const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
       if (state.evidence?.includes("low water")) {
-  return `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today.`;
+return compose(
+  `${tonePrefix} ${petName} may benefit from a little encouragement to stay hydrated today. ${pick(reassurance)}`
+);
 }
 
 if (state.evidence?.includes("digestive change")) {

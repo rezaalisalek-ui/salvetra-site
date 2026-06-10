@@ -1538,6 +1538,8 @@ const twinScore = Math.min(1, Math.max(0, confidence / 100));
     const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence
+      [],
+petVoiceConfidenceInputs
 );
 const petName = $("dashPetName")?.textContent || "your pet";
 const petVoiceText = getPetVoiceText(petVoiceState, petName);

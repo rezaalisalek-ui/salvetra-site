@@ -1027,7 +1027,18 @@ if (state.evidence?.includes("low water")) {
 if (state.evidence?.includes("digestive change")) {
   return `${tonePrefix} ${petName} may be experiencing a small digestive change. Gentle observation may help us understand what changed.`;
 }
-  if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
+  if (state.evidence?.includes("itchy skin")) {
+  return `${tonePrefix} ${petName} may be feeling a little itchy or uncomfortable today. Gentle observation may help.`;
+}
+
+if (state.evidence?.includes("red skin")) {
+  return `${tonePrefix} ${petName} may have some skin irritation today. Keeping an eye on it may be helpful.`;
+}
+
+if (state.evidence?.includes("skin wounds")) {
+  return `${tonePrefix} ${petName} may have a skin spot that needs a closer look today.`;
+}
+      if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
     return `${tonePrefix} ${petName} may appreciate familiar routines today.`;
   }
 

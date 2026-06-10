@@ -848,28 +848,57 @@ function calculatePetVoiceFamiliarity(recordsCount) {
 
   if (
     text.includes("guest") ||
+    text.includes("guests") ||
     text.includes("children") ||
+    text.includes("new pet") ||
+    text.includes("new person") ||
     text.includes("tail tucked") ||
+    text.includes("ears back") ||
+    text.includes("whale eye") ||
     text.includes("hiding") ||
-    text.includes("avoiding interaction")
+    text.includes("avoiding interaction") ||
+    text.includes("freezing")
   ) {
     return PET_VOICE_THEMES.NEED_SPACE;
   }
 
   if (
     text.includes("storm") ||
+    text.includes("thunderstorm") ||
     text.includes("fireworks") ||
     text.includes("vet visit") ||
-    text.includes("following you")
+    text.includes("following you") ||
+    text.includes("seeking attention")
   ) {
     return PET_VOICE_THEMES.NEED_REASSURANCE;
+  }
+
+  if (
+    text.includes("playful") ||
+    text.includes("playing") ||
+    text.includes("normal mood") ||
+    text.includes("happy") ||
+    text.includes("engaged")
+  ) {
+    return PET_VOICE_THEMES.FEEL_PLAYFUL;
+  }
+
+  if (
+    text.includes("connection") ||
+    text.includes("cuddling") ||
+    text.includes("staying close") ||
+    text.includes("near you") ||
+    text.includes("following owner")
+  ) {
+    return PET_VOICE_THEMES.WANT_CONNECTION;
   }
 
   if (
     text.includes("low energy") ||
     text.includes("sleeping more") ||
     text.includes("tired") ||
-    text.includes("reduced energy")
+    text.includes("reduced energy") ||
+    text.includes("slow recovery")
   ) {
     return PET_VOICE_THEMES.NEED_REST;
   }
@@ -878,7 +907,12 @@ function calculatePetVoiceFamiliarity(recordsCount) {
     text.includes("reduced appetite") ||
     text.includes("less play") ||
     text.includes("something changed") ||
-    text.includes("withdrawn")
+    text.includes("withdrawn") ||
+    text.includes("avoiding touch") ||
+    text.includes("excessive grooming") ||
+    text.includes("vocalizing more") ||
+    text.includes("barking more") ||
+    text.includes("panting")
   ) {
     return PET_VOICE_THEMES.SOMETHING_FEELS_DIFFERENT;
   }
@@ -889,6 +923,24 @@ function calculatePetVoiceFamiliarity(recordsCount) {
     text.includes("new environment")
   ) {
     return PET_VOICE_THEMES.ADJUSTING_TO_CHANGE;
+  }
+
+  if (
+    text.includes("wait") ||
+    text.includes("patience") ||
+    text.includes("slowly") ||
+    text.includes("take time")
+  ) {
+    return PET_VOICE_THEMES.NEED_PATIENCE;
+  }
+
+  if (
+    text.includes("curious") ||
+    text.includes("exploring") ||
+    text.includes("sniffing") ||
+    text.includes("noticing")
+  ) {
+    return PET_VOICE_THEMES.CURIOUS;
   }
 
   return fallbackTheme;

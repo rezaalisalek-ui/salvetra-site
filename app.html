@@ -909,7 +909,8 @@ recommendations: recommendations || []
   return "I might be noticing that";
 }
     function getPetVoiceText(state, petName = "your pet") {
-  if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
+  const tonePrefix = getPetVoiceTonePrefix(state.confidence);
+      if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
     return `I'm still learning ${petName}'s patterns, but today may be a good day for familiar routines and gentle consistency.`;
   }
 if (state.theme === PET_VOICE_THEMES.CURIOUS) {

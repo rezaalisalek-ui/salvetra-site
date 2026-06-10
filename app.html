@@ -1541,7 +1541,10 @@ const twinScore = Math.min(1, Math.max(0, confidence / 100));
   petVoiceEvidence.includes("reduced appetite") ||
   petVoiceEvidence.includes("low water") ||
   petVoiceEvidence.includes("digestive change") ||
-petVoiceEvidence.includes("something changed");
+  petVoiceEvidence.includes("itchy skin") ||
+  petVoiceEvidence.includes("red skin") ||
+  petVoiceEvidence.includes("skin wounds") ||
+  petVoiceEvidence.includes("something changed");
     const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence,

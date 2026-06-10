@@ -911,7 +911,7 @@ recommendations: recommendations || []
     function getPetVoiceText(state, petName = "your pet") {
   const tonePrefix = getPetVoiceTonePrefix(state.confidence);
       if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
-    return `I'm still learning ${petName}'s patterns, but today may be a good day for familiar routines and gentle consistency.`;
+return `${tonePrefix} ${petName} may appreciate familiar routines today.`;
   }
 if (state.theme === PET_VOICE_THEMES.CURIOUS) {
   return `I'm beginning to notice some interesting patterns in ${petName}'s daily life. I'm still learning, but these observations may help us understand them better together.`;

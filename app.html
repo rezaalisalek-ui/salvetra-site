@@ -740,7 +740,9 @@ if (kgSelect) {
       try { return JSON.parse(localStorage.getItem("user") || "null"); }
       catch { return null; }
     }
-
+// ===============================
+// PET VOICE FOUNDATION
+// ===============================
     function setAuthUI(isLoggedIn) {
   $("authCard").classList.toggle("hidden", isLoggedIn);
   $("logoutBtn").classList.toggle("hidden", !isLoggedIn);

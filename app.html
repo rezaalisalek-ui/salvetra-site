@@ -828,6 +828,56 @@ function calculatePetVoiceFamiliarity(recordsCount) {
 
   return "Deep Understanding";
 }
+    function selectPetVoiceThemeFromEvidence(evidence = [], fallbackTheme = PET_VOICE_THEMES.PREFER_ROUTINE) {
+  const text = (evidence || []).join(" ").toLowerCase();
+
+  if (
+    text.includes("guest") ||
+    text.includes("children") ||
+    text.includes("tail tucked") ||
+    text.includes("hiding") ||
+    text.includes("avoiding interaction")
+  ) {
+    return PET_VOICE_THEMES.NEED_SPACE;
+  }
+
+  if (
+    text.includes("storm") ||
+    text.includes("fireworks") ||
+    text.includes("vet visit") ||
+    text.includes("following you")
+  ) {
+    return PET_VOICE_THEMES.NEED_REASSURANCE;
+  }
+
+  if (
+    text.includes("low energy") ||
+    text.includes("sleeping more") ||
+    text.includes("tired") ||
+    text.includes("reduced energy")
+  ) {
+    return PET_VOICE_THEMES.NEED_REST;
+  }
+
+  if (
+    text.includes("reduced appetite") ||
+    text.includes("less play") ||
+    text.includes("something changed") ||
+    text.includes("withdrawn")
+  ) {
+    return PET_VOICE_THEMES.SOMETHING_FEELS_DIFFERENT;
+  }
+
+  if (
+    text.includes("routine change") ||
+    text.includes("travel") ||
+    text.includes("new environment")
+  ) {
+    return PET_VOICE_THEMES.ADJUSTING_TO_CHANGE;
+  }
+
+  return fallbackTheme;
+}
 function buildPetVoiceState(recordsCount = 0, evidence = [], recommendations = []) {
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 

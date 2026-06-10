@@ -832,6 +832,25 @@ function calculatePetVoiceFamiliarity(recordsCount) {
     recommendations: []
   };
 }
+    function getPetVoiceText(state, petName = "your pet") {
+  if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
+    return `I'm still learning ${petName}'s patterns, but today may be a good day for familiar routines and gentle consistency.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.SOMETHING_FEELS_DIFFERENT) {
+    return `Something seems a little different today. I may need a bit more observation, patience, and gentle care.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.NEED_REASSURANCE) {
+    return `I might appreciate staying close to you and having a calm, reassuring space right now.`;
+  }
+
+  if (state.theme === PET_VOICE_THEMES.NEED_SPACE) {
+    return `I might feel more comfortable if I can take things at my own pace and have a little space.`;
+  }
+
+  return `I'm still learning how to communicate clearly, but your observations are helping me become easier to understand.`;
+}
     async function authFetch(path, options={}) {
       const res = await fetch(`${SUPABASE_URL}${path}`, options);
       const text = await res.text();

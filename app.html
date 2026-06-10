@@ -1053,6 +1053,17 @@ return compose(
 `My tummy feels a little different today. Maybe staying close to my usual routine would help. ${pick(reassurance)}`
 );
 }
+      if (state.evidence?.includes("vomiting")) {
+  return compose(
+    `My stomach hasn't been feeling very settled today. Could you stay close and keep an eye on me? ${pick(reassurance)}`
+  );
+}
+
+if (state.evidence?.includes("mobility")) {
+  return compose(
+    `Moving around feels a little harder today. I'd really appreciate your patience and a helping hand if I need it. ${pick(reassurance)}`
+  );
+}
   if (state.evidence?.includes("itchy skin")) {
 return compose(
 `I've been feeling a little itchy lately. Could you take a look and help me feel more comfortable? ${pick(reassurance)}`

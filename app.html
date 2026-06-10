@@ -1956,7 +1956,7 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
 
   try {
     const logs = await restFetch(
-`/rest/v1/health_logs?pet_id=eq.${petId}&order=created_at.desc&limit=10`
+`/rest/v1/health_logs?pet_id=eq.${petId}&select=*&order=created_at.desc&limit=1`
     );
 
     healthLog = logs?.[0] || null;

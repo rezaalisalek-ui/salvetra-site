@@ -825,7 +825,10 @@ function calculatePetVoiceFamiliarity(recordsCount) {
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {
-    theme: PET_VOICE_THEMES.PREFER_ROUTINE,
+theme:
+    recordsCount >= 21
+        ? PET_VOICE_THEMES.CURIOUS
+        : PET_VOICE_THEMES.PREFER_ROUTINE,
     confidence: PET_VOICE_CONFIDENCE.LOW,
     familiarity,
     evidence: [],

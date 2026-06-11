@@ -2937,7 +2937,24 @@ const CAT_OBSERVABLES = [
       "petVoiceContext",
       button.dataset.context
     );
+const species = $("petSpecies").value.toLowerCase();
 
+const observables =
+  species === "cat"
+    ? CAT_OBSERVABLES
+    : DOG_OBSERVABLES;
+
+const container = $("observableOptions");
+
+container.innerHTML = observables.map(item => `
+  <button
+    type="button"
+    class="observable-option"
+    data-observable="${item.value}"
+  >
+    ${item.label}
+  </button>
+`).join("");
     $("petVoiceContextSheet")?.classList.add("hidden");
 
     await loadPet();

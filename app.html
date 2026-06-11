@@ -1113,6 +1113,7 @@ const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
     const evidence = state.evidence || [];
 const context = state.context || null;
      const healthNotes = [];
+     const contextNotes = [];
       if (state.evidence?.includes("storm")) {
   return compose(
     `The storm or loud sounds today may have made me feel a little unsettled. Keeping things calm and familiar would help me feel safer.`

@@ -1119,9 +1119,9 @@ if (evidence.includes("storm")) {
   );
 }
 
-if (state.evidence?.includes("guests")) {
-  return compose(
-    `There were extra people around today, so I may feel a little overstimulated. A quieter routine would help me settle.`
+if (evidence.includes("guests")) {
+  contextNotes.push(
+    "There were extra people around today, so I may feel a little overstimulated. A quieter routine would help me settle."
   );
 }
 

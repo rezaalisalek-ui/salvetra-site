@@ -2834,6 +2834,7 @@ return;
     <button type="button" id="skipPetVoiceContext">Skip</button>
   </div>
 </div>
+  <script>
   document.querySelectorAll("[data-context]").forEach(button => {
   button.addEventListener("click", () => {
     $("petVoiceContextSheet")?.classList.add("hidden");
@@ -2843,5 +2844,6 @@ return;
 $("skipPetVoiceContext")?.addEventListener("click", () => {
   $("petVoiceContextSheet")?.classList.add("hidden");
 });
+    </script>
 </body>
 </html>

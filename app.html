@@ -1164,31 +1164,31 @@ if (evidence.includes("digestive change")) {
   );
 }
 
-if (state.evidence?.includes("mobility")) {
-  return compose(
-    `Moving around feels a little harder today. I'd really appreciate your patience and a helping hand if I need it. ${pick(reassurance)}`
+if (evidence.includes("mobility")) {
+  healthNotes.push(
+    "Moving around feels a little harder today. I'd really appreciate your patience and a helping hand."
   );
 }
-  if (state.evidence?.includes("itchy skin")) {
-return compose(
-`I've been feeling a little itchy lately. Could you take a look and help me feel more comfortable? ${pick(reassurance)}`
-);
+  if (evidence.includes("itchy skin")) {
+  healthNotes.push(
+    "I've been feeling a little itchy lately. Could you take a look and help me feel more comfortable?"
+  );
 }
 
-if (state.evidence?.includes("red skin")) {
-return compose(
-`My skin feels a little irritated today. Could you keep an eye on it and make sure it's not getting worse? ${pick(reassurance)}`
-);
+if (evidence.includes("red skin")) {
+  healthNotes.push(
+    "My skin feels a little irritated today. Could you keep an eye on it and make sure it's not getting worse?"
+  );
 }
 
-if (state.evidence?.includes("skin wounds")) {
-return compose(
-`I noticed a little spot on my skin that doesn't feel quite right. Could you take a closer look when you have a moment? ${pick(reassurance)}`
-);
+if (evidence.includes("skin wounds")) {
+  healthNotes.push(
+    "I noticed a little spot on my skin that doesn't feel quite right. Could you take a closer look when you can?"
+  );
 }
-      if (state.evidence?.includes("patchy coat")) {
-  return compose(
-    `My coat feels a little patchy today. Could you keep an eye on it and help me feel comfortable?`
+      if (evidence.includes("patchy coat")) {
+  healthNotes.push(
+    "My coat feels a little patchy today. Could you keep an eye on it and help me feel comfortable?"
   );
 }
       if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {

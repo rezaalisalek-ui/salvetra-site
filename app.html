@@ -1130,6 +1130,23 @@ if (evidence.includes("vet_visit")) {
     "The vet visit today may have taken a little out of me. I may need some extra comfort and a gentle routine."
   );
 }
+     if (evidence.includes("travel")) {
+  contextNotes.push(
+    "Travel or a change of place may also have made today feel a little different."
+  );
+}
+
+if (evidence.includes("routine_change")) {
+  contextNotes.push(
+    "A change in routine may also have made things feel less familiar today."
+  );
+}
+
+if (evidence.includes("new_pet_person")) {
+  contextNotes.push(
+    "A new pet or person around me may also have made me need a little extra time to adjust."
+  );
+}
       if (state.evidence?.includes("low water")) {
 return compose(
 `I don't think I've been drinking as much as usual. Could you remind me to visit my water bowl? ${pick(reassurance)}`

@@ -1111,6 +1111,23 @@ const reassurance = [
 ];
      const pick = (list) => list[Math.floor(Math.random() * list.length)];
 const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
+    if (state.evidence?.includes("storm")) {
+  return compose(
+    `The storm or loud sounds today may have made me feel a little unsettled. Keeping things calm and familiar would help me feel safer.`
+  );
+}
+
+if (state.evidence?.includes("guests")) {
+  return compose(
+    `There were extra people around today, so I may feel a little overstimulated. A quieter routine would help me settle.`
+  );
+}
+
+if (state.evidence?.includes("vet_visit")) {
+  return compose(
+    `The vet visit today may have taken a little out of me. I may need some extra comfort and a gentle routine.`
+  );
+}
       if (state.evidence?.includes("low water")) {
 return compose(
 `I don't think I've been drinking as much as usual. Could you remind me to visit my water bowl? ${pick(reassurance)}`

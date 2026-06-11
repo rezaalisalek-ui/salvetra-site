@@ -1191,6 +1191,17 @@ if (evidence.includes("skin wounds")) {
     "My coat feels a little patchy today. Could you keep an eye on it and help me feel comfortable?"
   );
 }
+     const selectedHealthNotes = healthNotes.slice(0, 2);
+const selectedContextNotes = contextNotes.slice(0, 1);
+
+const combinedNotes = [
+  ...selectedHealthNotes,
+  ...selectedContextNotes
+];
+
+if (combinedNotes.length > 0) {
+  return compose(combinedNotes.join(" "));
+}
       if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
 return `I'd really enjoy sticking to the routines I know today. It helps me feel safe and comfortable.`;
   }

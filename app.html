@@ -1125,9 +1125,9 @@ if (evidence.includes("guests")) {
   );
 }
 
-if (state.evidence?.includes("vet_visit")) {
-  return compose(
-    `The vet visit today may have taken a little out of me. I may need some extra comfort and a gentle routine.`
+if (evidence.includes("vet_visit")) {
+  contextNotes.push(
+    "The vet visit today may have taken a little out of me. I may need some extra comfort and a gentle routine."
   );
 }
       if (state.evidence?.includes("low water")) {

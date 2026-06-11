@@ -2910,6 +2910,27 @@ return;
     </div>
 </div>
   <script>
+    const DOG_OBSERVABLES = [
+  { value: "panting", label: "🐶 Panting" },
+  { value: "hiding", label: "🐶 Hiding" },
+  { value: "following_you", label: "🐶 Following you" },
+  { value: "tail_tucked", label: "🐶 Tail tucked" },
+  { value: "barking_more", label: "🐶 Barking more than usual" },
+  { value: "avoiding_interaction", label: "🐶 Avoiding interaction" },
+  { value: "seeking_attention", label: "🐶 Seeking attention" },
+  { value: "none", label: "None of these" }
+];
+
+const CAT_OBSERVABLES = [
+  { value: "hiding", label: "🐱 Hiding" },
+  { value: "tail_flicking", label: "🐱 Tail flicking" },
+  { value: "flattened_ears", label: "🐱 Flattened ears" },
+  { value: "vocalizing_more", label: "🐱 Vocalizing more than usual" },
+  { value: "avoiding_touch", label: "🐱 Avoiding touch" },
+  { value: "excessive_grooming", label: "🐱 Excessive grooming" },
+  { value: "seeking_attention", label: "🐱 Seeking attention" },
+  { value: "none", label: "None of these" }
+];
   document.querySelectorAll("[data-context]").forEach(button => {
   button.addEventListener("click", async () => {
     localStorage.setItem(

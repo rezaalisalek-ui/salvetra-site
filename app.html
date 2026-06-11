@@ -1111,7 +1111,6 @@ const reassurance = [
      const pick = (list) => list[Math.floor(Math.random() * list.length)];
 const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
     const evidence = state.evidence || [];
-const context = state.context || null;
      const healthNotes = [];
      const contextNotes = [];
       if (state.evidence?.includes("storm")) {

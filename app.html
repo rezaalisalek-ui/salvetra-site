@@ -1158,9 +1158,9 @@ if (evidence.includes("digestive change")) {
     "My tummy feels a little different today. Maybe staying close to my usual routine would help."
   );
 }
-      if (state.evidence?.includes("vomiting")) {
-  return compose(
-    `My stomach hasn't been feeling very settled today. Could you stay close and keep an eye on me? ${pick(reassurance)}`
+      if (evidence.includes("vomiting")) {
+  healthNotes.push(
+    "My stomach hasn't been feeling very settled today. Could you stay close and keep an eye on me?"
   );
 }
 

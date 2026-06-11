@@ -1081,6 +1081,11 @@ return compose(
 `I noticed a little spot on my skin that doesn't feel quite right. Could you take a closer look when you have a moment? ${pick(reassurance)}`
 );
 }
+      if (state.evidence?.includes("patchy coat")) {
+  return compose(
+    `My coat feels a little patchy today. Could you keep an eye on it and help me feel comfortable?`
+  );
+}
       if (state.theme === PET_VOICE_THEMES.PREFER_ROUTINE) {
 return `I'd really enjoy sticking to the routines I know today. It helps me feel safe and comfortable.`;
   }

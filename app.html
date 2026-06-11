@@ -2890,19 +2890,23 @@ return;
 </div>
   <script>
   document.querySelectorAll("[data-context]").forEach(button => {
-    button.addEventListener("click", () => {
-        localStorage.setItem(
-            "petVoiceContext",
-            button.dataset.context
-        );
+  button.addEventListener("click", async () => {
+    localStorage.setItem(
+      "petVoiceContext",
+      button.dataset.context
+    );
 
-        $("petVoiceContextSheet")?.classList.add("hidden");
-    });
+    $("petVoiceContextSheet")?.classList.add("hidden");
+
+    await loadPet();
+  });
 });
 
-$("skipPetVoiceContext")?.addEventListener("click", () => {
-    localStorage.removeItem("petVoiceContext");
-    $("petVoiceContextSheet")?.classList.add("hidden");
+$("skipPetVoiceContext")?.addEventListener("click", async () => {
+  localStorage.removeItem("petVoiceContext");
+  $("petVoiceContextSheet")?.classList.add("hidden");
+
+  await loadPet();
 });
     </script>
 </body>

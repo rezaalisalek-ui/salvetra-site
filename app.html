@@ -1110,7 +1110,9 @@ const reassurance = [
 ];
      const pick = (list) => list[Math.floor(Math.random() * list.length)];
 const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
-    if (state.evidence?.includes("storm")) {
+    const evidence = state.evidence || [];
+const context = state.context || null;
+      if (state.evidence?.includes("storm")) {
   return compose(
     `The storm or loud sounds today may have made me feel a little unsettled. Keeping things calm and familiar would help me feel safer.`
   );

@@ -3021,6 +3021,30 @@ $("skipPetVoiceContext")?.addEventListener("click", async () => {
 
   button.classList.toggle("selected");
 });
+    $("saveObservables")?.addEventListener("click", async () => {
+  const selectedObservables = Array.from(
+    document.querySelectorAll(".observable-option.selected")
+  )
+    .map(button => button.dataset.observable)
+    .filter(value => value !== "none");
+
+  localStorage.setItem(
+    "petVoiceObservables",
+    JSON.stringify(selectedObservables)
+  );
+
+  $("petVoiceObservableSheet")?.classList.add("hidden");
+
+  await loadPet();
+});
+
+$("skipObservables")?.addEventListener("click", async () => {
+  localStorage.removeItem("petVoiceObservables");
+
+  $("petVoiceObservableSheet")?.classList.add("hidden");
+
+  await loadPet();
+});
     </script>
 </body>
 </html>

@@ -2955,6 +2955,7 @@ container.innerHTML = observables.map(item => `
     ${item.label}
   </button>
 `).join("");
+    $("petVoiceObservableSheet")?.classList.remove("hidden");
     $("petVoiceContextSheet")?.classList.add("hidden");
 
     await loadPet();

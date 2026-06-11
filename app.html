@@ -1098,6 +1098,9 @@ const savedObservables = JSON.parse(
 if (savedContext && savedContext !== "nothing_specific") {
   evidence = [...evidence, savedContext];
 }
+      if (savedObservables.length > 0) {
+  evidence = [...evidence, ...savedObservables];
+}
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {

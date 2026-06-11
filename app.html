@@ -1605,7 +1605,10 @@ if (latestCheck?.skin_condition?.toLowerCase() === "red") {
 if (latestCheck?.skin_condition?.toLowerCase() === "wounds") {
   petVoiceEvidence.push("skin wounds");
 }
-const twinScore = Math.min(1, Math.max(0, confidence / 100));
+if (latestCheck?.coat_condition?.toLowerCase().includes("patchy")) {
+  petVoiceEvidence.push("patchy coat");
+}
+    const twinScore = Math.min(1, Math.max(0, confidence / 100));
     const petVoiceConfidenceInputs = {
   contextScore: 0,
 observableScore: petVoiceEvidence.length ? Math.min(1, petVoiceEvidence.length / 3) : 0,

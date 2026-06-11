@@ -2814,15 +2814,7 @@ return;
 
 }
 });
-    document.querySelectorAll("[data-context]").forEach(button => {
-  button.addEventListener("click", () => {
-    $("petVoiceContextSheet")?.classList.add("hidden");
-  });
-});
-
-$("skipPetVoiceContext")?.addEventListener("click", () => {
-  $("petVoiceContextSheet")?.classList.add("hidden");
-});
+    
   </script>
   <div id="petVoiceContextSheet" class="bottom-sheet hidden">
   <div class="sheet-card">
@@ -2842,5 +2834,14 @@ $("skipPetVoiceContext")?.addEventListener("click", () => {
     <button type="button" id="skipPetVoiceContext">Skip</button>
   </div>
 </div>
+  document.querySelectorAll("[data-context]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("petVoiceContextSheet")?.classList.add("hidden");
+  });
+});
+
+$("skipPetVoiceContext")?.addEventListener("click", () => {
+  $("petVoiceContextSheet")?.classList.add("hidden");
+});
 </body>
 </html>

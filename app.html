@@ -2266,7 +2266,7 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
       body: JSON.stringify(check)
     });
 await loadWellnessHistory();
-
+$("petVoiceContextSheet")?.classList.remove("hidden");
     setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]

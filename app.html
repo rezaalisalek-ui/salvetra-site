@@ -2890,6 +2890,25 @@ return;
     <button type="button" id="skipPetVoiceContext">Skip</button>
   </div>
 </div>
+  <div id="petVoiceObservableSheet" class="bottom-sheet hidden">
+    <div class="bottom-sheet-content">
+
+        <h3>🐾 What did you notice?</h3>
+        <p>Select any that apply.</p>
+
+        <div id="observableOptions" class="sheet-options">
+        </div>
+
+        <button type="button" id="saveObservables">
+            Continue
+        </button>
+
+        <button type="button" id="skipObservables">
+            Skip
+        </button>
+
+    </div>
+</div>
   <script>
   document.querySelectorAll("[data-context]").forEach(button => {
   button.addEventListener("click", async () => {

@@ -1153,10 +1153,10 @@ if (evidence.includes("new_pet_person")) {
   );
 }
 
-if (state.evidence?.includes("digestive change")) {
-return compose(
-`My tummy feels a little different today. Maybe staying close to my usual routine would help. ${pick(reassurance)}`
-);
+if (evidence.includes("digestive change")) {
+  healthNotes.push(
+    "My tummy feels a little different today. Maybe staying close to my usual routine would help."
+  );
 }
       if (state.evidence?.includes("vomiting")) {
   return compose(

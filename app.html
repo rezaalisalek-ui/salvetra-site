@@ -2849,7 +2849,8 @@ return;
 });
 
 $("skipPetVoiceContext")?.addEventListener("click", () => {
-  $("petVoiceContextSheet")?.classList.add("hidden");
+    localStorage.removeItem("petVoiceContext");
+    $("petVoiceContextSheet")?.classList.add("hidden");
 });
     </script>
 </body>

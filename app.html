@@ -2814,7 +2814,15 @@ return;
 
 }
 });
-    
+    document.querySelectorAll("[data-context]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("petVoiceContextSheet")?.classList.add("hidden");
+  });
+});
+
+$("skipPetVoiceContext")?.addEventListener("click", () => {
+  $("petVoiceContextSheet")?.classList.add("hidden");
+});
   </script>
   <div id="petVoiceContextSheet" class="bottom-sheet hidden">
   <div class="sheet-card">

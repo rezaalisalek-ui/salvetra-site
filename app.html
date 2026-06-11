@@ -2974,6 +2974,27 @@ $("skipPetVoiceContext")?.addEventListener("click", async () => {
 
   await loadPet();
 });
+    $("observableOptions")?.addEventListener("click", (e) => {
+  const button = e.target.closest("[data-observable]");
+  if (!button) return;
+
+  const value = button.dataset.observable;
+
+  if (value === "none") {
+    document.querySelectorAll(".observable-option").forEach(btn => {
+      btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+    return;
+  }
+
+  document
+    .querySelector('.observable-option[data-observable="none"]')
+    ?.classList.remove("selected");
+
+  button.classList.toggle("selected");
+});
     </script>
 </body>
 </html>

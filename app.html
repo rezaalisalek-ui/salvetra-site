@@ -1091,7 +1091,10 @@ if (score >= 0.35) {
   confidenceInputs = {}
 ) {
       const savedContext = localStorage.getItem("petVoiceContext");
- const context = savedContext || null;
+const savedObservables = JSON.parse(
+  localStorage.getItem("petVoiceObservables") || "[]"
+);
+      const context = savedContext || null;
 if (savedContext && savedContext !== "nothing_specific") {
   evidence = [...evidence, savedContext];
 }

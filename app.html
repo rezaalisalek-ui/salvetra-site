@@ -1060,9 +1060,7 @@ if (score >= 0.35) {
 ) {
       const savedContext = localStorage.getItem("petVoiceContext");
 
-if (savedContext) {
-  evidence = [...evidence, savedContext];
-}
+
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 
   return {

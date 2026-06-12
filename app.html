@@ -2020,7 +2020,9 @@ ${stoolPattern}
         name: $("petName").value.trim(),
         species: $("petSpecies").value.trim(),
 breed: $("petBreed").value === "Other" ? $("customBreed").value.trim() : $("petBreed").value,
-        age: $("petAge").value.trim(),
+age:
+  Number($("petAgeYears").value || 0) +
+  Number($("petAgeMonths").value || 0) / 12,
         weight: $("petWeight").value.trim(),
        sex: $("petSex").value,
 neutered: $("petNeutered").value,

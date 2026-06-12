@@ -1456,7 +1456,8 @@ if (e.message.includes("Invalid login credentials")) {
   localStorage.removeItem("access_token");
   localStorage.removeItem("user");
   localStorage.removeItem("pet_id");
-
+localStorage.removeItem("petVoiceContext");
+localStorage.removeItem("petVoiceObservables");
   $("bottomNav").style.display = "none";
 
   setAuthUI(false);

@@ -2043,8 +2043,9 @@ breed: $("petBreed").value === "Other" ? $("customBreed").value.trim() : $("petB
 age:
   Number($("petAgeYears").value || 0) +
   Number($("petAgeMonths").value || 0) / 12,
-        weight: $("petWeight").value.trim(),
-     weight_unit: $("petWeightUnit").value,
+        weight:
+  Number($("petWeightKg").value || 0) +
+  Number($("petWeightG").value || 0) / 1000,
         sex: $("petSex").value,
 neutered: $("petNeutered").value,
 activity_level: $("petActivity").value,

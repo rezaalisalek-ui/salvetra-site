@@ -2440,9 +2440,10 @@ localStorage.removeItem("petVoiceObservables");
     await loadWellnessHistory();
 await loadPet();
 go("home");
-$("petVoiceContextSheet")?.classList.add("hidden");
-    setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 
+    setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
+$("petVoiceContextSheet")?.classList.add("hidden");
+$("petVoiceObservableSheet")?.classList.add("hidden");
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]
       .forEach(id => $(id).value = "");
 

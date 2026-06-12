@@ -1521,7 +1521,27 @@ $("petLifeStage").value = pet?.life_stage || "";
     months.appendChild(opt);
   }
 }
-function toggleCustomBreed() {
+function initPetWeightOptions() {
+  const kg = $("petWeightKg");
+  const g = $("petWeightG");
+
+  if (!kg || !g || kg.children.length) return;
+
+  for (let i = 0; i <= 100; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} kg`;
+    kg.appendChild(opt);
+  }
+
+  for (let i = 0; i <= 900; i += 100) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} g`;
+    g.appendChild(opt);
+  }
+}
+    function toggleCustomBreed() {
   const isOther = $("petBreed").value === "Other";
 
   $("customBreed").style.display =

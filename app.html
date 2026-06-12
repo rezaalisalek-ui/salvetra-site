@@ -2439,11 +2439,11 @@ localStorage.removeItem("petVoiceContext");
 localStorage.removeItem("petVoiceObservables");
     await loadWellnessHistory();
 await loadPet();
-go("home");
 
     setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 $("petVoiceContextSheet")?.classList.add("hidden");
 $("petVoiceObservableSheet")?.classList.add("hidden");
+   go("home");
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]
       .forEach(id => $(id).value = "");
 

@@ -3205,6 +3205,18 @@ $("skipObservables")?.addEventListener("click", async () => {
 
   await loadPet();
 });
+    function openQuickActions() {
+  $("quickActionsOverlay").style.display = "flex";
+}
+
+function closeQuickActions() {
+  $("quickActionsOverlay").style.display = "none";
+}
+
+function showDeleteInfo() {
+  closeQuickActions();
+  alert("To request deletion of your Salvetra account and associated pet data, please contact support@salvetra.com");
+}
     </script>
   <div id="quickActionsOverlay" class="quick-overlay" onclick="closeQuickActions()">
   <div class="quick-sheet" onclick="event.stopPropagation()">

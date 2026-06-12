@@ -1487,12 +1487,13 @@ localStorage.removeItem("petVoiceObservables");
       $("petSpecies").value = pet?.species || "";
 updateBreedOptions(pet?.breed || "");
 initPetAgeOptions();
-
+initPetWeightOptions();
 const age = Number(pet?.age || 0);
 $("petAgeYears").value = Math.floor(age);
 $("petAgeMonths").value = Math.round((age % 1) * 12);
-      $("petWeight").value = pet?.weight || "";
-    if ($("petWeightUnit")) $("petWeightUnit").value = pet?.weight_unit || "kg";
+      const weight = Number(pet?.weight || 0);
+$("petWeightKg").value = Math.floor(weight);
+$("petWeightG").value = Math.round(((weight % 1) * 1000) / 100) * 100;
       $("petSex").value = pet?.sex || "";
 $("petNeutered").value = pet?.neutered || "";
 $("petActivity").value = pet?.activity_level || "";

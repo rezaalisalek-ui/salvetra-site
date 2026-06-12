@@ -2435,10 +2435,9 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
       },
       body: JSON.stringify(check)
     });
-localStorage.removeItem("petVoiceContext");
-localStorage.removeItem("petVoiceObservables");
+
     await loadWellnessHistory();
-await loadPet();
+
 
     setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 $("petVoiceContextSheet")?.classList.remove("hidden");

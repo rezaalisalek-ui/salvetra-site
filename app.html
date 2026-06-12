@@ -112,6 +112,63 @@
     .pill{display:inline-block;background:#e8f3ef;color:var(--green);padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
     .hidden{display:none!important}
     .msg{margin-top:12px;font-weight:700}
+   .quick-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(16,42,39,.38);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:9999;
+}
+
+.quick-sheet{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border-radius:28px 28px 0 0;
+  padding:22px 20px 28px;
+  box-shadow:0 -18px 45px rgba(19,57,48,.18);
+}
+
+.quick-sheet h3{
+  color:var(--green);
+  text-align:center;
+  font-size:20px;
+  margin:0 0 18px;
+}
+
+.quick-btn{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:15px 16px;
+  margin-bottom:12px;
+  font-size:16px;
+  font-weight:700;
+  text-align:left;
+}
+
+.add-btn{
+  background:var(--green);
+  color:white;
+}
+
+.policy-btn{
+  background:#f7f5ef;
+  color:var(--green);
+}
+
+.delete-btn{
+  background:#fff3f3;
+  color:#a22626;
+}
+
+.cancel-btn{
+  background:#f0f0ed;
+  color:#6d7674;
+  text-align:center;
+}
     .ok{color:var(--green)}
     .err{color:#a22626}
     #mealSuggestion {

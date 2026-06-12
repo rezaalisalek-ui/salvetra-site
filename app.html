@@ -1850,37 +1850,16 @@ observableScore: petVoiceEvidence.length ? Math.min(1, petVoiceEvidence.length /
   personalityScore: 0.5,
   temporalScore: petVoiceEvidence.length ? 0.5 : 0
 };
-    const shouldTriggerPetVoice =
-  petVoiceEvidence.includes("anxious") ||
-  petVoiceEvidence.includes("low energy") ||
-  petVoiceEvidence.includes("reduced appetite") ||
-  petVoiceEvidence.includes("low water") ||
-  petVoiceEvidence.includes("digestive change") ||
-  petVoiceEvidence.includes("itchy skin") ||
-  petVoiceEvidence.includes("red skin") ||
-  petVoiceEvidence.includes("skin wounds") ||
-petVoiceEvidence.includes("patchy coat") ||
-      petVoiceEvidence.includes("vomiting") ||
-petVoiceEvidence.includes("mobility") ||
-petVoiceEvidence.includes("something changed") ||
-petVoiceEvidence.includes("vet_visit") ||
-petVoiceEvidence.includes("storm") ||
-petVoiceEvidence.includes("guests") ||
-petVoiceEvidence.includes("travel") ||
-petVoiceEvidence.includes("routine_change") ||
-petVoiceEvidence.includes("new_pet_person") ||
-petVoiceEvidence.includes("panting") ||
-petVoiceEvidence.includes("hiding") ||
-petVoiceEvidence.includes("following_you") ||
-petVoiceEvidence.includes("tail_tucked") ||
-petVoiceEvidence.includes("barking_more") ||
-petVoiceEvidence.includes("avoiding_interaction") ||
-petVoiceEvidence.includes("seeking_attention") ||
-petVoiceEvidence.includes("tail_flicking") ||
-petVoiceEvidence.includes("flattened_ears") ||
-petVoiceEvidence.includes("vocalizing_more") ||
-petVoiceEvidence.includes("avoiding_touch") ||
-petVoiceEvidence.includes("excessive_grooming");
+    const savedContextForTrigger = localStorage.getItem("petVoiceContext");
+
+const savedObservablesForTrigger = JSON.parse(
+  localStorage.getItem("petVoiceObservables") || "[]"
+).filter(item => item !== "none");
+
+const shouldTriggerPetVoice =
+  petVoiceEvidence.length > 0 ||
+  (savedContextForTrigger && savedContextForTrigger !== "nothing_specific") ||
+  savedObservablesForTrigger.length > 0;
     const petVoiceState = buildPetVoiceState(
   recordsCount,
   petVoiceEvidence,

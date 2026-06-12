@@ -1497,6 +1497,26 @@ $("petLifeStage").value = pet?.life_stage || "";
       $("petProtein").value = pet?.preferred_protein || "";
       $("petNotes").value = pet?.notes || "";
     }
+    function initPetAgeOptions() {
+  const years = $("petAgeYears");
+  const months = $("petAgeMonths");
+
+  if (!years || !months || years.children.length) return;
+
+  for (let i = 0; i <= 30; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} year${i === 1 ? "" : "s"}`;
+    years.appendChild(opt);
+  }
+
+  for (let i = 0; i <= 11; i++) {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${i} month${i === 1 ? "" : "s"}`;
+    months.appendChild(opt);
+  }
+}
 function toggleCustomBreed() {
   const isOther = $("petBreed").value === "Other";
 

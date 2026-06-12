@@ -3206,5 +3206,26 @@ $("skipObservables")?.addEventListener("click", async () => {
   await loadPet();
 });
     </script>
+  <div id="quickActionsOverlay" class="quick-overlay" onclick="closeQuickActions()">
+  <div class="quick-sheet" onclick="event.stopPropagation()">
+    <h3>Salvetra</h3>
+
+    <button class="quick-btn add-btn" onclick="go('profile')">
+      ➕ Add New Pet
+    </button>
+
+    <button class="quick-btn policy-btn" onclick="window.open('https://salvetra.com/privacy.html','_blank')">
+      📄 Privacy Policy
+    </button>
+
+    <button class="quick-btn delete-btn" onclick="showDeleteInfo()">
+      🗑️ Delete Account
+    </button>
+
+    <button class="quick-btn cancel-btn" onclick="closeQuickActions()">
+      Cancel
+    </button>
+  </div>
+</div>
 </body>
 </html>

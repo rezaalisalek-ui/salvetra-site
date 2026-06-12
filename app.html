@@ -1862,7 +1862,13 @@ const shouldTriggerPetVoice =
   savedObservablesForTrigger.length > 0;
     const petVoiceState = buildPetVoiceState(
   recordsCount,
-  petVoiceEvidence,
+[
+  ...petVoiceEvidence,
+  ...(savedContextForTrigger && savedContextForTrigger !== "nothing_specific"
+    ? [savedContextForTrigger]
+    : []),
+  ...savedObservablesForTrigger
+],
   [],
   petVoiceConfidenceInputs
 );

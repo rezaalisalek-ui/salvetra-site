@@ -1153,7 +1153,12 @@ const compose = (body) => `${pick(openings)} ${body} ${pick(closings)}`;
     const evidence = state.evidence || [];
      const healthNotes = [];
      const contextNotes = [];
-if (evidence.includes("storm")) {
+if (evidence.includes("panting")) {
+  healthNotes.push(
+    "I've been panting more than usual today. I may need a little extra calm, rest, and comfort."
+  );
+}
+      if (evidence.includes("storm")) {
   contextNotes.push(
     "The storm or loud sounds today may have made me feel a little unsettled. Keeping things calm and familiar would help me feel safer."
   );

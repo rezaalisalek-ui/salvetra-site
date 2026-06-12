@@ -2438,7 +2438,9 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
 localStorage.removeItem("petVoiceContext");
 localStorage.removeItem("petVoiceObservables");
     await loadWellnessHistory();
-$("petVoiceContextSheet")?.classList.remove("hidden");
+await loadPet();
+go("home");
+    $("petVoiceContextSheet")?.classList.remove("hidden");
     setMsg("wellnessMsg", `Wellness Score: ${score}/100 - ${status}`, "ok");
 
     ["wellWater", "wellStool", "wellVomiting", "wellMobility", "wellSkin", "wellCoat", "wellMood"]

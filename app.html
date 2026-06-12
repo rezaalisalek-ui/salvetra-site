@@ -2780,7 +2780,9 @@ homeBox.innerHTML = `
   Salmon: { kcal: 208, protein: 20 }
 }
     function calculateCalories() {
-  const weight = parseFloat($("petWeight").value) || 0;
+const weight =
+  Number($("petWeightKg")?.value || 0) +
+  Number($("petWeightG")?.value || 0) / 1000;
   const species = $("petSpecies").value.toLowerCase();
 
   if (!weight) {

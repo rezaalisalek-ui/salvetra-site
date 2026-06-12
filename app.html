@@ -1639,11 +1639,23 @@ function initPetWeightOptions() {
 }
 async function updateDashboard(pet) {
       $("dashPetName").textContent = pet?.name || "Your Pet";
+const ageYears = Math.floor(Number(pet?.age || 0));
+const ageMonths = Math.round((Number(pet?.age || 0) % 1) * 12);
+const ageText = pet?.age
+  ? `${ageYears} year${ageYears === 1 ? "" : "s"}${ageMonths ? ` ${ageMonths} month${ageMonths === 1 ? "" : "s"}` : ""}`
+  : null;
+
+const weightKg = Math.floor(Number(pet?.weight || 0));
+const weightG = Math.round(((Number(pet?.weight || 0) % 1) * 1000) / 100) * 100;
+const weightText = pet?.weight
+  ? `${weightKg} kg${weightG ? ` ${weightG} g` : ""}`
+  : null;
+
 const info = [
   pet?.species,
   pet?.breed,
-  pet?.age ? `${pet.age} years` : null,
-  pet?.weight ? `${pet.weight} kg` : null
+  ageText,
+  weightText
 ]
 .filter(Boolean)
 .join(" • ");

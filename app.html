@@ -1487,8 +1487,13 @@ localStorage.removeItem("petVoiceObservables");
       $("petName").value = pet?.name || "";
       $("petSpecies").value = pet?.species || "";
 updateBreedOptions(pet?.breed || "");
-      $("petAge").value = pet?.age || "";
+initPetAgeOptions();
+
+const age = Number(pet?.age || 0);
+$("petAgeYears").value = Math.floor(age);
+$("petAgeMonths").value = Math.round((age % 1) * 12);
       $("petWeight").value = pet?.weight || "";
+    if ($("petWeightUnit")) $("petWeightUnit").value = pet?.weight_unit || "kg";
       $("petSex").value = pet?.sex || "";
 $("petNeutered").value = pet?.neutered || "";
 $("petActivity").value = pet?.activity_level || "";

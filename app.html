@@ -726,8 +726,19 @@
   placeholder="Enter breed"
   style="display:none;"
 >
-        <label>Age</label><input id="petAge" placeholder="4 years">
-        <label>Weight</label><input id="petWeight" placeholder="26 kg">
+<label>Age</label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <select id="petAgeYears"></select>
+  <select id="petAgeMonths"></select>
+</div>
+<label>Weight</label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <input id="petWeight" type="number" step="0.1" placeholder="Weight">
+  <select id="petWeightUnit">
+    <option value="kg">kg</option>
+    <option value="lb">lb</option>
+  </select>
+</div>
         <label>Sex</label>
 <select id="petSex">
   <option value="">Select sex</option>

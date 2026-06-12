@@ -1099,7 +1099,10 @@ if (savedContext && savedContext !== "nothing_specific") {
   evidence = [...evidence, savedContext];
 }
       if (savedObservables.length > 0) {
-  evidence = [...evidence, ...savedObservables];
+    evidence = [
+        ...evidence,
+        ...savedObservables.filter(item => item !== "none")
+    ];
 }
   const familiarity = calculatePetVoiceFamiliarity(recordsCount);
 

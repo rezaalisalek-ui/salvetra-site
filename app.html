@@ -2478,7 +2478,7 @@ if (!reminder.type || !reminder.title || !reminder.due_date) {
       },
       body: JSON.stringify(reminder)
     });
-
+await loadPreventiveCare();
     alert("Reminder saved.");
 
     $("careTitle").value = "";

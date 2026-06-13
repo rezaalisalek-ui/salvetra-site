@@ -1535,11 +1535,20 @@ localStorage.removeItem("petVoiceObservables");
 }
 
     function clearPetForm() {
-      ["petName","petSpecies","petBreed","petAge","petWeight","petNotes"].forEach(id => $(id).value = "");
-     initPetAgeOptions();
-initPetWeightOptions();
-      setMsg("savePetMsg", "");
-    }
+  ["petName","petSpecies","petBreed","customBreed","petNotes"].forEach(id => {
+    if ($(id)) $(id).value = "";
+  });
+
+  initPetAgeOptions();
+  initPetWeightOptions();
+
+  $("petAgeYears").value = 0;
+  $("petAgeMonths").value = 0;
+  $("petWeightKg").value = 0;
+  $("petWeightG").value = 0;
+
+  setMsg("savePetMsg", "");
+}
 
     function fillPetForm(pet) {
       $("petName").value = pet?.name || "";

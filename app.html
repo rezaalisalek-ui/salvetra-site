@@ -1536,6 +1536,8 @@ localStorage.removeItem("petVoiceObservables");
 
     function clearPetForm() {
       ["petName","petSpecies","petBreed","petAge","petWeight","petNotes"].forEach(id => $(id).value = "");
+     initPetAgeOptions();
+initPetWeightOptions();
       setMsg("savePetMsg", "");
     }
 

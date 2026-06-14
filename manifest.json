@@ -1,7 +1,8 @@
 {
   "name": "Salvetra MVP",
   "short_name": "Salvetra",
-  "start_url": ".",
+"start_url": "/app.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fbfaf6",
   "theme_color": "#064c3b",

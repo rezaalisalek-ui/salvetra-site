@@ -758,7 +758,23 @@
       <div class="card" id="authCard">
         <h3>Create Account / Log In</h3>
         <input id="signupEmail" type="email" placeholder="Email" autocomplete="email">
-        <input id="signupPassword" type="password" placeholder="Password" autocomplete="current-password">
+        <div style="position:relative;">
+  <input id="signupPassword"
+         type="password"
+         placeholder="Password"
+         autocomplete="current-password"
+         style="padding-right:50px;">
+
+  <span onclick="togglePassword()"
+        style="position:absolute;
+               right:15px;
+               top:50%;
+               transform:translateY(-50%);
+               cursor:pointer;
+               user-select:none;">
+    👁️
+  </span>
+</div>
         <button class="btn" id="signupBtn" onclick="signUp()">Sign Up</button>
         <button class="btn" id="loginBtn" onclick="login()">Log In</button>
         <p class="small" style="text-align:center;margin-top:10px;color:#064c3b;cursor:pointer;font-weight:700;" onclick="forgotPassword()">Forgot Password?</p>

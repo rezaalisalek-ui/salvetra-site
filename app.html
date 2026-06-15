@@ -3196,7 +3196,15 @@ $("aiAnswerDashboard").textContent =
 
 return;
 }
-  
+  function togglePassword() {
+  const input = $("signupPassword");
+
+  if (input.type === "password") {
+    input.type = "text";
+  } else {
+    input.type = "password";
+  }
+}
 async function handlePasswordRecovery() {
   const params = new URLSearchParams(window.location.hash.replace("#", ""));
   const type = params.get("type");

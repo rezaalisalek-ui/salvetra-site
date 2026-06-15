@@ -3179,9 +3179,47 @@ $("aiAnswerDashboard").textContent =
 return;
 }
   
+async function handlePasswordRecovery() {
+  const params = new URLSearchParams(window.location.hash.replace("#", ""));
+  const type = params.get("type");
+  const accessToken = params.get("access_token");
 
+  if (type !== "recovery" || !accessToken) return false;
+
+  const newPassword = prompt("Enter your new password:");
+
+  if (!newPassword) {
+    alert("Password reset cancelled.");
+    window.location.href = "https://www.salvetra.com/app.html";
+    return true;
+  }
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      method: "PUT",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        password: newPassword
+      })
+    });
+
+    if (!res.ok) throw new Error("Could not update password.");
+
+    alert("Password updated successfully. You can now log in.");
+    window.location.href = "https://www.salvetra.com/app.html";
+    return true;
+  } catch (e) {
+    alert("Password update failed: " + e.message);
+    return true;
+  }
+}
     document.addEventListener("DOMContentLoaded", async () => {
-  const loggedIn = Boolean(getToken() && getUser());
+  if (await handlePasswordRecovery()) return;
+      const loggedIn = Boolean(getToken() && getUser());
 
   setAuthUI(loggedIn);
 

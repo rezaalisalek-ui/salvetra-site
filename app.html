@@ -1524,7 +1524,73 @@ if (e.message.includes("Invalid login credentials")) {
         $("loginBtn").disabled = false;
       }
     }
+async function forgotPassword() {
+  const email = $("signupEmail").value.trim();
 
+  if (!email) {
+    return setMsg("authMsg", "Please enter your email address first.", "err");
+  }
+
+  setMsg("authMsg", "Sending password reset email...");
+
+  try {
+    await authFetch("/auth/v1/recover", {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email
+      })
+    });
+
+    setMsg(
+      "authMsg",
+      "Password reset email sent. Please check your inbox and Spam/Junk folder.",
+      "ok"
+    );
+
+  } catch (e) {
+    setMsg("authMsg", "Password reset failed: " + e.message, "err");
+  }
+}
+    async function resendVerification() {
+  const email = $("signupEmail").value.trim();
+
+  if (!email) {
+    return setMsg("authMsg", "Please enter your email address first.", "err");
+  }
+
+  setMsg("authMsg", "Sending verification email...");
+
+  try {
+    await authFetch("/auth/v1/resend", {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        type: "signup",
+        email: email
+      })
+    });
+
+    setMsg(
+      "authMsg",
+      "Verification email sent again. Please check your inbox and Spam/Junk folder.",
+      "ok"
+    );
+
+  } catch (e) {
+    setMsg(
+      "authMsg",
+      "Could not resend verification email: " + e.message,
+      "err"
+    );
+  }
+}
     function logout() {
   localStorage.removeItem("access_token");
   localStorage.removeItem("user");

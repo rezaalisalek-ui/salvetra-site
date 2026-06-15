@@ -1541,8 +1541,9 @@ async function forgotPassword() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: email
-      })
+  email: email,
+  redirect_to: "https://www.salvetra.com/app.html"
+})
     });
 
     setMsg(

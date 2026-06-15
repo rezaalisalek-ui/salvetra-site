@@ -1534,7 +1534,9 @@ async function forgotPassword() {
   setMsg("authMsg", "Sending password reset email...");
 
   try {
-    await authFetch("/auth/v1/recover", {
+await authFetch(
+  "/auth/v1/recover?redirect_to=https://www.salvetra.com/app.html",
+  {
       method: "POST",
       headers: {
         apikey: SUPABASE_ANON_KEY,

@@ -3494,7 +3494,8 @@ function showDeleteInfo() {
       `Preventive Care Events: ${preventiveCare?.length || 0}`;
 
   } catch (e) {
-    console.error("Report data count failed:", e);
+    alert("Report Error: " + e.message);
+console.error("Report data count failed:", e);
 
     $("reportHealthCount").textContent = "Health Records: --";
     $("reportWellnessCount").textContent = "Wellness Records: --";

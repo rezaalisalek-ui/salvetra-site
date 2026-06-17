@@ -3471,5 +3471,74 @@ function showDeleteInfo() {
     </button>
   </div>
 </div>
+  <div id="reportModal"
+     style="display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.45);
+            z-index:9999;
+            padding:20px;">
+
+  <div style="
+      background:white;
+      border-radius:20px;
+      padding:20px;
+      max-width:500px;
+      margin:60px auto;">
+
+    <h3>📄 Pet Wellness Report</h3>
+
+    <p class="small">
+      Select the reporting period you would like to analyze.
+    </p>
+
+    <label>From Date</label>
+    <input type="date" id="reportFromDate">
+
+    <label style="margin-top:12px;display:block;">
+      To Date
+    </label>
+    <input type="date" id="reportToDate">
+
+    <div style="
+      margin-top:16px;
+      padding:12px;
+      background:#f7f7f7;
+      border-radius:12px;">
+
+      <strong>Data Available</strong>
+
+      <p class="small">Health Records: --</p>
+      <p class="small">Wellness Records: --</p>
+      <p class="small">Medication Records: --</p>
+      <p class="small">Preventive Care Events: --</p>
+
+    </div>
+
+    <button
+      class="btn"
+      style="margin-top:16px;width:100%;"
+      onclick="alert('Report generation coming soon.')">
+
+      Generate Report
+
+    </button>
+
+    <button
+      class="btn"
+      style="
+        width:100%;
+        margin-top:10px;
+        background:#d9d9d9;
+        color:#333;"
+      onclick="closeReportModal()">
+
+      Cancel
+
+    </button>
+
+  </div>
+
+</div>
 </body>
 </html>

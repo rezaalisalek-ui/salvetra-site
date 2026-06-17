@@ -3447,7 +3447,11 @@ function showDeleteInfo() {
   alert("To request deletion of your Salvetra account and associated pet data, please contact support@salvetra.com");
 }
     function handleGenerateReportClick() {
-  alert("Pet Wellness Report coming soon.");
+    $("reportModal").style.display = "block";
+}
+
+function closeReportModal() {
+    $("reportModal").style.display = "none";
 }
     </script>
   <div id="quickActionsOverlay" class="quick-overlay" onclick="closeQuickActions()">

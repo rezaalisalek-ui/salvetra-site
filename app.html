@@ -3507,7 +3507,32 @@ function closeReportModal() {
   $("reportModal").style.display = "none";
 }
     function openReportPreview() {
-  alert("Report Preview v1");
+
+  const healthCount =
+    (healthLogs || []).length;
+
+  const wellnessCount =
+    (wellnessLogs || []).length;
+
+  const medicationCount =
+    (medications || []).length;
+
+  const preventiveCount =
+    (preventiveCare || []).length;
+
+  document.getElementById("reportHealthCount").textContent =
+    `Health Records: ${healthCount}`;
+
+  document.getElementById("reportWellnessCount").textContent =
+    `Wellness Records: ${wellnessCount}`;
+
+  document.getElementById("reportMedicationCount").textContent =
+    `Medication Records: ${medicationCount}`;
+
+  document.getElementById("reportPreventiveCount").textContent =
+    `Preventive Care Events: ${preventiveCount}`;
+
+  document.getElementById("reportPreviewModal").style.display = "block";
 }
     </script>
   <div id="quickActionsOverlay" class="quick-overlay" onclick="closeQuickActions()">

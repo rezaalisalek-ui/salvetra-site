@@ -3446,12 +3446,65 @@ function showDeleteInfo() {
   closeQuickActions();
   alert("To request deletion of your Salvetra account and associated pet data, please contact support@salvetra.com");
 }
-    function handleGenerateReportClick() {
-    $("reportModal").style.display = "block";
+    async function handleGenerateReportClick() {
+  $("reportModal").style.display = "block";
+
+  $("reportHealthCount").textContent = "Health Records: Loading...";
+  $("reportWellnessCount").textContent = "Wellness Records: Loading...";
+  $("reportMedicationCount").textContent = "Medication Records: Loading...";
+  $("reportPreventiveCount").textContent = "Preventive Care Events: Loading...";
+
+  const petId = localStorage.getItem("pet_id");
+
+  if (!petId) {
+    $("reportHealthCount").textContent = "Health Records: --";
+    $("reportWellnessCount").textContent = "Wellness Records: --";
+    $("reportMedicationCount").textContent = "Medication Records: --";
+    $("reportPreventiveCount").textContent = "Preventive Care Events: --";
+    return;
+  }
+
+  try {
+    const healthLogs = await restFetch(
+      `/rest/v1/health_logs?pet_id=eq.${petId}&select=id`
+    );
+
+    const wellnessChecks = await restFetch(
+      `/rest/v1/wellness_checks?pet_id=eq.${petId}&select=id`
+    );
+
+    const medications = await restFetch(
+      `/rest/v1/medications?pet_id=eq.${petId}&select=id`
+    );
+
+    const preventiveCare = await restFetch(
+      `/rest/v1/preventive_care?pet_id=eq.${petId}&select=id`
+    );
+
+    $("reportHealthCount").textContent =
+      `Health Records: ${healthLogs?.length || 0}`;
+
+    $("reportWellnessCount").textContent =
+      `Wellness Records: ${wellnessChecks?.length || 0}`;
+
+    $("reportMedicationCount").textContent =
+      `Medication Records: ${medications?.length || 0}`;
+
+    $("reportPreventiveCount").textContent =
+      `Preventive Care Events: ${preventiveCare?.length || 0}`;
+
+  } catch (e) {
+    console.error("Report data count failed:", e);
+
+    $("reportHealthCount").textContent = "Health Records: --";
+    $("reportWellnessCount").textContent = "Wellness Records: --";
+    $("reportMedicationCount").textContent = "Medication Records: --";
+    $("reportPreventiveCount").textContent = "Preventive Care Events: --";
+  }
 }
 
 function closeReportModal() {
-    $("reportModal").style.display = "none";
+  $("reportModal").style.display = "none";
 }
     </script>
   <div id="quickActionsOverlay" class="quick-overlay" onclick="closeQuickActions()">

@@ -3641,27 +3641,41 @@ const previewBox = document.getElementById("reportPreviewContent");
 if (previewBox) {
   previewBox.style.display = "block";
   previewBox.innerHTML = `
-    <h3 style="font-size:16px;margin:0 0 10px;">Pet Wellness Report Preview</h3>
+  <h3 style="font-size:16px;margin:0 0 10px;">Pet Wellness Report Preview</h3>
 
-    <p><strong>Reporting Period:</strong><br>
-    ${report.reportingPeriod.startDate} → ${report.reportingPeriod.endDate}</p>
+  <p><strong>Executive Summary</strong><br>
+  This report summarizes the available wellness and care records for this pet during the selected reporting period. 
+  The overall wellness status was ${report.overallWellness.status}, with an average wellness score of ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100.
+  A total of ${report.reportDataset.healthRecords} health records and ${report.reportDataset.wellnessRecords} wellness records were reviewed.</p>
 
-    <p><strong>Overall Wellness:</strong><br>
-    ${report.overallWellness.score ?? "--"}/100 • ${report.overallWellness.status}</p>
+  <p><strong>Reporting Period</strong><br>
+  ${report.reportingPeriod.startDate} → ${report.reportingPeriod.endDate}</p>
 
-    <p><strong>Reporting Statistics:</strong><br>
-    Health Records: ${report.reportDataset.healthRecords}<br>
-    Wellness Records: ${report.reportDataset.wellnessRecords}<br>
-    Medication Records: ${report.reportDataset.medicationRecords}<br>
-    Preventive Care Events: ${report.reportDataset.preventiveCareEvents}</p>
+  <p><strong>Overall Wellness</strong><br>
+  ${report.overallWellness.score ?? "--"}/100 • ${report.overallWellness.status}</p>
 
-    <p><strong>Wellness Snapshot:</strong><br>
-    Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
+  <p><strong>Reporting Statistics</strong><br>
+  Health Records: ${report.reportDataset.healthRecords}<br>
+  Wellness Records: ${report.reportDataset.wellnessRecords}<br>
+  Medication Records: ${report.reportDataset.medicationRecords}<br>
+  Preventive Care Events: ${report.reportDataset.preventiveCareEvents}</p>
 
-    <p class="small" style="margin-top:10px;">
-    This preview summarizes available wellness data for discussion and tracking. It is not diagnostic and does not provide treatment recommendations.
-    </p>
-  `;
+  <p><strong>Wellness Snapshot</strong><br>
+  Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
+
+  <p><strong>What Salvetra Learned About This Pet</strong><br>
+  • This pet has enough wellness history to begin showing personal patterns.<br>
+  • Wellness scores remained in the ${report.overallWellness.status} range during this period.<br>
+  • Continued daily logs will make future reports more personalized and useful.</p>
+
+  <p><strong>Care Summary</strong><br>
+  Medication Records: ${report.reportDataset.medicationRecords}<br>
+  Preventive Care Events: ${report.reportDataset.preventiveCareEvents}</p>
+
+  <p class="small" style="margin-top:10px;color:#6d7674;">
+  This report is intended for wellness tracking and discussion with a veterinarian. It is not diagnostic and does not provide treatment recommendations.
+  </p>
+`;
 }
 
 alert("Report preview created.");

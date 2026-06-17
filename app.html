@@ -3693,9 +3693,7 @@ if (previewBox) {
   Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
 
   <p><strong>What Salvetra Learned About This Pet</strong><br>
-  • This pet has enough wellness history to begin showing personal patterns.<br>
-  • Wellness scores remained in the ${report.overallWellness.status} range during this period.<br>
-  • Continued daily logs will make future reports more personalized and useful.</p>
+${report.whatSalvetraLearned.length ? report.whatSalvetraLearned.map(point => `• ${point}`).join("<br>") : "Not enough wellness history available yet."}</p>
 
   <p><strong>Medication Summary</strong><br>
 ${report.careSummary.medications.length ? report.careSummary.medications.map(m => `• ${m.name || "Medication"}${m.frequency ? " – " + m.frequency : ""}`).join("<br>") : "No medication records available."}</p>

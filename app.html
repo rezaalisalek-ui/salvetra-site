@@ -3636,7 +3636,35 @@ function closeReportModal() {
 
     console.log("Pet Wellness Report Object:", report);
 
-    alert("Report object created. Check Console.");
+const previewBox = document.getElementById("reportPreviewContent");
+
+if (previewBox) {
+  previewBox.style.display = "block";
+  previewBox.innerHTML = `
+    <h3 style="font-size:16px;margin:0 0 10px;">Pet Wellness Report Preview</h3>
+
+    <p><strong>Reporting Period:</strong><br>
+    ${report.reportingPeriod.startDate} → ${report.reportingPeriod.endDate}</p>
+
+    <p><strong>Overall Wellness:</strong><br>
+    ${report.overallWellness.score ?? "--"}/100 • ${report.overallWellness.status}</p>
+
+    <p><strong>Reporting Statistics:</strong><br>
+    Health Records: ${report.reportDataset.healthRecords}<br>
+    Wellness Records: ${report.reportDataset.wellnessRecords}<br>
+    Medication Records: ${report.reportDataset.medicationRecords}<br>
+    Preventive Care Events: ${report.reportDataset.preventiveCareEvents}</p>
+
+    <p><strong>Wellness Snapshot:</strong><br>
+    Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
+
+    <p class="small" style="margin-top:10px;">
+    This preview summarizes available wellness data for discussion and tracking. It is not diagnostic and does not provide treatment recommendations.
+    </p>
+  `;
+}
+
+alert("Report preview created.");
 
   } catch (e) {
     alert("Report generation error: " + e.message);

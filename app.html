@@ -3668,9 +3668,11 @@ if (previewBox) {
   • Wellness scores remained in the ${report.overallWellness.status} range during this period.<br>
   • Continued daily logs will make future reports more personalized and useful.</p>
 
-  <p><strong>Care Summary</strong><br>
-Medication Records: ${report.careSummary.medications.length ? report.careSummary.medications.map(m => `• ${m.name || "Medication"}${m.frequency ? " – " + m.frequency : ""}`).join("<br>") : "No medication records available."}<br><br>
-Preventive Care Events: ${report.careSummary.preventiveCare.length ? report.careSummary.preventiveCare.map(p => `• ${p.type || p.name || "Preventive care event"}${p.date || p.created_at ? " – " + new Date(p.date || p.created_at).toLocaleDateString() : ""}`).join("<br>") : "No preventive care records available."}</p>
+  <p><strong>Medication Summary</strong><br>
+${report.careSummary.medications.length ? report.careSummary.medications.map(m => `• ${m.name || "Medication"}${m.frequency ? " – " + m.frequency : ""}`).join("<br>") : "No medication records available."}</p>
+
+<p><strong>Preventive Care Summary</strong><br>
+${report.careSummary.preventiveCare.length ? report.careSummary.preventiveCare.map(p => `• ${(p.type || p.name || "Preventive care event").replace("_", " ").replace(/\b\w/g, c => c.toUpperCase())}${p.date || p.created_at ? " (" + new Date(p.date || p.created_at).toLocaleDateString() + ")" : ""}`).join("<br>") : "No preventive care records available."}</p>
 
   <p class="small" style="margin-top:10px;color:#6d7674;">
   This report is intended for wellness tracking and discussion with a veterinarian. It is not diagnostic and does not provide treatment recommendations.

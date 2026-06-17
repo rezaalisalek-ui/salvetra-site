@@ -3634,13 +3634,9 @@ learnedPoints.push(
       },
 
       wellnessSnapshot: {
-        averageWellnessScore: wellnessChecks.length
-          ? Math.round(
-              wellnessChecks.reduce((sum, r) => sum + Number(r.score || 0), 0) /
-              wellnessChecks.length
-            )
-          : null
-      },
+  averageWellnessScore
+},
+          
 
       trends: {
         wellnessScoreTrend: wellnessChecks.map(r => ({
@@ -3657,7 +3653,7 @@ learnedPoints.push(
 
       keyFindings: [],
 
-      whatSalvetraLearned: [],
+      whatSalvetraLearned: learnedPoints,
 
       careSummary: {
         medications,

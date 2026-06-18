@@ -4119,7 +4119,141 @@ border-radius:18px;"
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
+async function exportWellnessPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF("p", "mm", "a4");
 
+  let reportContent = document.getElementById("reportPreviewContent");
+
+  if (!reportContent || !reportContent.innerText.trim()) {
+    await generateWellnessReport();
+    await new Promise(resolve => setTimeout(resolve, 400));
+  }
+
+  reportContent = document.getElementById("reportPreviewContent");
+
+  if (!reportContent || !reportContent.innerText.trim()) {
+    alert("Please generate the report first.");
+    return;
+  }
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const green = [11, 91, 67];
+  const softGreen = [237, 247, 243];
+  const dark = [16, 42, 39];
+  const gray = [108, 118, 116];
+
+  function addFooter(pageNumber) {
+    doc.setFontSize(8);
+    doc.setTextColor(...gray);
+    doc.text("Salvetra Pet Wellness Report • Non-diagnostic wellness summary", 20, 287);
+    doc.text(`Page ${pageNumber}`, pageWidth - 35, 287);
+  }
+
+  function addSectionTitle(title, y) {
+    doc.setTextColor(...green);
+    doc.setFontSize(14);
+    doc.setFont(undefined, "bold");
+    doc.text(title, 20, y);
+    doc.setDrawColor(...green);
+    doc.line(20, y + 2, 190, y + 2);
+    doc.setFont(undefined, "normal");
+    return y + 10;
+  }
+
+  function addWrappedText(text, x, y, maxWidth, lineHeight = 6) {
+    doc.setFontSize(10);
+    doc.setTextColor(...dark);
+    const lines = doc.splitTextToSize(text, maxWidth);
+    lines.forEach(line => {
+      if (y > 270) {
+        doc.addPage();
+        addFooter(doc.internal.getNumberOfPages());
+        y = 20;
+      }
+      doc.text(line, x, y);
+      y += lineHeight;
+    });
+    return y;
+  }
+
+  // Cover
+  doc.setFillColor(...softGreen);
+  doc.rect(0, 0, pageWidth, 55, "F");
+
+  try {
+    doc.addImage("logo.png", "PNG", 78, 10, 55, 35);
+  } catch (e) {}
+
+  doc.setTextColor(...green);
+  doc.setFontSize(24);
+  doc.setFont(undefined, "bold");
+  doc.text("SALVETRA", pageWidth / 2, 72, { align: "center" });
+
+  doc.setFontSize(18);
+  doc.text("Pet Wellness Report", pageWidth / 2, 86, { align: "center" });
+
+  doc.setFontSize(10);
+  doc.setFont(undefined, "normal");
+  doc.setTextColor(...gray);
+  doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, 96, { align: "center" });
+
+  doc.setFillColor(250, 250, 250);
+  doc.roundedRect(20, 115, 170, 95, 6, 6, "F");
+
+  let text = reportContent.innerText || reportContent.textContent;
+  const cleanText = text
+    .replace("Pet Wellness Report Preview", "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  let y = 130;
+  y = addSectionTitle("Report Summary", y);
+  y = addWrappedText(cleanText.split("Wellness Score Chart")[0], 28, y, 154, 6);
+
+  addFooter(1);
+
+  // Full report pages
+  doc.addPage();
+  addFooter(2);
+
+  y = 22;
+  y = addSectionTitle("Full Wellness Report", y);
+
+  const lines = doc.splitTextToSize(cleanText, 170);
+
+  doc.setFontSize(10);
+  doc.setTextColor(...dark);
+
+  lines.forEach(line => {
+    if (y > 270) {
+      doc.addPage();
+      addFooter(doc.internal.getNumberOfPages());
+      y = 22;
+    }
+
+    const isHeading =
+      ["Executive Summary", "Reporting Period", "Overall Wellness", "Reporting Statistics", "Wellness Snapshot", "Wellness Score Trend", "Weight Trend", "What Salvetra Learned About This Pet", "Wellness Timeline", "Medication Summary", "Preventive Care Summary"].includes(line.trim());
+
+    if (isHeading) {
+      y += 4;
+      doc.setTextColor(...green);
+      doc.setFontSize(12);
+      doc.setFont(undefined, "bold");
+      doc.text(line, 20, y);
+      doc.setFont(undefined, "normal");
+      doc.setFontSize(10);
+      doc.setTextColor(...dark);
+      y += 7;
+    } else {
+      doc.text(line, 22, y);
+      y += 5.5;
+    }
+  });
+
+  doc.save("salvetra-pet-wellness-report.pdf");
+}
 </script>
 </body>
 </html>

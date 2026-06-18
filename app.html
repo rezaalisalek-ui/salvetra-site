@@ -4217,7 +4217,8 @@ const getLineValue = label => {
   return line ? line.replace(label, "").trim() : "—";
 };
 
-const overallScore = getLineValue("Overall Wellness");
+const overallScore =
+cleanText.match(/\d+\/100/)?.[0] || "—";
 const avgWeight = getLineValue("Average Weight:");
 const healthRecords = getLineValue("Health Records:");
 const wellnessRecords = getLineValue("Wellness Records:");

@@ -4127,7 +4127,7 @@ async function exportWellnessPDF() {
 
   if (!reportContent || !reportContent.innerText.trim()) {
     await generateWellnessReport();
-    await new Promise(resolve => setTimeout(resolve, 400));
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
 
   reportContent = document.getElementById("reportPreviewContent");
@@ -4138,56 +4138,31 @@ async function exportWellnessPDF() {
   }
 
   const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
   const green = [11, 91, 67];
   const softGreen = [237, 247, 243];
   const dark = [16, 42, 39];
   const gray = [108, 118, 116];
-const petId = localStorage.getItem("pet_id");
 
-let pet = null;
+  const petId = localStorage.getItem("pet_id");
+  let pet = null;
 
-if (petId) {
-  const petRows = await restFetch(
-    `/rest/v1/pets?id=eq.${petId}&select=*`
-  );
-
-  pet =
-    petRows && petRows.length
-      ? petRows[0]
-      : null;
-
-}
-  async function imageToDataUrl(url) {
-  if (!url) return null;
-
-  try {
-    const response = await fetch(url);
-    const blob = await response.blob();
-
-    return await new Promise(resolve => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  } catch (e) {
-    return null;
+  if (petId) {
+    try {
+      const petRows = await restFetch(`/rest/v1/pets?id=eq.${petId}&select=*`);
+      pet = petRows && petRows.length ? petRows[0] : null;
+    } catch (e) {
+      pet = null;
+    }
   }
-}
 
-const petPhotoData =
-  pet && pet.photo_url
-    ? await imageToDataUrl(pet.photo_url)
-    : null;
-
-  function addFooter(pageNumber) {
+  function footer(pageNumber) {
     doc.setFontSize(8);
     doc.setTextColor(...gray);
-    doc.text("Salvetra Pet Wellness Report • Non-diagnostic wellness summary", 20, 287);
-    doc.text(`Page ${pageNumber}`, pageWidth - 35, 287);
+    doc.text("Salvetra Pet Wellness Report • Non-diagnostic wellness summary", 20, 285);
+    doc.text(`Page ${pageNumber}`, pageWidth - 30, 285);
   }
 
-  function addSectionTitle(title, y) {
+  function sectionTitle(title, y) {
     doc.setTextColor(...green);
     doc.setFontSize(14);
     doc.setFont(undefined, "bold");
@@ -4198,181 +4173,137 @@ const petPhotoData =
     return y + 10;
   }
 
-  function addWrappedText(text, x, y, maxWidth, lineHeight = 6) {
-    doc.setFontSize(10);
-    doc.setTextColor(...dark);
-    const lines = doc.splitTextToSize(text, maxWidth);
-    lines.forEach(line => {
-      if (y > 270) {
-        doc.addPage();
-        addFooter(doc.internal.getNumberOfPages());
-        y = 20;
-      }
-      doc.text(line, x, y);
-      y += lineHeight;
-    });
-    return y;
+  function card(title, value, x, y) {
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(x, y, 68, 24, 5, 5, "F");
+
+    doc.setTextColor(...gray);
+    doc.setFontSize(8);
+    doc.text(title, x + 5, y + 8);
+
+    doc.setTextColor(...green);
+    doc.setFontSize(13);
+    doc.setFont(undefined, "bold");
+    doc.text(String(value || "-"), x + 5, y + 18);
+    doc.setFont(undefined, "normal");
   }
 
-  // Cover
+  const text = reportContent.innerText || reportContent.textContent || "";
+
+  const getValue = label => {
+    const line = text.split("\n").find(l => l.trim().startsWith(label));
+    return line ? line.replace(label, "").trim() : "-";
+  };
+
+  const overallScore = text.match(/\d+\/100/)?.[0] || "-";
+  const avgWeight = getValue("Average Weight:");
+  const healthRecords = getValue("Health Records:");
+  const wellnessRecords = getValue("Wellness Records:");
+
+  // Page 1 cover
   doc.setFillColor(...softGreen);
   doc.rect(0, 0, pageWidth, 55, "F");
 
   try {
-doc.addImage("logo.png", "PNG", 60, 10, 90, 50);
-  } catch (e) {}
+  doc.addImage("logo.png", "PNG", 52, 8, 105, 42);
+} catch (e) {}
 
   doc.setTextColor(...green);
   doc.setFontSize(24);
   doc.setFont(undefined, "bold");
-  doc.text("SALVETRA", pageWidth / 2, 72, { align: "center" });
+  doc.text("SALVETRA", pageWidth / 2, 75, { align: "center" });
 
   doc.setFontSize(18);
-  doc.text("Pet Wellness Report", pageWidth / 2, 86, { align: "center" });
+  doc.text("Pet Wellness Report", pageWidth / 2, 92, { align: "center" });
 
   doc.setFontSize(10);
   doc.setFont(undefined, "normal");
   doc.setTextColor(...gray);
-  doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, 96, { align: "center" });
+  doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, 106, { align: "center" });
 
+  // Pet Profile card
   doc.setFillColor(250, 250, 250);
-doc.roundedRect(20, 145, 170, 90, 6, 6, "F");
-// Pet Profile Card
+  doc.roundedRect(25, 120, 160, 38, 8, 8, "F");
 
-doc.setFillColor(255, 255, 255);
-doc.roundedRect(30, 112, 150, 36, 5, 5, "F");
+  doc.setFillColor(...green);
+  doc.circle(45, 139, 13, "F");
 
-if (petPhotoData) {
-  try {
-    doc.addImage(
-      petPhotoData,
-      "PNG",
-      35,
-      119,
-      24,
-      24
-    );
-  } catch (e) {}
-}
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(16);
+  doc.setFont(undefined, "bold");
+  doc.text((pet?.name || "P").charAt(0).toUpperCase(), 45, 144, { align: "center" });
 
-doc.setTextColor(...dark);
-doc.setFontSize(11);
-doc.setFont(undefined, "bold");
+  doc.setTextColor(...dark);
+  doc.setFontSize(13);
+  doc.text(pet?.name || "Pet", 65, 133);
 
-doc.text(
-  pet?.name || "Pet",
-  65,
-  124
-);
+  doc.setFont(undefined, "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(...gray);
+  doc.text(`${pet?.species || "-"} • ${pet?.breed || "-"}`, 65, 142);
+  doc.text(`${pet?.sex || "-"} • ${pet?.age || "-"} yrs • ${pet?.weight || "-"} kg`, 65, 150);
 
-doc.setFont(undefined, "normal");
-doc.setFontSize(9);
+  // Summary box
+  doc.setFillColor(250, 250, 250);
+  doc.roundedRect(25, 170, 160, 82, 8, 8, "F");
 
-doc.text(
-  `${pet?.species || ""} • ${pet?.breed || ""}`,
-  65,
-  134
-);
+  doc.setTextColor(...green);
+  doc.setFontSize(14);
+  doc.setFont(undefined, "bold");
+  doc.text("Report Summary", 35, 185);
 
-doc.text(
-  `${pet?.age || "-"} yrs • ${pet?.weight || "-"} kg`,
-  65,
-  142
-);
-  let text = reportContent.innerText || reportContent.textContent;
+  doc.setFont(undefined, "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(...gray);
+  doc.text("A personalized wellness report for veterinary discussion.", 35, 198);
+
+  card("Overall Score", overallScore, 35, 210);
+  card("Average Weight", avgWeight, 107, 210);
+  card("Health Records", healthRecords, 35, 240);
+  card("Wellness Records", wellnessRecords, 107, 240);
+
+  footer(1);
+
+  // Page 2 charts
+  const wellnessCanvas = document.getElementById("wellnessScoreChart");
+  const weightCanvas = document.getElementById("weightChart");
+
+  doc.addPage();
+  footer(2);
+
+  let chartY = 25;
+  chartY = sectionTitle("Trend Charts", chartY);
+
+  if (wellnessCanvas) {
+    doc.setTextColor(...green);
+    doc.setFontSize(12);
+    doc.setFont(undefined, "bold");
+    doc.text("Wellness Score Trend", 20, chartY);
+    const wellnessImage = wellnessCanvas.toDataURL("image/png");
+    doc.addImage(wellnessImage, "PNG", 20, chartY + 10, 170, 65);
+    chartY += 90;
+  }
+
+  if (weightCanvas) {
+    doc.setTextColor(...green);
+    doc.setFontSize(12);
+    doc.setFont(undefined, "bold");
+    doc.text("Weight Trend", 20, chartY);
+    const weightImage = weightCanvas.toDataURL("image/png");
+    doc.addImage(weightImage, "PNG", 20, chartY + 10, 170, 65);
+  }
+
+  // Page 3 full report
+  doc.addPage();
+  footer(3);
+
+  let y = 25;
+  y = sectionTitle("Full Wellness Report", y);
+
   const cleanText = text
     .replace("Pet Wellness Report Preview", "")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
-
-let y = 175;
-
-const getLineValue = label => {
-  const line = cleanText
-    .split("\n")
-    .find(l => l.trim().startsWith(label));
-  return line ? line.replace(label, "").trim() : "—";
-};
-
-const overallScore =
-cleanText.match(/\d+\/100/)?.[0] || "—";
-const avgWeight = getLineValue("Average Weight:");
-const healthRecords = getLineValue("Health Records:");
-const wellnessRecords = getLineValue("Wellness Records:");
-const period = getLineValue("Reporting Period");
-
-// Cover summary box
-doc.setFillColor(250, 250, 250);
-doc.roundedRect(25, 115, 160, 120, 8, 8, "F");
-
-doc.setTextColor(...green);
-doc.setFontSize(14);
-doc.setFont(undefined, "bold");
-doc.text("Report Summary", 35, 170);
-
-doc.setFontSize(10);
-doc.setFont(undefined, "normal");
-doc.setTextColor(...gray);
-doc.text("A personalized wellness report for veterinary discussion.", 35, 185);
-
-// Cards
-function coverCard(title, value, x, y) {
-  doc.setFillColor(255, 255, 255);
-  doc.roundedRect(x, y, 68, 24, 5, 5, "F");
-
-  doc.setTextColor(...gray);
-  doc.setFontSize(8);
-  doc.setFont(undefined, "normal");
-  doc.text(title, x + 5, y + 8);
-
-  doc.setTextColor(...green);
-  doc.setFontSize(13);
-  doc.setFont(undefined, "bold");
-  doc.text(String(value), x + 5, y + 18);
-}
-
-coverCard("Overall Score", overallScore, 35, 195);
-coverCard("Average Weight", avgWeight, 107, 195);
-coverCard("Health Records", healthRecords, 35, 225);
-coverCard("Wellness Records", wellnessRecords, 107, 225);
-
-  addFooter(1);
-// Trend charts page
-const wellnessCanvas = document.getElementById("wellnessScoreChart");
-const weightCanvas = document.getElementById("weightChart");
-
-doc.addPage();
-addFooter(doc.internal.getNumberOfPages());
-
-let chartY = 25;
-chartY = addSectionTitle("Trend Charts", chartY);
-
-if (wellnessCanvas) {
-  doc.setTextColor(...green);
-  doc.setFontSize(12);
-  doc.setFont(undefined, "bold");
-  doc.text("Wellness Score Trend", 20, chartY);
-
-  const wellnessImage = wellnessCanvas.toDataURL("image/png");
-  doc.addImage(wellnessImage, "PNG", 20, chartY + 6, 170, 70);
-
-  chartY += 90;
-}
-
-if (weightCanvas) {
-  doc.setTextColor(...green);
-  doc.setFontSize(12);
-  doc.setFont(undefined, "bold");
-  doc.text("Weight Trend", 20, chartY);
-
-  const weightImage = weightCanvas.toDataURL("image/png");
-  doc.addImage(weightImage, "PNG", 20, chartY + 6, 170, 70);
-}
-  // Continue report on the next page without creating empty pages
-doc.addPage();
-y = 22;
-addFooter(doc.internal.getNumberOfPages());
-y = addSectionTitle("Full Wellness Report", y);
 
   const lines = doc.splitTextToSize(cleanText, 170);
 
@@ -4382,14 +4313,25 @@ y = addSectionTitle("Full Wellness Report", y);
   lines.forEach(line => {
     if (y > 270) {
       doc.addPage();
-      addFooter(doc.internal.getNumberOfPages());
-      y = 22;
+      footer(doc.internal.getNumberOfPages());
+      y = 25;
     }
 
-    const isHeading =
-      ["Executive Summary", "Reporting Period", "Overall Wellness", "Reporting Statistics", "Wellness Snapshot", "Wellness Score Trend", "Weight Trend", "What Salvetra Learned About This Pet", "Wellness Timeline", "Medication Summary", "Preventive Care Summary"].includes(line.trim());
+    const headings = [
+      "Executive Summary",
+      "Reporting Period",
+      "Overall Wellness",
+      "Reporting Statistics",
+      "Wellness Snapshot",
+      "Wellness Score Trend",
+      "Weight Trend",
+      "What Salvetra Learned About This Pet",
+      "Wellness Timeline",
+      "Medication Summary",
+      "Preventive Care Summary"
+    ];
 
-    if (isHeading) {
+    if (headings.includes(line.trim())) {
       y += 4;
       doc.setTextColor(...green);
       doc.setFontSize(12);

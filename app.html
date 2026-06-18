@@ -3751,6 +3751,14 @@ Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/
 First Score: ${report.trends.firstWellnessScore ?? "--"}/100<br>
 Latest Score: ${report.trends.latestWellnessScore ?? "--"}/100<br>
 <span style="color:#6d7674;">${report.trends.wellnessTrendSummary}</span></p>
+<div style="margin-top:12px;">
+  <strong>Wellness Score Chart</strong>
+  <canvas id="wellnessScoreChart"
+          width="320"
+          height="160"
+          style="width:100%;height:160px;margin-top:8px;background:#f8fbf9;border-radius:12px;">
+  </canvas>
+</div>
 <p><strong>Weight Trend</strong><br>
 Starting Weight: ${report.weightTrend.startingWeight ?? "--"} kg<br>
 Latest Weight: ${report.weightTrend.latestWeight ?? "--"} kg<br>

@@ -4125,16 +4125,24 @@ async function exportWellnessPDF() {
 
   const doc = new jsPDF();
 
-  const reportContent =
-    document.getElementById("reportPreviewContent");
+  let reportContent =
+  document.getElementById("reportPreviewContent");
 
-  if (!reportContent) {
-    alert("Please generate the report first.");
-    return;
-  }
+if (!reportContent || !reportContent.innerText.trim()) {
+  await generateWellnessReport();
+  await new Promise(resolve => setTimeout(resolve, 300));
+}
 
-  const text =
-    reportContent.innerText || reportContent.textContent;
+reportContent =
+  document.getElementById("reportPreviewContent");
+
+if (!reportContent || !reportContent.innerText.trim()) {
+  alert("Please generate the report first.");
+  return;
+}
+
+const text =
+  reportContent.innerText || reportContent.textContent;
 
   let y = 20;
 

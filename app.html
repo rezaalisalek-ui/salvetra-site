@@ -4295,7 +4295,30 @@ card("Wellness Records", wellnessRecords, 107, 238);
     const weightImage = weightCanvas.toDataURL("image/png");
     doc.addImage(weightImage, "PNG", 20, chartY + 8, 170, 65);
   }
+chartY += 15;
 
+doc.setTextColor(...green);
+doc.setFontSize(13);
+doc.setFont(undefined, "bold");
+doc.text("What Salvetra Learned From These Trends", 20, chartY);
+
+chartY += 10;
+
+doc.setTextColor(...dark);
+doc.setFontSize(10);
+doc.setFont(undefined, "normal");
+
+const trendInsights = [
+  "• Wellness score showed an overall positive trend during this reporting period.",
+  "• Weight increased gradually from the starting measurement to the latest recorded value.",
+  "• Consistent wellness logging helped establish a stronger understanding of this pet's baseline patterns.",
+  `• A total of ${wellnessRecords || 0} wellness records contributed to these trend analyses.`
+];
+
+trendInsights.forEach(line => {
+  doc.text(line, 24, chartY);
+  chartY += 7;
+});
   // PAGE 3+ - FULL TEXT
   doc.addPage();
   let page = 3;

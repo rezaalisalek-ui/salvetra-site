@@ -3745,7 +3745,12 @@ if (previewBox) {
   Preventive Care Events: ${report.reportDataset.preventiveCareEvents}</p>
 
   <p><strong>Wellness Snapshot</strong><br>
-  Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
+Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100<br>
+<br>
+<strong>Wellness Score Trend</strong><br>
+First Score: ${report.trends.firstWellnessScore ?? "--"}/100<br>
+Latest Score: ${report.trends.latestWellnessScore ?? "--"}/100<br>
+<span style="color:#6d7674;">${report.trends.wellnessTrendSummary}</span></p>
 <p><strong>Weight Trend</strong><br>
 Starting Weight: ${report.weightTrend.startingWeight ?? "--"} kg<br>
 Latest Weight: ${report.weightTrend.latestWeight ?? "--"} kg<br>

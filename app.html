@@ -4179,6 +4179,7 @@ const petPhotoData =
   pet && pet.photo_url
     ? await imageToDataUrl(pet.photo_url)
     : null;
+  alert(petPhotoData ? "PHOTO OK" : "PHOTO FAILED");
   function addFooter(pageNumber) {
     doc.setFontSize(8);
     doc.setTextColor(...gray);

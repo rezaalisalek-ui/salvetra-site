@@ -3974,8 +3974,10 @@ Weight Change: ${report.weightTrend.weightChange ?? "--"} kg<br>
 </div>
 <p><strong>What Salvetra Learned About This Pet</strong></p>
 ${report.whatSalvetraLearned.length
- ? `<ul>${report.whatSalvetraLearned.map(point => `<li>${point}</li>`).join("")}</ul>`
- : "Not enough wellness history available yet."}</p>
+  ? report.whatSalvetraLearned.map(point =>
+      `<div style="font-size:14px;color:#102a27;margin-bottom:6px;">• ${point}</div>`
+    ).join("")
+  : `<div style="font-size:14px;color:#102a27;">Not enough wellness history available yet.</div>`}
 <p><strong>Wellness Timeline</strong><br>
 ${
   report.wellnessTimeline.length

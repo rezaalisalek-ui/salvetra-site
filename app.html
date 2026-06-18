@@ -4237,7 +4237,9 @@ doc.addImage("logo.png", "PNG", 60, 10, 90, 50);
   doc.setFillColor(250, 250, 250);
 doc.roundedRect(20, 160, 170, 75, 6, 6, "F");
 // Pet Profile Card
-
+doc.setTextColor(200, 0, 0);
+doc.setFontSize(14);
+doc.text(pet?.name || "NO PET NAME", 30, 112);
 doc.setFillColor(255, 255, 255);
 doc.roundedRect(30, 112, 150, 36, 5, 5, "F");
 

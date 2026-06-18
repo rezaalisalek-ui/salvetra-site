@@ -4451,9 +4451,12 @@ trendInsights.forEach(line => {
       doc.setTextColor(...dark);
       y += 7;
     } else {
-      doc.text(line, 22, y);
-      y += 5.5;
-    }
+  doc.setFont(undefined, "normal");
+  doc.setFontSize(10);
+  doc.setTextColor(...dark);
+  doc.text(line, 22, y);
+  y += 5.5;
+}
   });
 
   doc.save("salvetra-pet-wellness-report.pdf");

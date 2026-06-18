@@ -4308,12 +4308,12 @@ doc.roundedRect(25, 115, 160, 95, 8, 8, "F");
 doc.setTextColor(...green);
 doc.setFontSize(14);
 doc.setFont(undefined, "bold");
-doc.text("Report Summary", 35, 130);
+doc.text("Report Summary", 35, 170);
 
 doc.setFontSize(10);
 doc.setFont(undefined, "normal");
 doc.setTextColor(...gray);
-doc.text("A personalized wellness report for veterinary discussion.", 35, 142);
+doc.text("A personalized wellness report for veterinary discussion.", 35, 185);
 
 // Cards
 function coverCard(title, value, x, y) {
@@ -4331,10 +4331,10 @@ function coverCard(title, value, x, y) {
   doc.text(String(value), x + 5, y + 18);
 }
 
-coverCard("Overall Score", overallScore, 35, 152);
-coverCard("Average Weight", avgWeight, 107, 152);
-coverCard("Health Records", healthRecords, 35, 182);
-coverCard("Wellness Records", wellnessRecords, 107, 182);
+coverCard("Overall Score", overallScore, 35, 195);
+coverCard("Average Weight", avgWeight, 107, 195);
+coverCard("Health Records", healthRecords, 35, 225);
+coverCard("Wellness Records", wellnessRecords, 107, 225);
 
   addFooter(1);
 // Trend charts page

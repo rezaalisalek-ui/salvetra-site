@@ -3563,8 +3563,7 @@ function closeReportModal() {
     const allDates = [
       ...healthLogs.map(r => r.created_at),
       ...wellnessChecks.map(r => r.created_at),
-      ...medications.map(r => r.created_at),
-      ...preventiveCare.map(r => r.created_at)
+      
     ].filter(Boolean).sort();
 
     const startDate = allDates.length

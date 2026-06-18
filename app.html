@@ -3778,7 +3778,15 @@ ${report.careSummary.preventiveCare.length ? report.careSummary.preventiveCare.m
   </p>
 `;
 }
-
+setTimeout(() => {
+  drawLineChart(
+    "wellnessScoreChart",
+    report.trends.wellnessScoreTrend,
+    "score",
+    0,
+    100
+  );
+}, 100);
 alert("Report preview created.");
 
   } catch (e) {

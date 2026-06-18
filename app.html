@@ -3718,7 +3718,10 @@ if (previewBox) {
 
   <p><strong>Wellness Snapshot</strong><br>
   Average Wellness Score: ${report.wellnessSnapshot.averageWellnessScore ?? "--"}/100</p>
-
+<p><strong>Weight Trend</strong><br>
+Starting Weight: ${report.weightTrend.startingWeight ?? "--"} kg<br>
+Latest Weight: ${report.weightTrend.latestWeight ?? "--"} kg<br>
+Weight Change: ${report.weightTrend.weightChange ?? "--"} kg</p>
   <p><strong>What Salvetra Learned About This Pet</strong><br>
 ${report.whatSalvetraLearned.length ? report.whatSalvetraLearned.map(point => `• ${point}`).join("<br>") : "Not enough wellness history available yet."}</p>
 

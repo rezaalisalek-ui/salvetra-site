@@ -4297,6 +4297,63 @@ card("Wellness Records", wellnessRecords, 107, 238);
   }
 chartY += 90;
 
+// Dynamic Trend Insights
+
+const scoreChange =
+  (latestScore || overallScore || 0) -
+  (firstScore || latestScore || overallScore || 0);
+
+const weightChange =
+  (latestWeight || avgWeight || 0) -
+  (firstWeight || latestWeight || avgWeight || 0);
+
+const trendInsights = [];
+
+// Wellness Score Insight
+if (scoreChange > 5) {
+  trendInsights.push(
+    "• Wellness score improved during this reporting period."
+  );
+} else if (scoreChange < -5) {
+  trendInsights.push(
+    "• Wellness score declined during this reporting period."
+  );
+} else {
+  trendInsights.push(
+    "• Wellness score remained relatively stable during this reporting period."
+  );
+}
+
+// Weight Insight
+if (weightChange > 0.3) {
+  trendInsights.push(
+    `• Weight increased by ${Math.abs(weightChange).toFixed(1)} kg during this reporting period.`
+  );
+} else if (weightChange < -0.3) {
+  trendInsights.push(
+    `• Weight decreased by ${Math.abs(weightChange).toFixed(1)} kg during this reporting period.`
+  );
+} else {
+  trendInsights.push(
+    "• Weight remained relatively stable during this reporting period."
+  );
+}
+
+// Data Quality Insight
+if ((wellnessRecords || 0) >= 50) {
+  trendInsights.push(
+    "• A strong wellness history was available for trend analysis."
+  );
+} else if ((wellnessRecords || 0) >= 20) {
+  trendInsights.push(
+    "• A moderate wellness history was available for trend analysis."
+  );
+} else {
+  trendInsights.push(
+    "• Trend analysis is based on a limited wellness history."
+  );
+}
+
 doc.setTextColor(...green);
 doc.setFontSize(13);
 doc.setFont(undefined, "bold");
@@ -4307,13 +4364,6 @@ chartY += 10;
 doc.setTextColor(...dark);
 doc.setFontSize(10);
 doc.setFont(undefined, "normal");
-
-const trendInsights = [
-  "• Wellness score showed an overall positive trend during this reporting period.",
-  "• Weight increased gradually from the starting measurement to the latest recorded value.",
-  "• Consistent wellness logging helped establish a stronger understanding of this pet's baseline patterns.",
-  `• A total of ${wellnessRecords || 0} wellness records contributed to these trend analyses.`
-];
 
 trendInsights.forEach(line => {
   doc.text(line, 24, chartY);

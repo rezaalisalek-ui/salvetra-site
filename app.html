@@ -4157,6 +4157,27 @@ if (petId) {
       ? petRows[0]
       : null;
 }
+  async function imageToDataUrl(url) {
+  if (!url) return null;
+
+  try {
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    return await new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  } catch (e) {
+    return null;
+  }
+}
+
+const petPhotoData =
+  pet && pet.photo_url
+    ? await imageToDataUrl(pet.photo_url)
+    : null;
   function addFooter(pageNumber) {
     doc.setFontSize(8);
     doc.setTextColor(...gray);

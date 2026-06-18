@@ -3856,12 +3856,16 @@ setTimeout(() => {
     0,
     100
   );
-  drawLineChart(
+  const weightValues = report.weightTrend.records
+  .map(r => Number(r.weight))
+  .filter(v => !isNaN(v));
+
+drawLineChart(
   "weightChart",
   report.weightTrend.records,
   "weight",
-  Math.max(0, Math.min(...report.weightTrend.records.map(r => r.weight)) - 1),
-  Math.max(...report.weightTrend.records.map(r => r.weight)) + 1
+  Math.max(0, Math.min(...weightValues) - 1),
+  Math.max(...weightValues) + 1
 );
 }, 100);
 alert("Report preview created.");

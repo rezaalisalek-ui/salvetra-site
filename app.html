@@ -4239,7 +4239,7 @@ doc.roundedRect(20, 160, 170, 75, 6, 6, "F");
 // Pet Profile Card
 
 doc.setFillColor(255, 255, 255);
-doc.roundedRect(30, 125, 150, 28, 4, 4, "F");
+doc.roundedRect(30, 112, 150, 36, 5, 5, "F");
 
 if (petPhotoData) {
   try {
@@ -4247,9 +4247,9 @@ if (petPhotoData) {
       petPhotoData,
       "JPEG",
       35,
-      129,
-      18,
-      18
+      119,
+      24,
+      24
     );
   } catch (e) {}
 }
@@ -4260,8 +4260,8 @@ doc.setFont(undefined, "bold");
 
 doc.text(
   pet?.name || "Pet",
-  60,
-  136
+  65,
+  124
 );
 
 doc.setFont(undefined, "normal");
@@ -4269,14 +4269,14 @@ doc.setFontSize(9);
 
 doc.text(
   `${pet?.species || ""} • ${pet?.breed || ""}`,
-  60,
-  143
+  65,
+  134
 );
 
 doc.text(
   `${pet?.age || "-"} yrs • ${pet?.weight || "-"} kg`,
-  60,
-  149
+  65,
+  142
 );
   let text = reportContent.innerText || reportContent.textContent;
   const cleanText = text

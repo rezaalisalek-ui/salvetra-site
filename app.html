@@ -4380,9 +4380,11 @@ trendInsights.forEach(line => {
   let y = sectionTitle("Full Wellness Report", 25);
 
   const cleanText = text
-    .replace("Pet Wellness Report Preview", "")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+  .replace("Pet Wellness Report Preview", "")
+  .replace("Wellness Score Chart", "")
+  .replace("Weight Chart", "")
+  .replace(/\n{3,}/g, "\n\n")
+  .trim();
 
   const lines = doc.splitTextToSize(cleanText, 170);
 

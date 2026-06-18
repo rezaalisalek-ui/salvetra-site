@@ -3641,6 +3641,15 @@ const weightChange =
       : weightChange > 0
         ? `Weight increased by ${weightChange} kg during this reporting period.`
         : `Weight decreased by ${Math.abs(weightChange)} kg during this reporting period.`;
+    const firstWellnessScore =
+  wellnessChecks.length > 0
+    ? wellnessChecks[0].score
+    : null;
+
+const latestWellnessScore =
+  wellnessChecks.length > 0
+    ? wellnessChecks[wellnessChecks.length - 1].score
+    : null;
     const wellnessTrendSummary =
   firstWellnessScore === null || latestWellnessScore === null
     ? "Wellness trend could not be determined."

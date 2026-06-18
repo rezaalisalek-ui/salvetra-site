@@ -3658,21 +3658,7 @@ if (wellnessChecks.length >= 20) {
   );
 }
 
-if (averageWellnessScore !== null) {
-  learnedPoints.push(
-    `The average wellness score during this period was ${averageWellnessScore}/100.`
-  );
-}
 
-if (healthLogs.length >= 5) {
-  learnedPoints.push(
-    `Health records provide additional context for understanding this pet's wellness patterns.`
-  );
-}
-
-learnedPoints.push(
-  "Continued tracking will make future reports more personalized and useful."
-);
     const weightRecords = healthLogs
   .filter(r => r.weight)
   .map(r => ({

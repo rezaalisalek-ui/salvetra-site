@@ -3856,6 +3856,13 @@ setTimeout(() => {
     0,
     100
   );
+  drawLineChart(
+  "weightChart",
+  report.weightTrend.records,
+  "weight",
+  Math.max(0, Math.min(...report.weightTrend.records.map(r => r.weight)) - 1),
+  Math.max(...report.weightTrend.records.map(r => r.weight)) + 1
+);
 }, 100);
 alert("Report preview created.");
 

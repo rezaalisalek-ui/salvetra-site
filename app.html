@@ -4143,7 +4143,20 @@ async function exportWellnessPDF() {
   const softGreen = [237, 247, 243];
   const dark = [16, 42, 39];
   const gray = [108, 118, 116];
+const petId = localStorage.getItem("pet_id");
 
+let pet = null;
+
+if (petId) {
+  const petRows = await restFetch(
+    `/rest/v1/pets?id=eq.${petId}&select=*`
+  );
+
+  pet =
+    petRows && petRows.length
+      ? petRows[0]
+      : null;
+}
   function addFooter(pageNumber) {
     doc.setFontSize(8);
     doc.setTextColor(...gray);

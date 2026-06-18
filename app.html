@@ -3729,15 +3729,20 @@ if (weightChange !== null) {
 learnedPoints.push(
   "These records help My Pet Twin better recognize this pet's baseline wellness over time."
 );
-    const averageWeight =
-weightRecords.length > 0
+    const validWeightRecords = weightRecords.filter(
+  r => !isNaN(Number(r.weight))
+);
+
+const averageWeight =
+validWeightRecords.length > 0
   ? Number(
       (
-        weightRecords.reduce((sum, r) => sum + r.weight, 0) /
-        weightRecords.length
+        validWeightRecords.reduce((sum, r) => sum + Number(r.weight), 0) /
+        validWeightRecords.length
       ).toFixed(1)
     )
   : null;
+    
 
 const normalAppetiteCount =
 healthLogs.filter(r => r.appetite === "Normal").length;

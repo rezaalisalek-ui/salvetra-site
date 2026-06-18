@@ -4165,7 +4165,10 @@ async function exportWellnessPDF() {
   const avgWeight = getValue("Average Weight:");
   const healthRecords = getValue("Health Records:");
   const wellnessRecords = getValue("Wellness Records:");
-
+const firstScore = Number((getValue("First Score:").match(/[\d.]+/) || [0])[0]);
+const latestScore = Number((getValue("Latest Score:").match(/[\d.]+/) || [0])[0]);
+const firstWeight = Number((getValue("Starting Weight:").match(/[\d.]+/) || [0])[0]);
+const latestWeight = Number((getValue("Latest Weight:").match(/[\d.]+/) || [0])[0]);
   function footer(page) {
     doc.setFontSize(8);
     doc.setTextColor(...gray);

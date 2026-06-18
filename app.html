@@ -4222,7 +4222,7 @@ async function exportWellnessPDF() {
 
   // Pet card
   doc.setFillColor(250, 250, 250);
-  doc.roundedRect(25, 118, 160, 36, 8, 8, "F");
+doc.roundedRect(25, 170, 160, 72, 8, 8, "F");
 
   doc.setFillColor(...green);
   doc.circle(45, 136, 13, "F");
@@ -4260,8 +4260,8 @@ async function exportWellnessPDF() {
 
   card("Overall Score", overallScore, 35, 212);
   card("Average Weight", avgWeight, 107, 212);
-  card("Health Records", healthRecords, 35, 244);
-  card("Wellness Records", wellnessRecords, 107, 244);
+  card("Health Records", healthRecords, 35, 228);
+card("Wellness Records", wellnessRecords, 107, 228);
 
   footer(1);
 

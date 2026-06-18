@@ -4214,12 +4214,11 @@ async function exportWellnessPDF() {
 
   addFooter(1);
 
-  // Full report pages
-  doc.addPage();
-  addFooter(2);
-
-  y = 22;
-  y = addSectionTitle("Full Wellness Report", y);
+  // Continue report on the next page without creating empty pages
+doc.addPage();
+y = 22;
+addFooter(doc.internal.getNumberOfPages());
+y = addSectionTitle("Full Wellness Report", y);
 
   const lines = doc.splitTextToSize(cleanText, 170);
 

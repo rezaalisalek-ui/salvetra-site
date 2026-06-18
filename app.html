@@ -4235,7 +4235,48 @@ doc.addImage("logo.png", "PNG", 60, 10, 90, 50);
 
   doc.setFillColor(250, 250, 250);
   doc.roundedRect(20, 115, 170, 95, 6, 6, "F");
+// Pet Profile Card
 
+doc.setFillColor(255, 255, 255);
+doc.roundedRect(30, 125, 150, 28, 4, 4, "F");
+
+if (petPhotoData) {
+  try {
+    doc.addImage(
+      petPhotoData,
+      "JPEG",
+      35,
+      129,
+      18,
+      18
+    );
+  } catch (e) {}
+}
+
+doc.setTextColor(...dark);
+doc.setFontSize(11);
+doc.setFont(undefined, "bold");
+
+doc.text(
+  pet?.name || "Pet",
+  60,
+  136
+);
+
+doc.setFont(undefined, "normal");
+doc.setFontSize(9);
+
+doc.text(
+  `${pet?.species || ""} • ${pet?.breed || ""}`,
+  60,
+  143
+);
+
+doc.text(
+  `${pet?.age || "-"} yrs • ${pet?.weight || "-"} kg`,
+  60,
+  149
+);
   let text = reportContent.innerText || reportContent.textContent;
   const cleanText = text
     .replace("Pet Wellness Report Preview", "")

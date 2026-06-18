@@ -4226,7 +4226,37 @@ doc.text("Includes wellness snapshot, trends, care summary,", 40, 158);
 doc.text("and wellness timeline.", 40, 168);
 
   addFooter(1);
+// Trend charts page
+const wellnessCanvas = document.getElementById("wellnessScoreChart");
+const weightCanvas = document.getElementById("weightChart");
 
+doc.addPage();
+addFooter(doc.internal.getNumberOfPages());
+
+let chartY = 25;
+chartY = addSectionTitle("Trend Charts", chartY);
+
+if (wellnessCanvas) {
+  doc.setTextColor(...green);
+  doc.setFontSize(12);
+  doc.setFont(undefined, "bold");
+  doc.text("Wellness Score Trend", 20, chartY);
+
+  const wellnessImage = wellnessCanvas.toDataURL("image/png");
+  doc.addImage(wellnessImage, "PNG", 20, chartY + 6, 170, 70);
+
+  chartY += 90;
+}
+
+if (weightCanvas) {
+  doc.setTextColor(...green);
+  doc.setFontSize(12);
+  doc.setFont(undefined, "bold");
+  doc.text("Weight Trend", 20, chartY);
+
+  const weightImage = weightCanvas.toDataURL("image/png");
+  doc.addImage(weightImage, "PNG", 20, chartY + 6, 170, 70);
+}
   // Continue report on the next page without creating empty pages
 doc.addPage();
 y = 22;

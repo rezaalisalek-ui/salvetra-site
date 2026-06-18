@@ -4234,7 +4234,7 @@ doc.addImage("logo.png", "PNG", 60, 10, 90, 50);
   doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, 96, { align: "center" });
 
   doc.setFillColor(250, 250, 250);
-  doc.roundedRect(20, 115, 170, 95, 6, 6, "F");
+doc.roundedRect(20, 160, 170, 75, 6, 6, "F");
 // Pet Profile Card
 
 doc.setFillColor(255, 255, 255);
@@ -4283,7 +4283,7 @@ doc.text(
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-  let y = 130;
+let y = 175;
 
 const getLineValue = label => {
   const line = cleanText

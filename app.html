@@ -4437,7 +4437,15 @@ trendInsights.forEach(line => {
       "Medication Summary",
       "Preventive Care Summary"
     ];
-
+if (
+  line.trim() === "What Salvetra Learned About This Pet" &&
+  y > 220
+) {
+  doc.addPage();
+  page += 1;
+  footer(page);
+  y = 25;
+}
     const isHeading = headingWords.includes(line.trim());
 
     if (isHeading) {

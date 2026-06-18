@@ -4210,20 +4210,53 @@ doc.addImage("logo.png", "PNG", 60, 10, 90, 50);
 
   let y = 130;
 
+const getLineValue = label => {
+  const line = cleanText
+    .split("\n")
+    .find(l => l.trim().startsWith(label));
+  return line ? line.replace(label, "").trim() : "—";
+};
+
+const overallScore = getLineValue("Overall Wellness");
+const avgWeight = getLineValue("Average Weight:");
+const healthRecords = getLineValue("Health Records:");
+const wellnessRecords = getLineValue("Wellness Records:");
+const period = getLineValue("Reporting Period");
+
+// Cover summary box
 doc.setFillColor(250, 250, 250);
-doc.roundedRect(30, 120, 150, 55, 6, 6, "F");
+doc.roundedRect(25, 115, 160, 95, 8, 8, "F");
 
 doc.setTextColor(...green);
 doc.setFontSize(14);
 doc.setFont(undefined, "bold");
-doc.text("Report Summary", 40, 135);
+doc.text("Report Summary", 35, 130);
 
-doc.setFontSize(11);
+doc.setFontSize(10);
 doc.setFont(undefined, "normal");
-doc.setTextColor(...dark);
-doc.text("A personalized wellness report for veterinary discussion.", 40, 148);
-doc.text("Includes wellness snapshot, trends, care summary,", 40, 158);
-doc.text("and wellness timeline.", 40, 168);
+doc.setTextColor(...gray);
+doc.text("A personalized wellness report for veterinary discussion.", 35, 142);
+
+// Cards
+function coverCard(title, value, x, y) {
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(x, y, 68, 24, 5, 5, "F");
+
+  doc.setTextColor(...gray);
+  doc.setFontSize(8);
+  doc.setFont(undefined, "normal");
+  doc.text(title, x + 5, y + 8);
+
+  doc.setTextColor(...green);
+  doc.setFontSize(13);
+  doc.setFont(undefined, "bold");
+  doc.text(String(value), x + 5, y + 18);
+}
+
+coverCard("Overall Score", overallScore, 35, 152);
+coverCard("Average Weight", avgWeight, 107, 152);
+coverCard("Health Records", healthRecords, 35, 182);
+coverCard("Wellness Records", wellnessRecords, 107, 182);
 
   addFooter(1);
 // Trend charts page

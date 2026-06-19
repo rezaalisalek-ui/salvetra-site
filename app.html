@@ -4563,6 +4563,42 @@ trendInsights.forEach(line => {
   doc.text(line, 24, chartY);
   chartY += 7;
 });
+ doc.addPage();
+page += 1;
+footer(page);
+
+let tableY = sectionTitle("Behavioral & Wellness Patterns", 25);
+
+doc.setFontSize(9);
+doc.setTextColor(...dark);
+
+doc.text("Factor", 20, tableY);
+doc.text("Pattern", 55, tableY);
+doc.text("Details", 90, tableY);
+
+tableY += 7;
+
+behaviorRows.forEach(row => {
+  if (tableY > 270) {
+    doc.addPage();
+    page += 1;
+    footer(page);
+    tableY = 25;
+  }
+
+  doc.text(row[0] || "-", 20, tableY);
+  doc.text(row[1] || "-", 55, tableY);
+
+  const detailLines =
+    doc.splitTextToSize(row[2] || "-", 95);
+
+  doc.text(detailLines, 90, tableY);
+
+  tableY += Math.max(
+    8,
+    detailLines.length * 5.5
+  );
+});
   // PAGE 3+ - FULL TEXT
   doc.addPage();
   let page = 3;

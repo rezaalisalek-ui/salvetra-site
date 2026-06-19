@@ -3601,18 +3601,19 @@ function closeReportModal() {
   return total > 0 ? Math.round((part / total) * 100) : 0;
 }
 
-function buildBehavioralWellnessPatterns(healthLogs = []) {
-  const total = healthLogs.length;
+function buildBehavioralWellnessPatterns(healthLogs = [], wellnessChecks = []) {
+  const healthTotal = healthLogs.length;
+const wellnessTotal = wellnessChecks.length;
 
   const count = (field, values) =>
     healthLogs.filter(r => values.includes(r[field])).length;
 
-const appetiteNormal = count("appetite", ["Excellent", "Normal"]);
-  const energyPositive = count("energy", ["Normal", "High"]);
-  const waterNormal = count("water_intake", ["Normal"]);
-  const stoolNormal = count("stool_quality", ["Normal"]);
-  const vomitingNone = count("vomiting", ["None"]);
-  const moodPositive = count("mood", ["Happy", "Normal"]);
+const appetiteNormal = countHealth("appetite", ["Excellent", "Normal"]);
+const energyPositive = countHealth("energy", ["Normal", "High"]);
+const waterNormal = countWellness("water_intake", ["Normal"]);
+const stoolNormal = countWellness("stool_quality", ["Normal"]);
+const vomitingNone = countWellness("vomiting", ["None"]);
+const moodPositive = countWellness("mood", ["Happy", "Normal"]);
 
   const rows = [
     {
@@ -3705,7 +3706,7 @@ observations.push(
     const preventiveCare = await restFetch(
       `/rest/v1/preventive_care?pet_id=eq.${petId}&select=*&order=created_at.asc`
     );
-const behavioralPatterns = buildBehavioralWellnessPatterns(wellnessChecks);
+const behavioralPatterns = buildBehavioralWellnessPatterns(healthLogs, wellnessChecks);
     const allDates = [
       ...healthLogs.map(r => r.created_at),
       ...wellnessChecks.map(r => r.created_at),

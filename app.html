@@ -4025,7 +4025,7 @@ const section = (title, items, fallbackTitle, fixedTitle = null) =>
     return `
       ${section("Vaccinations", vaccinations, "Vaccination")}
       ${section("Deworming", deworming, "Deworming")}
-[[PAGE_BREAK]]
+
 ${section("Veterinary Checkups", checkups, "Vet Checkup", "Veterinary Checkup")}
     ` || "<p>No preventive care records available.</p>";
   })()
@@ -4443,7 +4443,8 @@ trendInsights.forEach(line => {
   .replace("Pet Wellness Report Preview", "")
   .replace("Wellness Score Chart", "")
   .replace("Weight Chart", "")
-  .replace(/['‘’`´׳]/g, "-")
+  .replace("Veterinary Checkups", "[[PAGE_BREAK]]\nVeterinary Checkups")
+    .replace(/['‘’`´׳]/g, "-")
   .replace(/\n{3,}/g, "\n\n")
   .trim();
 

@@ -3597,6 +3597,83 @@ function closeReportModal() {
   ctx.fillText(String(maxValue), 4, padding + 4);
   ctx.fillText(String(minValue), 4, height - padding + 4);
 }
+   function pct(part, total) {
+  return total > 0 ? Math.round((part / total) * 100) : 0;
+}
+
+function buildBehavioralWellnessPatterns(healthLogs = []) {
+  const total = healthLogs.length;
+
+  const count = (field, values) =>
+    healthLogs.filter(r => values.includes(r[field])).length;
+
+  const appetiteNormal = count("appetite", ["Normal"]);
+  const energyPositive = count("energy", ["Normal", "High"]);
+  const waterNormal = count("water_intake", ["Normal"]);
+  const stoolNormal = count("stool_quality", ["Normal"]);
+  const vomitingNone = count("vomiting", ["None"]);
+  const moodPositive = count("mood", ["Happy", "Normal"]);
+
+  const rows = [
+    {
+      factor: "Appetite",
+      pattern: pct(appetiteNormal, total) >= 70 ? "Stable" : "Variable",
+      details: total ? `Normal appetite in ${pct(appetiteNormal, total)}% of records` : "Not enough data"
+    },
+    {
+      factor: "Energy",
+      pattern: pct(energyPositive, total) >= 70 ? "Positive" : "Variable",
+      details: total ? `Normal/high energy in ${pct(energyPositive, total)}% of records` : "Not enough data"
+    },
+    {
+      factor: "Water Intake",
+      pattern: pct(waterNormal, total) >= 70 ? "Stable" : "Variable",
+      details: total ? `Consistent water intake in ${pct(waterNormal, total)}% of records` : "Not enough data"
+    },
+    {
+      factor: "Stool Quality",
+      pattern: pct(stoolNormal, total) >= 70 ? "Mostly Normal" : "Variable",
+      details: total ? `Normal stool in ${pct(stoolNormal, total)}% of records` : "Not enough data"
+    },
+    {
+      factor: "Vomiting",
+      pattern: pct(vomitingNone, total) >= 90 ? "None Recorded" : "Recorded",
+      details: total ? `${total - vomitingNone} vomiting event(s) reported` : "Not enough data"
+    },
+    {
+      factor: "Mood",
+      pattern: pct(moodPositive, total) >= 70 ? "Positive" : "Variable",
+      details: total ? `Happy/Normal mood in ${pct(moodPositive, total)}% of records` : "Not enough data"
+    }
+  ];
+
+  const observations = [];
+
+  if (total > 0) {
+    observations.push(`Behavioral and wellness patterns were calculated from ${total} health records.`);
+
+    if (pct(appetiteNormal, total) >= 70) {
+      observations.push(`Appetite remained stable across most recorded wellness entries.`);
+    }
+
+    if (pct(vomitingNone, total) >= 90) {
+      observations.push(`No meaningful vomiting pattern was recorded during this reporting period.`);
+    }
+
+    if (pct(moodPositive, total) >= 70) {
+      observations.push(`Mood observations were predominantly positive during this reporting period.`);
+    }
+
+    if (pct(waterNormal, total) >= 70) {
+      observations.push(`Water intake remained consistent with this pet's recorded wellness baseline.`);
+    }
+  }
+
+  return {
+    rows,
+    observations
+  };
+}
     async function generateWellnessReport() {
   const petId = localStorage.getItem("pet_id");
 

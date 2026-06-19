@@ -3641,13 +3641,13 @@ details: wellnessTotal ? `Normal stool in ${pct(stoolNormal, wellnessTotal)}% of
     },
     {
       factor: "Vomiting",
-      pattern: pct(vomitingNone, total) >= 90 ? "None Recorded" : "Recorded",
-      details: total ? `${total - vomitingNone} vomiting event(s) reported` : "Not enough data"
+      pattern: pct(vomitingNone, wellnessTotal) >= 90 ? "None Recorded" : "Recorded",
+details: wellnessTotal ? `${wellnessTotal - vomitingNone} vomiting event(s) reported` : "Not enough data"
     },
     {
       factor: "Mood",
-      pattern: pct(moodPositive, total) >= 70 ? "Positive" : "Variable",
-      details: total ? `Happy/Normal mood in ${pct(moodPositive, total)}% of records` : "Not enough data"
+      pattern: pct(moodPositive, wellnessTotal) >= 70 ? "Positive" : "Variable",
+details: wellnessTotal ? `Happy/Normal mood in ${pct(moodPositive, wellnessTotal)}% of records` : "Not enough data"
     }
   ];
 

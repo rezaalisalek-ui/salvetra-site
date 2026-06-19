@@ -4576,7 +4576,8 @@ const behaviorRows = Array.from(
 );
   const cleanText = text
   .replace("Pet Wellness Report Preview", "")
-  .replace("Wellness Score Chart", "")
+ .replace(/Behavioral & Wellness Patterns[\s\S]*?Personalized Wellness Insights/, "Personalized Wellness Insights")
+    .replace("Wellness Score Chart", "")
   .replace("Weight Chart", "")
   .replace("Veterinary Checkups", "[[PAGE_BREAK]]\nVeterinary Checkups")
     .replace(/['‘’`´׳]/g, "-")

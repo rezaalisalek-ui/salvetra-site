@@ -3621,13 +3621,13 @@ const moodPositive = countWellness("mood", ["Happy", "Normal"]);
   const rows = [
     {
       factor: "Appetite",
-      pattern: pct(appetiteNormal, total) >= 70 ? "Stable" : "Variable",
-      details: total ? `Normal appetite in ${pct(appetiteNormal, total)}% of records` : "Not enough data"
+      pattern: pct(appetiteNormal, healthTotal) >= 70 ? "Stable" : "Variable",
+details: healthTotal ? `Normal appetite in ${pct(appetiteNormal, healthTotal)}% of records` : "Not enough data"
     },
     {
       factor: "Energy",
-      pattern: pct(energyPositive, total) >= 70 ? "Positive" : "Variable",
-      details: total ? `Normal/high energy in ${pct(energyPositive, total)}% of records` : "Not enough data"
+      pattern: pct(energyPositive, healthTotal) >= 70 ? "Positive" : "Variable",
+details: healthTotal ? `Normal/high energy in ${pct(energyPositive, healthTotal)}% of records` : "Not enough data"
     },
     {
       factor: "Water Intake",

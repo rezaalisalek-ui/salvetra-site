@@ -4569,7 +4569,11 @@ trendInsights.forEach(line => {
   footer(page);
 
   let y = sectionTitle("Full Wellness Report", 25);
-
+const behaviorRows = Array.from(
+  document.querySelectorAll("#reportPreviewContent table tr")
+).slice(1).map(tr =>
+  Array.from(tr.querySelectorAll("td")).map(td => td.innerText.trim())
+);
   const cleanText = text
   .replace("Pet Wellness Report Preview", "")
   .replace("Wellness Score Chart", "")

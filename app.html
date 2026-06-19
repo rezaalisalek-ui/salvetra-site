@@ -4574,12 +4574,17 @@ const behaviorRows = Array.from(
 );
 let tableY = sectionTitle("Behavioral & Wellness Patterns", 25);
 
-doc.setFontSize(9);
-doc.setTextColor(...dark);
+doc.setFontSize(10);
+doc.setTextColor(...green);
+doc.setFont(undefined, "bold");
 
 doc.text("Factor", 20, tableY);
 doc.text("Pattern", 55, tableY);
 doc.text("Details", 90, tableY);
+
+doc.setFont(undefined, "normal");
+doc.setTextColor(...dark);
+doc.setFontSize(9);
 
 tableY += 7;
 

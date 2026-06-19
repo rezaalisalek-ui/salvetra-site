@@ -3441,7 +3441,10 @@ $("skipObservables")?.addEventListener("click", async () => {
 function closeQuickActions() {
   $("quickActionsOverlay").style.display = "none";
 }
-
+function forceCloseOverlays() {
+  const quick = document.getElementById("quickActionsOverlay");
+  if (quick) quick.style.display = "none";
+}
 function showDeleteInfo() {
   closeQuickActions();
   alert("To request deletion of your Salvetra account and associated pet data, please contact support@salvetra.com");

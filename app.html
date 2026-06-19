@@ -4644,21 +4644,15 @@ doc.setTextColor(44, 62, 53);
 doc.text("About This Report", 25, 174);
 
 doc.setFont(undefined, "normal");
-doc.setFontSize(9);
+doc.setFontSize(10);
 
 doc.text(
-[
-"This report summarizes wellness information",
-"recorded in Salvetra and highlights",
-"observable trends over time.",
-"It is intended to support pet wellness",
-"tracking and veterinary discussions.",
-"This report does not provide diagnoses,",
-"medical conclusions, or treatment",
-"recommendations."
-],
+"This report summarizes wellness information recorded in Salvetra and highlights observable trends over time. It is intended to support pet wellness tracking and veterinary discussions. This report does not provide diagnoses, medical conclusions, or treatment recommendations.",
 25,
-182
+182,
+{
+  maxWidth: 150
+}
 );
   // PAGE 3+ - FULL TEXT
   doc.addPage();

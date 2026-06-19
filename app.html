@@ -4567,7 +4567,11 @@ trendInsights.forEach(line => {
  doc.addPage();
 page += 1;
 footer(page);
-
+const behaviorRows = Array.from(
+  document.querySelectorAll("#reportPreviewContent table tr")
+).slice(1).map(tr =>
+  Array.from(tr.querySelectorAll("td")).map(td => td.innerText.trim())
+);
 let tableY = sectionTitle("Behavioral & Wellness Patterns", 25);
 
 doc.setFontSize(9);
@@ -4606,11 +4610,7 @@ behaviorRows.forEach(row => {
   footer(page);
 
   let y = sectionTitle("Full Wellness Report", 25);
-const behaviorRows = Array.from(
-  document.querySelectorAll("#reportPreviewContent table tr")
-).slice(1).map(tr =>
-  Array.from(tr.querySelectorAll("td")).map(td => td.innerText.trim())
-);
+
   const cleanText = text
   .replace("Pet Wellness Report Preview", "")
  .replace(/Behavioral & Wellness Patterns[\s\S]*?Personalized Wellness Insights/, "Personalized Wellness Insights")

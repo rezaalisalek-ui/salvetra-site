@@ -4015,17 +4015,18 @@ ${
       item.type === "Veterinary Checkup"
     );
 
-    const section = (title, items, fallbackTitle) =>
+const section = (title, items, fallbackTitle, fixedTitle = null) =>
       items.length
         ? `<p><strong>${title}</strong><br>${items
-            .map(item => `• ${item.title || fallbackTitle} — ${formatDate(item.due_date || item.date)}`)
+.map(item => `• ${fixedTitle || item.title || fallbackTitle} — ${formatDate(item.due_date || item.date)}`)
             .join("<br>")}</p>`
         : "";
 
     return `
       ${section("Vaccinations", vaccinations, "Vaccination")}
       ${section("Deworming", deworming, "Deworming")}
-      ${section("Veterinary Checkups", checkups, "Vet Checkup")}
+[[PAGE_BREAK]]
+${section("Veterinary Checkups", checkups, "Vet Checkup", "Veterinary Checkup")}
     ` || "<p>No preventive care records available.</p>";
   })()
 }

@@ -3509,6 +3509,8 @@ console.error("Report data count failed:", e);
 
 function closeReportModal() {
   $("reportModal").style.display = "none";
+  closeQuickActions();
+  forceCloseOverlays();
 }
     function openReportPreview() {
 

@@ -3698,7 +3698,7 @@ function buildBehavioralWellnessPatterns(healthLogs = []) {
     const preventiveCare = await restFetch(
       `/rest/v1/preventive_care?pet_id=eq.${petId}&select=*&order=created_at.asc`
     );
-
+const behavioralPatterns = buildBehavioralWellnessPatterns(healthLogs);
     const allDates = [
       ...healthLogs.map(r => r.created_at),
       ...wellnessChecks.map(r => r.created_at),

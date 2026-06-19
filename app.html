@@ -3631,8 +3631,10 @@ details: healthTotal ? `Normal/high energy in ${pct(energyPositive, healthTotal)
     },
     {
       factor: "Water Intake",
-      pattern: pct(waterNormal, total) >= 70 ? "Stable" : "Variable",
-      details: total ? `Consistent water intake in ${pct(waterNormal, total)}% of records` : "Not enough data"
+      pattern: pct(waterNormal, wellnessTotal) >= 70 ? "Stable" : "Variable",
+details: wellnessTotal
+  ? `Consistent water intake in ${pct(waterNormal, wellnessTotal)}% of records`
+  : "Not enough data"
     },
     {
       factor: "Stool Quality",

@@ -4563,6 +4563,7 @@ trendInsights.forEach(line => {
   doc.text(line, 24, chartY);
   chartY += 7;
 });
+  let page = 2;
  doc.addPage();
 page += 1;
 footer(page);
@@ -4601,7 +4602,7 @@ behaviorRows.forEach(row => {
 });
   // PAGE 3+ - FULL TEXT
   doc.addPage();
-  let page = 3;
+  page += 1;
   footer(page);
 
   let y = sectionTitle("Full Wellness Report", 25);

@@ -4459,7 +4459,13 @@ trendInsights.forEach(line => {
     footer(page);
     y = 25;
 }
-
+if (line.trim() === "[[PAGE_BREAK]]") {
+  doc.addPage();
+  page += 1;
+  footer(page);
+  y = 25;
+  return;
+}
     const headingWords = [
       "Executive Summary",
       "Reporting Period",

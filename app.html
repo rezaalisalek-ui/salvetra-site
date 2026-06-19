@@ -3607,7 +3607,7 @@ function buildBehavioralWellnessPatterns(healthLogs = []) {
   const count = (field, values) =>
     healthLogs.filter(r => values.includes(r[field])).length;
 
-  const appetiteNormal = count("appetite", ["Normal"]);
+const appetiteNormal = count("appetite", ["Excellent", "Normal"]);
   const energyPositive = count("energy", ["Normal", "High"]);
   const waterNormal = count("water_intake", ["Normal"]);
   const stoolNormal = count("stool_quality", ["Normal"]);

@@ -4453,19 +4453,20 @@ trendInsights.forEach(line => {
   doc.setTextColor(...dark);
 
   lines.forEach(line => {
-    if (y > 270) {
+  if (line.trim() === "[[PAGE_BREAK]]") {
     doc.addPage();
     page += 1;
     footer(page);
     y = 25;
-}
-if (line.trim() === "[[PAGE_BREAK]]") {
-  doc.addPage();
-  page += 1;
-  footer(page);
-  y = 25;
-  return;
-}
+    return;
+  }
+
+  if (y > 270) {
+    doc.addPage();
+    page += 1;
+    footer(page);
+    y = 25;
+  }
     const headingWords = [
       "Executive Summary",
       "Reporting Period",

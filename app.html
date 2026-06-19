@@ -3655,11 +3655,11 @@ details: wellnessTotal ? `Happy/Normal mood in ${pct(moodPositive, wellnessTotal
 
   const observations = [];
 
-  if (total > 0) {
+if (healthTotal > 0) {
 observations.push(
-  `Behavioral and wellness patterns were calculated from ${total} health records.`
+`Behavioral and wellness patterns were calculated from ${healthTotal} health records.`
 );
-    if (total < 5) {
+if (healthTotal < 5) {
   observations.push(
     "More wellness records will help Salvetra better understand this pet's behavioral baseline."
   );

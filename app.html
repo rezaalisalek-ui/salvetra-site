@@ -4113,7 +4113,14 @@ ${
 }
 </p>
   <p><strong>Medication Summary</strong><br>
-${report.careSummary.medications.length ? report.careSummary.medications.map(m => `• ${m.name || "Medication"}${m.frequency ? " – " + m.frequency : ""}`).join("<br>") : "No medication records available."}</p>
+${
+  report.careSummary.medications.length
+    ? report.careSummary.medications
+        .map(m => `• ${m.name || "Medication"}${m.frequency ? ` – ${m.frequency}` : ""}${m.route ? ` – ${m.route}` : ""}`)
+        .join("<br>")
+    : "No medication records available."
+}
+</p>
 
 <p><strong>Preventive Care Summary</strong></p>
 

@@ -4316,6 +4316,8 @@ border-radius:18px;"
 async function exportWellnessPDF() {
   closeQuickActions();
   forceCloseOverlays();
+  $("quickActionsOverlay").style.display = "none";
+  
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF("p", "mm", "a4");
 

@@ -3605,8 +3605,11 @@ function buildBehavioralWellnessPatterns(healthLogs = [], wellnessChecks = []) {
   const healthTotal = healthLogs.length;
 const wellnessTotal = wellnessChecks.length;
 
-  const count = (field, values) =>
-    healthLogs.filter(r => values.includes(r[field])).length;
+  const countHealth = (field, values) =>
+  healthLogs.filter(r => values.includes(r[field])).length;
+
+const countWellness = (field, values) =>
+  wellnessChecks.filter(r => values.includes(r[field])).length;
 
 const appetiteNormal = countHealth("appetite", ["Excellent", "Normal"]);
 const energyPositive = countHealth("energy", ["Normal", "High"]);

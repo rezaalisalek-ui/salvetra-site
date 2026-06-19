@@ -3992,8 +3992,43 @@ ${
   <p><strong>Medication Summary</strong><br>
 ${report.careSummary.medications.length ? report.careSummary.medications.map(m => `• ${m.name || "Medication"}${m.frequency ? " – " + m.frequency : ""}`).join("<br>") : "No medication records available."}</p>
 
-<p><strong>Preventive Care Summary</strong><br>
-${report.careSummary.preventiveCare.length ? report.careSummary.preventiveCare.map(p => `• ${(p.type || p.name || "Preventive care event").replace("_", " ").replace(/\b\w/g, c => c.toUpperCase())}${p.date || p.created_at ? " (" + new Date(p.date || p.created_at).toLocaleDateString() + ")" : ""}`).join("<br>") : "No preventive care records available."}</p>
+<p><strong>Preventive Care Summary</strong></p>
+
+${
+  (() => {
+    const care = report.careSummary.preventiveCare || [];
+
+    const formatDate = d =>
+      d ? new Date(d).toLocaleDateString() : "Date not available";
+
+    const vaccinations = care.filter(item =>
+      item.type === "vaccination" || item.type === "Vaccination"
+    );
+
+    const deworming = care.filter(item =>
+      item.type === "deworming" || item.type === "Deworming"
+    );
+
+    const checkups = care.filter(item =>
+      item.type === "vet_checkup" ||
+      item.type === "Veterinary Check-up" ||
+      item.type === "Veterinary Checkup"
+    );
+
+    const section = (title, items, fallbackTitle) =>
+      items.length
+        ? `<p><strong>${title}</strong><br>${items
+            .map(item => `• ${item.title || fallbackTitle} — ${formatDate(item.due_date || item.date)}`)
+            .join("<br>")}</p>`
+        : "";
+
+    return `
+      ${section("Vaccinations", vaccinations, "Vaccination")}
+      ${section("Deworming", deworming, "Deworming")}
+      ${section("Veterinary Checkups", checkups, "Vet Checkup")}
+    ` || "<p>No preventive care records available.</p>";
+  })()
+}
 
   <p class="small" style="margin-top:10px;color:#6d7674;">
   This report is intended for wellness tracking and discussion with a veterinarian. It is not diagnostic and does not provide treatment recommendations.

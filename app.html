@@ -3650,7 +3650,10 @@ function buildBehavioralWellnessPatterns(healthLogs = []) {
   const observations = [];
 
   if (total > 0) {
-if (total < 5) {
+observations.push(
+  `Behavioral and wellness patterns were calculated from ${total} health records.`
+);
+    if (total < 5) {
   observations.push(
     "More wellness records will help Salvetra better understand this pet's behavioral baseline."
   );

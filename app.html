@@ -4025,6 +4025,36 @@ Appetite Pattern: ${report.wellnessSnapshot.appetitePattern}
 <br>
 Energy Pattern: ${report.wellnessSnapshot.energyPattern}
 <br>
+<p><strong>Behavioral & Wellness Patterns</strong></p>
+
+<table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px;">
+<tr style="border-bottom:1px solid #ddd;">
+<th align="left">Factor</th>
+<th align="left">Pattern</th>
+<th align="left">Details</th>
+</tr>
+
+${
+(report.behavioralPatterns?.rows || [])
+.map(row => `
+<tr style="border-bottom:1px solid #eee;">
+<td style="padding:6px 0;">${row.factor}</td>
+<td style="padding:6px 0;">${row.pattern}</td>
+<td style="padding:6px 0;">${row.details}</td>
+</tr>
+`)
+.join("")
+}
+
+</table>
+
+<p><strong>Personalized Wellness Insights</strong><br>
+${
+(report.behavioralPatterns?.observations || [])
+.map(item => `• ${item}`)
+.join("<br>")
+}
+</p>
 <strong>Wellness Score Trend</strong><br>
 First Score: ${report.trends.firstWellnessScore ?? "--"}/100<br>
 Latest Score: ${report.trends.latestWellnessScore ?? "--"}/100<br>

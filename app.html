@@ -3665,19 +3665,19 @@ if (healthTotal < 5) {
   );
 }
 
-    if (pct(appetiteNormal, total) >= 70) {
+if (pct(appetiteNormal, healthTotal) >= 70) {
       observations.push(`Appetite remained stable across most recorded wellness entries.`);
     }
 
-    if (pct(vomitingNone, total) >= 90) {
+if (pct(vomitingNone, wellnessTotal) >= 90) {
       observations.push(`No meaningful vomiting pattern was recorded during this reporting period.`);
     }
 
-    if (pct(moodPositive, total) >= 70) {
+if (pct(moodPositive, wellnessTotal) >= 70) {
       observations.push(`Mood observations were predominantly positive during this reporting period.`);
     }
 
-    if (pct(waterNormal, total) >= 70) {
+if (pct(waterNormal, wellnessTotal) >= 70) {
       observations.push(`Water intake remained consistent with this pet's recorded wellness baseline.`);
     }
   }

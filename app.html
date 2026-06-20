@@ -2721,7 +2721,10 @@ $("petVoiceObservableSheet")?.classList.add("hidden");
       return;
     }
 
-    box.innerHTML = checks.map(c => `
+box.innerHTML = checks
+  .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
+  .slice(0,5)
+  .map(c => `
       <div class="item">
         <strong>${c.score}/100</strong>
         <span>${c.status || ""}</span><br>

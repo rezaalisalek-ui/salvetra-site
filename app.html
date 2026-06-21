@@ -1640,7 +1640,9 @@ await authFetch(
   localStorage.removeItem("pet_id");
 localStorage.removeItem("petVoiceContext");
 localStorage.removeItem("petVoiceObservables");
-  $("bottomNav").style.display = "none";
+ const reportPreview = document.getElementById("reportPreviewContent");
+if (reportPreview) reportPreview.innerHTML = "";
+      $("bottomNav").style.display = "none";
 
   setAuthUI(false);
   clearPetForm();

@@ -3706,8 +3706,7 @@ if (pct(waterNormal, wellnessTotal) >= 70) {
   }
 
   try {
-    const previewBox = document.getElementById("reportPreviewContent");
-if (previewBox) previewBox.innerHTML = "";
+    
     const healthLogs = await restFetch(
       `/rest/v1/health_logs?pet_id=eq.${petId}&select=*&order=created_at.asc`
     );
